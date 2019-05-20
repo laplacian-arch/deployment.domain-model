@@ -1,0 +1,8 @@
+{
+  "yaml.schemas": {
+    "./schema/deployment.json": [
+      "model/**/*.yml",
+      "model/*.yml"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+project:
+  group: laplacian-arch
+  type: model
+  name: deployment
+  version: "1.0.0"
+  description: |
+    This model represents the logical structure of application deployments to the certain environments.
+
+  models:
+  - group: laplacian
+    name: metamodel
+    version: "1.0.0"
+
+  - group: laplacian-arch
+    name: client-app-arch
+    version: "1.0.0"
+
+  - group: laplacian-arch
+    name: service-api-arch
+    version: "1.0.0"
+
+  - group: laplacian-arch
+    name: datasource
+    version: "1.0.0"
+
+  templates:
+  - group: laplacian
+    name: entity
+    subname: kotlin
+    version: "1.0.0"
+
+  - group: laplacian
+    name: entity
+    subname: document
+    version: "1.0.0"
+
+  - group: laplacian
+    name: entity
+    subname: json-schema
+    version: "1.0.0"

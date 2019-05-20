@@ -1,0 +1,14 @@
+entities:
+- name: deployment_environment
+  namespace: laplacian_arch.deployment
+
+  properties:
+  - name: name
+    type: string
+    primary_key: true
+
+  relationships:
+  - name: nodes
+    reference_entity_name: deployment_node
+    cardinality: "1..*"
+    aggregate: true

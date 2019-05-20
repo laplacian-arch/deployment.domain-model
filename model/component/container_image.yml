@@ -1,0 +1,27 @@
+entities:
+- name: container
+  namespace: laplacian_arch.deployment
+  subtype_of: deployment_component
+
+  properties:
+  - name: image_name
+    type: string
+    optional: true
+    default_value: name
+
+  - name: container_registry
+    type: string
+    optional: true
+    default_value: |
+      ""
+
+  - name: image_tag
+    type: string
+    optional: true
+    default_value: |
+      "latest"
+
+  - name: image
+    type: string
+    snippet: |
+      (if (containerRegistry.isNullOrEmpty()) "" else containerRegistry + "/") + "$imageName:$imageTag"

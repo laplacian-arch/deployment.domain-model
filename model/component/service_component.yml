@@ -1,0 +1,13 @@
+entities:
+- name: service_component
+  subtype_of: container
+
+  properties: []
+
+  relationships:
+  - name: spec
+    reference_entity_name: service
+    cardinality: "1"
+    mappings:
+    - from: name
+      to: name

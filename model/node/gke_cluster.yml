@@ -1,0 +1,7 @@
+entities:
+- name: gke_cluster
+  subtype_of: deployment_node
+
+  properties:
+  - name: number_of_nodes
+    type: number
