@@ -23,6 +23,12 @@ data class D4dLocalClusterRecord (
         get() = _context.get("project") as Project
 
 
+    /**
+     * The domain_name of this d4d_local_cluster.
+     */
+    override val domainName: String
+        get() = "localhost"
+
     companion object {
         /**
          * creates record list from list of map

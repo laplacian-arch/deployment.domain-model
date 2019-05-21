@@ -1,0 +1,20 @@
+entities:
+- name: acme
+  namespace: laplacian_arch.deployment
+
+  properties:
+  - name: name
+    type: string
+    primary_key: true
+
+  - name: provider
+    type: string
+    optional: true
+    default_value: |
+      "letsencrypt"
+
+  - name: email
+    type: string
+
+  - name: api_key
+    type: string

@@ -6,6 +6,8 @@ import laplacian_arch.deployment.gradle.DeploymentModelEntryResolver
 
 import laplacian_arch.deployment.model.DeploymentEnvironmentList
 
+import laplacian_arch.deployment.model.AcmeList
+
 import laplacian.util.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -21,6 +23,7 @@ import java.util.stream.Collectors
 class DeploymentTemplateAssertion {
     lateinit var context: ExecutionContext
     lateinit var deploymentEnvironments: DeploymentEnvironmentList
+    lateinit var acmes: AcmeList
 
     /**
      * Reads the model objects from the given yaml files.
@@ -37,6 +40,7 @@ class DeploymentTemplateAssertion {
         }
         context.build()
         deploymentEnvironments = context.currentModel.get("deployment_environments") as DeploymentEnvironmentList
+        acmes = context.currentModel.get("acmes") as AcmeList
         return this
     }
 

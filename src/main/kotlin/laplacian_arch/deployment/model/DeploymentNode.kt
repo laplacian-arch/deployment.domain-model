@@ -16,6 +16,14 @@ interface DeploymentNode {
      */
     val type: String
     /**
+     * The domain_name of this deployment_node.
+     */
+    val domainName: String
+    /**
+     * The acme_name of this deployment_node.
+     */
+    val acmeName: String?
+    /**
      * db_migration_jobs
      */
     val dbMigrationJobs: List<DbMigrationJobComponent>
@@ -43,4 +51,8 @@ interface DeploymentNode {
      */
     val datastores: List<DatastoreComponent>
         get() = components.filter{ it is DatastoreComponent } as List<DatastoreComponent>
+    /**
+     * acme
+     */
+    val acme: Acme?
 }

@@ -10,6 +10,16 @@ entities:
     type: string
     subtype_key: true
 
+  - name: domain_name
+    type: string
+    optional: true
+    default_value: |
+      "example.com"
+
+  - name: acme_name
+    type: string
+    optional: true
+
   relationships:
   - name: environment
     reference_entity_name: deployment_environment
@@ -38,3 +48,10 @@ entities:
     cardinality: "*"
     snippet: |
       components.filter{ it is DatastoreComponent } as List<DatastoreComponent>
+
+  - name: acme
+    reference_entity_name: acme
+    cardinality: "0..1"
+    mappings:
+    - from: acme_name
+      to: name

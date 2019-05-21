@@ -8,6 +8,7 @@ import laplacian_arch.deployment.model.DeploymentComponent
 import laplacian_arch.deployment.model.ClientComponent
 import laplacian_arch.deployment.model.ServiceComponent
 import laplacian_arch.deployment.model.DatastoreComponent
+import laplacian_arch.deployment.model.Acme
 import laplacian.util.*
 /**
  * deployment_node
@@ -41,10 +42,31 @@ open class DeploymentNodeRecord (
         get() = getOrThrow("type")
 
     /**
+     * The domain_name of this deployment_node.
+     */
+    override val domainName: String
+        get() = getOrThrow("domainName") {
+            "example.com"
+        }
+
+    /**
+     * The acme_name of this deployment_node.
+     */
+    override val acmeName: String? by _record
+
+    /**
      * components
      */
     override val components: List<DeploymentComponent>
         = DeploymentComponentRecord.from(_record.getList("components", emptyList()), _context, this)
+
+    /**
+     * acme
+     */
+    override val acme: Acme?
+        get() = AcmeRecord.from(_context).find {
+            it.name == acmeName
+        }
 
     companion object {
         /**

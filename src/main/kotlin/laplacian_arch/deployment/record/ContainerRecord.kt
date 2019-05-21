@@ -47,6 +47,12 @@ open class ContainerRecord (
             "latest"
         }
 
+    /**
+     * The image of this container.
+     */
+    override val image: String
+        get() = (if (containerRegistry.isNullOrEmpty()) "" else containerRegistry + "/") + "$imageName:$imageTag"
+
     companion object {
         /**
          * creates record list from list of map

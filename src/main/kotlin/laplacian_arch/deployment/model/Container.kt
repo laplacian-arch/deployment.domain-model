@@ -23,5 +23,4 @@ interface Container : DeploymentComponent {
      * The image of this container.
      */
     val image: String
-        get() = (if (containerRegistry.isNullOrEmpty()) "" else containerRegistry + "/") + "$imageName:$imageTag"
 }

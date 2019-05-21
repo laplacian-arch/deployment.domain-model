@@ -24,6 +24,13 @@
         "$ref": "#/definitions/entities/deployment_environment"
       }
     },
+    "acmes": {
+      "description": "acme",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/acme"
+      }
+    },
     "entities": {
       "description": "エンティティ",
       "type": "array",
@@ -217,6 +224,14 @@
             "description": "The type of this deployment_node.",
             "type": "string"
           },
+          "domain_name": {
+            "description": "The domain_name of this deployment_node.",
+            "type": "string"
+          },
+          "acme_name": {
+            "description": "The acme_name of this deployment_node.",
+            "type": "string"
+          },
           "components": {
             "description": "components",
             "type": "array",
@@ -271,6 +286,33 @@
         "required": [
         ],
         "properties": {
+        }
+      },
+      "acme": {
+        "description": "acme",
+        "type": "object",
+        "required": [
+          "name",
+          "email",
+          "api_key"
+        ],
+        "properties": {
+          "name": {
+            "description": "The name of this acme.",
+            "type": "string"
+          },
+          "provider": {
+            "description": "The provider of this acme.",
+            "type": "string"
+          },
+          "email": {
+            "description": "The email of this acme.",
+            "type": "string"
+          },
+          "api_key": {
+            "description": "The api_key of this acme.",
+            "type": "string"
+          }
         }
       },
       "entity": {
@@ -421,7 +463,7 @@ which is used when implementing polymorphism. The name of entity is used by defa
             "type": "string"
           },
           "size": {
-            "description": "the maximum allowed size of this property",
+            "description": "the maximum allowed size of the content of this property",
             "type": "number"
           },
           "optional": {
@@ -433,7 +475,7 @@ which is used when implementing polymorphism. The name of entity is used by defa
             "type": "string"
           },
           "default_value": {
-            "description": "デフォルト値",
+            "description": "The default value of this property, which is used when the actual value is null",
             "type": "string"
           },
           "example_value": {

@@ -2,4 +2,10 @@ entities:
 - name: d4d_local_cluster
   subtype_of: deployment_node
 
-  properties: []
+  properties:
+  - name: domain_name
+    type: string
+    descrition: The host name of this node. Always returns "localhost"
+    snippet: |
+      "localhost"
+

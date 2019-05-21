@@ -29,6 +29,10 @@
   The name of this deployment_node.
 * **type:** `String`
   The type of this deployment_node.
+* **domain_name:** `String?`
+  The domain_name of this deployment_node.
+* **acme_name:** `String?`
+  The acme_name of this deployment_node.
 
 #### Relationships
 * **db_migration_jobs:** `List<DbMigrationJobComponent>`
@@ -43,3 +47,24 @@
   services
 * **datastores:** `List<DatastoreComponent>`
   datastores
+* **acme:** `Acme?`
+  acme
+
+
+
+
+---
+### **acme** (*laplacian_arch.deployment.model.Acme*)
+  acme
+
+#### Properties
+* **name:** *PK* `String`
+  The name of this acme.
+* **provider:** `String?`
+  The provider of this acme.
+* **email:** `String`
+  The email of this acme.
+* **api_key:** `String`
+  The api_key of this acme.
+
+#### Relationships
