@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/nabla-squared/laplacian-arch.model.deployment.svg?style=shield)](https://circleci.com/gh/nabla-squared/laplacian-arch.model.deployment)
+
 # laplacian-arch:model:deployment
 
 This model represents the logical structure of application deployments to the certain environments.
