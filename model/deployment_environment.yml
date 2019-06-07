@@ -2,10 +2,22 @@ entities:
 - name: deployment_environment
   namespace: laplacian_arch.deployment
 
+  examples:
+  - name: prod
+    nodes:
+    - name: main_cluster
+      type: gke_cluster
+      number_of_nodes: 3
+      components:
+      - name: postgres
+        type: container
+
   properties:
   - name: name
     type: string
     primary_key: true
+    examples:
+    - prod
 
   relationships:
   - name: nodes

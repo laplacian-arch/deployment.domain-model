@@ -15,3 +15,4 @@ entities:
     reference_entity_name: deployment_node
     cardinality: "1"
     inherited: true
+    reverse_of: components

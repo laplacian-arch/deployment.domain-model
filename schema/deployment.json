@@ -359,6 +359,10 @@
 which is used when implementing polymorphism. The name of entity is used by default.",
             "type": "string"
           },
+          "deprecated": {
+            "description": "Defines this entity is deprecated or not.",
+            "type": "boolean"
+          },
           "properties": {
             "description": "The properties of this entity (excluding supertypes')",
             "type": "array",
@@ -478,9 +482,9 @@ which is used when implementing polymorphism. The name of entity is used by defa
             "description": "The default value of this property, which is used when the actual value is null",
             "type": "string"
           },
-          "example_value": {
-            "description": "The example_value of this property.",
-            "type": "string"
+          "examples": {
+            "description": "The examples of this property.",
+            "type": "any"
           },
           "table_column_name": {
             "description": "The table_column_name of this property.",
@@ -492,6 +496,10 @@ which is used when implementing polymorphism. The name of entity is used by defa
           },
           "multiple": {
             "description": "Defines this property is multiple or not.",
+            "type": "boolean"
+          },
+          "deprecated": {
+            "description": "Defines this property is deprecated or not.",
             "type": "boolean"
           },
           "domain": {
@@ -561,6 +569,10 @@ which is used when implementing polymorphism. The name of entity is used by defa
           "snippet": {
             "description": "クエリスクリプト",
             "type": "string"
+          },
+          "deprecated": {
+            "description": "Defines this query is deprecated or not.",
+            "type": "boolean"
           }
         }
       },
@@ -607,6 +619,10 @@ which is used when implementing polymorphism. The name of entity is used by defa
             "description": "Defines this relationship is inherited or not.",
             "type": "boolean"
           },
+          "reverse_of": {
+            "description": "The reverse_of of this relationship.",
+            "type": "string"
+          },
           "description": {
             "description": "The description of this relationship.",
             "type": "string"
@@ -614,6 +630,10 @@ which is used when implementing polymorphism. The name of entity is used by defa
           "snippet": {
             "description": "The snippet of this relationship.",
             "type": "string"
+          },
+          "deprecated": {
+            "description": "Defines this relationship is deprecated or not.",
+            "type": "boolean"
           },
           "mappings": {
             "description": "mappings",

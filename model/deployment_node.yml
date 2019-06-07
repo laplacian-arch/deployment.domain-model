@@ -5,10 +5,14 @@ entities:
   - name: name
     type: string
     primary_key: true
+    examples:
+    - main_cluster
 
   - name: type
     type: string
     subtype_key: true
+    examples:
+    - gke_cluster
 
   - name: domain_name
     type: string
@@ -24,6 +28,7 @@ entities:
   - name: environment
     reference_entity_name: deployment_environment
     cardinality: "1"
+    reverse_of: nodes
     inherited: true
 
   - name: components

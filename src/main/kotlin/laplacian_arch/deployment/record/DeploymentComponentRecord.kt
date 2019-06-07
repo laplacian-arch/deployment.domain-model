@@ -39,18 +39,20 @@ open class DeploymentComponentRecord (
         /**
          * creates record list from list of map
          */
-        fun from(records: RecordList, _context: Context, node: DeploymentNode) = records.map {
-            when (val type = it["type"]) {
-                "container" -> ContainerRecord(it, _context, node = node)
-                "service_component" -> ServiceComponentRecord(it, _context, node = node)
-                "client_component" -> ClientComponentRecord(it, _context, node = node)
-                "db_migration_job_component" -> DbMigrationJobComponentRecord(it, _context, node = node)
-                "datastore_component" -> DatastoreComponentRecord(it, _context, node = node)
-                else -> throw IllegalArgumentException(
-                    "Undefined type $type. It is should be one of [container]"
-                )
+        fun from(records: RecordList, _context: Context, node: DeploymentNode) = records
+            .mergeWithKeys("name")
+            .map {
+                when (val type = it["type"]) {
+                    "container" -> ContainerRecord(it, _context, node = node)
+                    "service_component" -> ServiceComponentRecord(it, _context, node = node)
+                    "client_component" -> ClientComponentRecord(it, _context, node = node)
+                    "db_migration_job_component" -> DbMigrationJobComponentRecord(it, _context, node = node)
+                    "datastore_component" -> DatastoreComponentRecord(it, _context, node = node)
+                    else -> throw IllegalArgumentException(
+                        "Undefined type $type. It is should be one of [container]"
+                    )
+                }
             }
-        }
     }
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

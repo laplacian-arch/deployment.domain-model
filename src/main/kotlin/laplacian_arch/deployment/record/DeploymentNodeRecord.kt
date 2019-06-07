@@ -72,15 +72,17 @@ open class DeploymentNodeRecord (
         /**
          * creates record list from list of map
          */
-        fun from(records: RecordList, _context: Context, environment: DeploymentEnvironment) = records.map {
-            when (val type = it["type"]) {
-                "gke_cluster" -> GkeClusterRecord(it, _context, environment = environment)
-                "d4d_local_cluster" -> D4dLocalClusterRecord(it, _context, environment = environment)
-                else -> throw IllegalArgumentException(
-                    "Undefined type $type. It is should be one of [gke_cluster, d4d_local_cluster]"
-                )
+        fun from(records: RecordList, _context: Context, environment: DeploymentEnvironment) = records
+            .mergeWithKeys("name")
+            .map {
+                when (val type = it["type"]) {
+                    "gke_cluster" -> GkeClusterRecord(it, _context, environment = environment)
+                    "d4d_local_cluster" -> D4dLocalClusterRecord(it, _context, environment = environment)
+                    else -> throw IllegalArgumentException(
+                        "Undefined type $type. It is should be one of [gke_cluster, d4d_local_cluster]"
+                    )
+                }
             }
-        }
     }
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

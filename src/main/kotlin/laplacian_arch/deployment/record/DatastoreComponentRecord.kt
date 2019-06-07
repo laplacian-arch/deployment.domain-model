@@ -43,9 +43,11 @@ data class DatastoreComponentRecord (
         /**
          * creates record list from list of map
          */
-        fun from(records: RecordList, _context: Context, node: DeploymentNode) = records.map {
-            DatastoreComponentRecord(it, _context, node = node)
-        }
+        fun from(records: RecordList, _context: Context, node: DeploymentNode) = records
+            .mergeWithKeys("name")
+            .map {
+                DatastoreComponentRecord(it, _context, node = node)
+            }
     }
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

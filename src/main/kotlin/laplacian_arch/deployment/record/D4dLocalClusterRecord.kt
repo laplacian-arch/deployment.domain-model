@@ -33,9 +33,11 @@ data class D4dLocalClusterRecord (
         /**
          * creates record list from list of map
          */
-        fun from(records: RecordList, _context: Context, environment: DeploymentEnvironment) = records.map {
-            D4dLocalClusterRecord(it, _context, environment = environment)
-        }
+        fun from(records: RecordList, _context: Context, environment: DeploymentEnvironment) = records
+            .mergeWithKeys("name")
+            .map {
+                D4dLocalClusterRecord(it, _context, environment = environment)
+            }
     }
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

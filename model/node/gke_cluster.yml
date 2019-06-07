@@ -2,6 +2,13 @@ entities:
 - name: gke_cluster
   subtype_of: deployment_node
 
+  examples:
+  - name: main_cluster
+    type: gke_cluster
+    number_of_nodes: 3
+
   properties:
   - name: number_of_nodes
     type: number
+    examples:
+    - 3
