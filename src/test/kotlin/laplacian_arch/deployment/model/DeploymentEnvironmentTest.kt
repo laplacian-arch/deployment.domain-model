@@ -23,12 +23,13 @@ class DeploymentEnvironmentTest {
         |      type: container
         """.trimMargin())
         val model = context
-            .deploymentEnvironments[0]
+            .deploymentEnvironments.find {
+                it.name == "prod"
+            }!!
             as DeploymentEnvironment
 
         assertAll(
             { assertEquals("prod", model.name) }
         )
     }
-
 }

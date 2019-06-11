@@ -34,13 +34,16 @@ class GkeClusterTest {
         |    number_of_nodes: 3
         """.trimMargin())
         val model = context
-            .deploymentEnvironments[0]
-            .nodes[0]
+            .deploymentEnvironments.find {
+                it.name == "prod"
+            }!!
+            .nodes.find {
+                it.name == "main_cluster"
+            }!!
             as GkeCluster
 
         assertAll(
             { assertEquals(3, model.numberOfNodes) }
         )
     }
-
 }

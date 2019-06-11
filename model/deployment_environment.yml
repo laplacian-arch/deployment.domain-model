@@ -16,7 +16,7 @@ entities:
   - name: name
     type: string
     primary_key: true
-    examples:
+    example_values:
     - prod
 
   relationships:

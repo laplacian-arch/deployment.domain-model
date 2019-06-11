@@ -5,13 +5,13 @@ entities:
   - name: name
     type: string
     primary_key: true
-    examples:
+    example_values:
     - main_cluster
 
   - name: type
     type: string
     subtype_key: true
-    examples:
+    example_values:
     - gke_cluster
 
   - name: domain_name

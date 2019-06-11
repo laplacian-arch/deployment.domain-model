@@ -11,7 +11,7 @@ entities:
     type: container
     container_registry: gcr.io
     image_name: google_containers/volume-nfs
-    image_tag: 0.8
+    image_tag: "0.8"
 
   properties:
   - name: image_name
@@ -19,16 +19,16 @@ entities:
     optional: true
     default_value: |
       name
-    examples:
+    example_values:
     - postgres
-    - pv-container
+    - google_containers/volume-nfs
 
   - name: container_registry
     type: string
     optional: true
     default_value: |
       ""
-    examples:
+    example_values:
     - ""
     - gcr.io
 
@@ -37,7 +37,7 @@ entities:
     optional: true
     default_value: |
       "latest"
-    examples:
+    example_values:
     - latest
     - '0.8'
 
@@ -45,6 +45,6 @@ entities:
     type: string
     snippet: |
       (if (containerRegistry.isNullOrEmpty()) "" else containerRegistry + "/") + "$imageName:$imageTag"
-    examples:
+    example_values:
     - postgres:latest
     - gcr.io/google_containers/volume-nfs:0.8

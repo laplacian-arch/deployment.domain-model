@@ -35,14 +35,19 @@ class ContainerTest {
         |      type: container
         """.trimMargin())
         val model = context
-            .deploymentEnvironments[0]
-            .nodes[0]
-            .components[0]
+            .deploymentEnvironments.find {
+                it.name == "prod"
+            }!!
+            .nodes.find {
+                it.name == "main_cluster"
+            }!!
+            .components.find {
+                it.name == "postgres"
+            }!!
             as Container
 
         assertAll(
             { assertEquals("postgres", model.imageName) },
-            { assertEquals("", model.containerRegistry) },
             { assertEquals("latest", model.imageTag) },
             { assertEquals("postgres:latest", model.image) }
         )
@@ -61,20 +66,25 @@ class ContainerTest {
         |      type: container
         |      container_registry: gcr.io
         |      image_name: google_containers/volume-nfs
-        |      image_tag: 0.8
+        |      image_tag: '0.8'
         """.trimMargin())
         val model = context
-            .deploymentEnvironments[0]
-            .nodes[0]
-            .components[0]
+            .deploymentEnvironments.find {
+                it.name == "prod"
+            }!!
+            .nodes.find {
+                it.name == "main_cluster"
+            }!!
+            .components.find {
+                it.name == "pv-container"
+            }!!
             as Container
 
         assertAll(
-            { assertEquals("postgres", model.imageName) },
-            { assertEquals("", model.containerRegistry) },
-            { assertEquals("latest", model.imageTag) },
-            { assertEquals("postgres:latest", model.image) }
+            { assertEquals("google_containers/volume-nfs", model.imageName) },
+            { assertEquals("gcr.io", model.containerRegistry) },
+            { assertEquals("0.8", model.imageTag) },
+            { assertEquals("gcr.io/google_containers/volume-nfs:0.8", model.image) }
         )
     }
-
 }

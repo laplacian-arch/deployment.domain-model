@@ -10,5 +10,5 @@ entities:
   properties:
   - name: number_of_nodes
     type: number
-    examples:
+    example_values:
     - 3
