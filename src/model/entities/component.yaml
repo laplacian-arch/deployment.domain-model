@@ -1,0 +1,29 @@
+entities:
+- name: component
+  namespace: laplacian.arch.deployment
+
+  properties:
+  - name: name
+    type: string
+    primary_key: true
+
+  - name: type
+    type: string
+    subtype_key: true
+
+  - name: tags
+    type: string
+    multiple: true
+
+  - name: instance_name
+    type: string
+    optional: true
+    default_value: |
+      name.lowerHyphenize()
+
+  relationships:
+  - name: current_environment
+    reference_entity_name: environment
+    cardinality: '1'
+    snippet: |
+      _context.get("current_environment") as Environment

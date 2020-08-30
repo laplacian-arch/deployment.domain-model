@@ -1,0 +1,31 @@
+project:
+  group: laplacian-arch
+  name: deployment.domain-model
+  type: domain-model
+  namespace: laplacian.arch.deployment
+  version: '1.0.0'
+  description:
+    en: |
+      This model represents the deployment configuration of a system.
+    ja: |
+      システムのデプロイメント構成を表すモデルです。
+    zh: |
+      该模型表示系统的部署配置。
+  source_repository:
+    url: https://github.com/laplacian-arch/deployment.domain-model.git
+    branch: master
+  module_repositories:
+    local:
+      ../../../mvn-repo
+    remote:
+    - https://github.com/nabla-squared/mvn-repo
+  plugins:
+  - group: laplacian-arch
+    name: api-service.domain-model-plugin
+    version: '1.0.0'
+  models:
+  - group: laplacian-arch
+    name: api-service.domain-model
+    version: '1.0.0'
+  model_files:
+  - 'dest/model'

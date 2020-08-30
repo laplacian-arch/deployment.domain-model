@@ -1,0 +1,124 @@
+entities:
+- name: springboot2_api_service
+  namespace: laplacian.arch.deployment
+  subtype_of: component
+
+  properties:
+  - name: function_model_name
+    type: string
+
+  - name: port
+    type: number
+    optional: true
+    default_value: |
+      8080
+
+  - name: container_base_image
+    type: string
+    optional: true
+    default_value: |
+      "adoptopenjdk:11-jdk-hotspot"
+
+  - name: gradle_version
+    type: string
+    optional: true
+    default_value: |
+      "6.5.1"
+
+  - name: jdk_major_version
+    type: string
+    optional: true
+    default_value: |
+      "11"
+    domain:
+      choices:
+      - value: "11"
+      - value: "14"
+      - value: "8"
+
+  - name: kotlin_version
+    type: string
+    optional: true
+    default_value: |
+      "1.3.72"
+
+  - name: kotlin_coroutine_version
+    type: string
+    optional: true
+    default_value: |
+      "1.3.7"
+
+  - name: r2dbc_postgres_driver_version
+    type: string
+    optional: true
+    default_value: |
+      "0.8.3.RELEASE"
+
+  - name: springboot_version
+    type: string
+    optional: true
+    default_value: |
+      "2.3.1.RELEASE"
+
+  - name: springboot_graphql_webflux_version
+    type: string
+    optional: true
+    default_value: |
+      "2.0"
+
+  - name: spring_dependency_manager_version
+    type: string
+    optional: true
+    default_value: |
+      "1.0.9.RELEASE"
+
+  relationships:
+  - name: function_model
+    reference_entity_name: service
+    cardinality: '1'
+    mappings:
+    - from: function_model_name
+      to: name
+
+  - name: datasource_mappings
+    reference_entity_name: datasource_mapping
+    cardinality: '*'
+    aggregate: true
+
+- name: datasource_mapping
+  namespace: laplacian.arch.deployment
+
+  properties:
+  - name: name
+    type: string
+    optional: true
+    default_value: |
+      "default"
+
+  - name: is_default
+    type: boolean
+    snippet: |
+      name == "default"
+
+  - name: component_name
+    type: string
+
+  relationships:
+  - name: datasource
+    reference_entity_name: datasource
+    cardinality: '1'
+    snippet: |
+      service.functionModel.datasources.find{ it.name == name }!!
+
+
+  - name: service
+    reference_entity_name: springboot2_api_service
+    cardinality: '1'
+    reverse_of: datasource_mappings
+
+  - name: component
+    reference_entity_name: component
+    cardinality: '1'
+    mappings:
+    - from: component_name
+      to: name
