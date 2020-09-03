@@ -2461,6 +2461,14 @@
               "container_on_local_machine"
             ],
             "type": "string"
+          },
+          "machine_type": {
+            "description": "The machine_type of this container_on_gce_instance.",
+            "enum":[
+              "f1-micro",
+              "g1-small"
+            ],
+            "type": "string"
           }
         }
         }

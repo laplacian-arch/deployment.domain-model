@@ -3,4 +3,15 @@ entities:
   namespace: laplacian.arch.deployment
   subtype_of: deployment
 
-  properties: []
+  properties:
+  - name: machine_type
+    type: string
+    optional: true
+    default_value: |
+      "fi-micro"
+    domain:
+      choices:
+      - label: f1-micro
+        value: f1-micro
+      - label: g1-small
+        value: g1-small
