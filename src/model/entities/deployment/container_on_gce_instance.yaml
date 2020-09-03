@@ -1,0 +1,6 @@
+entities:
+- name: container_on_gce_instance
+  namespace: laplacian.arch.deployment
+  subtype_of: deployment
+
+  properties: []

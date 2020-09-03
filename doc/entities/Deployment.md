@@ -1,7 +1,7 @@
-# **ComponentEntry**
+# **Deployment**
 **namespace:** laplacian.arch.deployment
 
-component_entry
+deployment
 
 
 
@@ -10,8 +10,11 @@ component_entry
 ## Properties
 
 ### name: `String`
-The name of this component_entry.
+The name of this deployment.
 - **Attributes:** *PK*
+
+### type: `String`
+The type of this deployment.
 
 ## Relationships
 

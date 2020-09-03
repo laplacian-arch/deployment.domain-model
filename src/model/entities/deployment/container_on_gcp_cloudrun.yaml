@@ -1,0 +1,6 @@
+entities:
+- name: container_on_gcp_cloudrun
+  namespace: laplacian.arch.deployment
+  subtype_of: deployment
+
+  properties: []

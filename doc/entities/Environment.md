@@ -25,8 +25,8 @@ Defines this environment is uses_locally_built_container_images or not.
 
 ## Relationships
 
-### component_entries: `List<ComponentEntry>`
-component_entries
+### deployments: `List<Deployment>`
+deployments
 - **Cardinality:** `*`
 
 ### components: `List<Component>`
@@ -34,5 +34,5 @@ components
 - **Cardinality:** `*`
 - **Code:**
   ```kotlin
-  componentEntries.map{ it.component }
+  deployments.map{ it.component }.distinct()
   ```

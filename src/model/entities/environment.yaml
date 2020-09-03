@@ -23,34 +23,14 @@ entities:
       listOf("development", "local").any{ it == tier }
 
   relationships:
-  - name: component_entries
+  - name: deployments
     cardinality: "*"
-    reference_entity_name: component_entry
+    reference_entity_name: deployment
     aggregate: true
 
   - name: components
     cardinality: "*"
     reference_entity_name: component
     snippet: |
-      componentEntries.map{ it.component }
+      deployments.map{ it.component }.distinct()
 
-- name: component_entry
-  namespace: laplacian.arch.deployment
-
-  properties:
-  - name: name
-    type: string
-    primary_key: true
-
-  relationships:
-  - name: environment
-    cardinality: '1'
-    reference_entity_name: environment
-    reverse_of: component_entries
-
-  - name: component
-    cardinality: "1"
-    reference_entity_name: component
-    mappings:
-    - from: name
-      to: name

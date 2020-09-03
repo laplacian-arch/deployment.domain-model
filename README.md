@@ -81,10 +81,16 @@ postgres_test_db
 springboot2_api_service
 - [**DatasourceMapping**](<./doc/entities/DatasourceMapping.md>)
 datasource_mapping
+- [**Deployment**](<./doc/entities/Deployment.md>)
+deployment
+- [**ContainerOnGceInstance**](<./doc/entities/ContainerOnGceInstance.md>)
+container_on_gce_instance
+- [**ContainerOnGcpCloudrun**](<./doc/entities/ContainerOnGcpCloudrun.md>)
+container_on_gcp_cloudrun
+- [**ContainerOnLocalMachine**](<./doc/entities/ContainerOnLocalMachine.md>)
+container_on_local_machine
 - [**Environment**](<./doc/entities/Environment.md>)
 environment
-- [**ComponentEntry**](<./doc/entities/ComponentEntry.md>)
-component_entry
 ### Script List
 
 
@@ -200,6 +206,10 @@ component_entry
 - [src/model/entities/component/datastore/postgres_test_db.yaml](<./src/model/entities/component/datastore/postgres_test_db.yaml>)
 - [src/model/entities/component/service/springboot2_api_service.yaml](<./src/model/entities/component/service/springboot2_api_service.yaml>)
 - [src/model/entities/component.yaml](<./src/model/entities/component.yaml>)
+- [src/model/entities/deployment/container_on_gce_instance.yaml](<./src/model/entities/deployment/container_on_gce_instance.yaml>)
+- [src/model/entities/deployment/container_on_gcp_cloudrun.yaml](<./src/model/entities/deployment/container_on_gcp_cloudrun.yaml>)
+- [src/model/entities/deployment/container_on_local_machine.yaml](<./src/model/entities/deployment/container_on_local_machine.yaml>)
+- [src/model/entities/deployment.yaml](<./src/model/entities/deployment.yaml>)
 - [src/model/entities/environment.yaml](<./src/model/entities/environment.yaml>)
 
 

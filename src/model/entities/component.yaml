@@ -20,10 +20,3 @@ entities:
     optional: true
     default_value: |
       name.lowerHyphenize()
-
-  relationships:
-  - name: current_environment
-    reference_entity_name: environment
-    cardinality: '1'
-    snippet: |
-      _context.get("current_environment") as Environment

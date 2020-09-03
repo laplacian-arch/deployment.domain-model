@@ -2414,6 +2414,105 @@
           }
         }
       },
+      "deployment": {
+        "description": "deployment",
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "description": "The name of this deployment.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this deployment.",
+            "enum":[
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun",
+              "container_on_local_machine"
+            ],
+            "type": "string"
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/container_on_gce_instance" },
+          { "$ref": "#/definitions/entities/container_on_gcp_cloudrun" },
+          { "$ref": "#/definitions/entities/container_on_local_machine" }
+        ]
+      },
+      "container_on_gce_instance": {
+        "description": "container_on_gce_instance",
+        "if": { "properties": {
+          "type": { "const": "container_on_gce_instance" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this deployment.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this deployment.",
+            "enum":[
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun",
+              "container_on_local_machine"
+            ],
+            "type": "string"
+          }
+        }
+        }
+      },
+      "container_on_gcp_cloudrun": {
+        "description": "container_on_gcp_cloudrun",
+        "if": { "properties": {
+          "type": { "const": "container_on_gcp_cloudrun" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this deployment.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this deployment.",
+            "enum":[
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun",
+              "container_on_local_machine"
+            ],
+            "type": "string"
+          }
+        }
+        }
+      },
+      "container_on_local_machine": {
+        "description": "container_on_local_machine",
+        "if": { "properties": {
+          "type": { "const": "container_on_local_machine" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this deployment.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this deployment.",
+            "enum":[
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun",
+              "container_on_local_machine"
+            ],
+            "type": "string"
+          }
+        }
+        }
+      },
       "environment": {
         "description": "environment",
         "type": "object",
@@ -2440,26 +2539,12 @@
             "description": "Defines this environment is uses_locally_built_container_images or not.",
             "type": "boolean"
           },
-          "component_entries": {
-            "description": "component_entries",
+          "deployments": {
+            "description": "deployments",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/component_entry"
+              "$ref": "#/definitions/entities/deployment"
             }
-          }
-        }
-      },
-      "component_entry": {
-        "description": "component_entry",
-        "type": "object",
-        "required": [
-          "name"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this component_entry.",
-            "type": "string"
           }
         }
       }

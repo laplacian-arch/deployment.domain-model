@@ -27,11 +27,3 @@ The instance_name of this component.
   ```
 
 ## Relationships
-
-### current_environment: `Environment`
-current_environment
-- **Cardinality:** `1`
-- **Code:**
-  ```kotlin
-  _context.get("current_environment") as Environment
-  ```
