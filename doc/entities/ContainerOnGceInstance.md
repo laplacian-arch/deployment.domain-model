@@ -13,7 +13,7 @@ container_on_gce_instance
 The machine_type of this container_on_gce_instance.
 - **Default Value:**
   ```kotlin
-  "fi-micro"
+  "f1-micro"
   ```
 
 ## Relationships

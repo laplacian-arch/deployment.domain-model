@@ -20,7 +20,18 @@ The tier of this environment.
 Defines this environment is uses_locally_built_container_images or not.
 - **Default Value:**
   ```kotlin
-  listOf("development", "local").any{ it == tier }
+  listOf("development", "local").contains(tier)
+  ```
+
+### uses_gcp: `Boolean`
+Defines this environment is uses_gcp or not.
+- **Default Value:**
+  ```kotlin
+  deployments.any{ deployment ->
+      listOf("gcp", "gce").any {
+        deployment.type.contains("_${it}_")
+      }
+  }
   ```
 
 ## Relationships

@@ -2581,6 +2581,10 @@
             "description": "Defines this environment is uses_locally_built_container_images or not.",
             "type": "boolean"
           },
+          "uses_gcp": {
+            "description": "Defines this environment is uses_gcp or not.",
+            "type": "boolean"
+          },
           "deployments": {
             "description": "deployments",
             "type": "array",

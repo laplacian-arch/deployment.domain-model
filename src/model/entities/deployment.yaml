@@ -18,7 +18,7 @@ entities:
     reverse_of: deployments
 
   - name: component
-    cardinality: "1"
+    cardinality: '1'
     reference_entity_name: component
     mappings:
     - from: name

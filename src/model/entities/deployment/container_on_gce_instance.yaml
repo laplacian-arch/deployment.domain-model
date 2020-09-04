@@ -8,7 +8,7 @@ entities:
     type: string
     optional: true
     default_value: |
-      "fi-micro"
+      "f1-micro"
     domain:
       choices:
       - label: f1-micro

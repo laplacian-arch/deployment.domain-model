@@ -20,7 +20,17 @@ entities:
     type: boolean
     optional: true
     default_value: |
-      listOf("development", "local").any{ it == tier }
+      listOf("development", "local").contains(tier)
+
+  - name: uses_gcp
+    type: boolean
+    optional: true
+    default_value: |
+      deployments.any{ deployment ->
+          listOf("gcp", "gce").any {
+            deployment.type.contains("_${it}_")
+          }
+      }
 
   relationships:
   - name: deployments
