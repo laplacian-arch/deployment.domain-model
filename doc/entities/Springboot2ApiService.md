@@ -44,14 +44,14 @@ The jdk_major_version of this springboot2_api_service.
 The kotlin_version of this springboot2_api_service.
 - **Default Value:**
   ```kotlin
-  "1.3.72"
+  "1.4.10"
   ```
 
 ### kotlin_coroutine_version: `String`
 The kotlin_coroutine_version of this springboot2_api_service.
 - **Default Value:**
   ```kotlin
-  "1.3.7"
+  "1.3.9"
   ```
 
 ### r2dbc_postgres_driver_version: `String`

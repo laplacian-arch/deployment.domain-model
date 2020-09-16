@@ -192,11 +192,43 @@
       }
     }
     ,
+    "rest_resources": {
+      "description": "rest_resource",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/rest_resource"
+      }
+    }
+    ,
+    "rest_operations": {
+      "description": "rest_operation",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/rest_operation"
+      }
+    }
+    ,
+    "rest_request_parameters": {
+      "description": "rest_request_parameter",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/rest_request_parameter"
+      }
+    }
+    ,
     "services": {
       "description": "service",
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/service"
+      }
+    }
+    ,
+    "http_clients": {
+      "description": "http_client",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/http_client"
       }
     }
     ,
@@ -2055,19 +2087,184 @@
         "description": "graphql_type",
         "type": "object",
         "required": [
+          "name"
         ],
+        "properties": {
+          "name": {
+            "description": "The name of this graphql_type.",
+            "type": "string"
+          },
+          "resolver_type": {
+            "description": "The resolver_type of this graphql_type.",
+            "enum":[
+              "entity_on_database",
+              "external_rest_resource"
+            ],
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this graphql_type.",
+            "type": "string"
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/entity_on_database" },
+          { "$ref": "#/definitions/entities/external_rest_resource" }
+        ]
+      },
+      "entity_on_database": {
+        "description": "entity_on_database",
+        "if": { "properties": {
+          "resolver_type": { "const": "entity_on_database" }
+        }},
+        "then": {
         "additionalProperties": false,
         "properties": {
           "name": {
             "description": "The name of this graphql_type.",
             "type": "string"
           },
-          "entity_name": {
-            "description": "The entity_name of this graphql_type.",
+          "resolver_type": {
+            "description": "The resolver_type of this graphql_type.",
+            "enum":[
+              "entity_on_database",
+              "external_rest_resource"
+            ],
             "type": "string"
           },
           "description": {
             "description": "The description of this graphql_type.",
+            "type": "string"
+          },
+          "entity_name": {
+            "description": "The entity_name of this entity_on_database.",
+            "type": "string"
+          },
+          "datasource_name": {
+            "description": "The datasource_name of this entity_on_database.",
+            "type": "string"
+          }
+        }
+        }
+      },
+      "external_rest_resource": {
+        "description": "external_rest_resource",
+        "if": { "properties": {
+          "resolver_type": { "const": "external_rest_resource" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this graphql_type.",
+            "type": "string"
+          },
+          "resolver_type": {
+            "description": "The resolver_type of this graphql_type.",
+            "enum":[
+              "entity_on_database",
+              "external_rest_resource"
+            ],
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this graphql_type.",
+            "type": "string"
+          },
+          "rest_resource_name": {
+            "description": "The rest_resource_name of this external_rest_resource.",
+            "type": "string"
+          },
+          "http_client_name": {
+            "description": "The http_client_name of this external_rest_resource.",
+            "type": "string"
+          }
+        }
+        }
+      },
+      "rest_resource": {
+        "description": "rest_resource",
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this rest_resource.",
+            "type": "string"
+          },
+          "resource_model_name": {
+            "description": "The resource_model_name of this rest_resource.",
+            "type": "string"
+          },
+          "operations": {
+            "description": "operations",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/rest_operation"
+            }
+          }
+        }
+      },
+      "rest_operation": {
+        "description": "rest_operation",
+        "type": "object",
+        "required": [
+          "method",
+          "path"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "method": {
+            "allOf": [{
+            "description": "The method of this rest_operation.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/http_method_for_rest"
+            }]
+          },
+          "path": {
+            "description": "The path of this rest_operation.",
+            "type": "string"
+          },
+          "path_parameters": {
+            "description": "path_parameters",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/rest_request_parameter"
+            }
+          },
+          "query_parameters": {
+            "description": "query_parameters",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/rest_request_parameter"
+            }
+          }
+        }
+      },
+      "rest_request_parameter": {
+        "description": "rest_request_parameter",
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this rest_request_parameter.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this rest_request_parameter.",
+            "enum":[
+              "string",
+              "number",
+              "boolean",
+              "array",
+              "object"
+            ],
             "type": "string"
           }
         }
@@ -2140,6 +2337,13 @@
             "items": {
               "$ref": "#/definitions/entities/graphql_type_entry"
             }
+          },
+          "http_clients": {
+            "description": "http_clients",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/http_client"
+            }
           }
         }
       },
@@ -2165,38 +2369,6 @@
           "description": {
             "description": "The description of this datasource.",
             "type": "string"
-          },
-          "hostname": {
-            "description": "The hostname of this datasource.",
-            "type": "string"
-          },
-          "port": {
-            "description": "The port of this datasource.",
-            "type": "number"
-          },
-          "jdbc_url": {
-            "description": "The jdbc_url of this datasource.",
-            "type": "string"
-          },
-          "db_name": {
-            "description": "The db_name of this datasource.",
-            "type": "string"
-          },
-          "db_user": {
-            "description": "The db_user of this datasource.",
-            "type": "string"
-          },
-          "db_password": {
-            "description": "The db_password of this datasource.",
-            "type": "string"
-          },
-          "container_name": {
-            "description": "The container_name of this datasource.",
-            "type": "string"
-          },
-          "container_image": {
-            "description": "The container_image of this datasource.",
-            "type": "string"
           }
         }
       },
@@ -2207,12 +2379,22 @@
         ],
         "additionalProperties": false,
         "properties": {
-          "type_name": {
-            "description": "The type_name of this graphql_type_entry.",
+          "name": {
+            "description": "The name of this graphql_type_entry.",
             "type": "string"
-          },
-          "datasource_name": {
-            "description": "The datasource_name of this graphql_type_entry.",
+          }
+        }
+      },
+      "http_client": {
+        "description": "http_client",
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this http_client.",
             "type": "string"
           }
         }
