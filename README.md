@@ -81,6 +81,8 @@ postgres_test_db
 springboot2_api_service
 - [**DatasourceMapping**](<./doc/entities/DatasourceMapping.md>)
 datasource_mapping
+- [**HttpClientSetting**](<./doc/entities/HttpClientSetting.md>)
+http_client_setting
 - [**Deployment**](<./doc/entities/Deployment.md>)
 deployment
 - [**ContainerOnGceInstance**](<./doc/entities/ContainerOnGceInstance.md>)

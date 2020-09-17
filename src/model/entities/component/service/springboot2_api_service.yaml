@@ -85,6 +85,11 @@ entities:
     cardinality: '*'
     aggregate: true
 
+  - name: http_client_settings
+    reference_entity_name: http_client_setting
+    cardinality: '*'
+    aggregate: true
+
 - name: datasource_mapping
   namespace: laplacian.arch.deployment
 
@@ -122,3 +127,19 @@ entities:
     mappings:
     - from: component_name
       to: name
+
+- name: http_client_setting
+  namespace: laplacian.arch.deployment
+
+  properties:
+  - name: name
+    type: string
+    primary_key: true
+
+  - name: base_url
+    type: string
+
+  - name: api_key
+    type: string
+    optional: true
+

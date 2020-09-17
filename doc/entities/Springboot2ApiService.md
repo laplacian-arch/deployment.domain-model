@@ -91,3 +91,7 @@ function_model
 ### datasource_mappings: `List<DatasourceMapping>`
 datasource_mappings
 - **Cardinality:** `*`
+
+### http_client_settings: `List<HttpClientSetting>`
+http_client_settings
+- **Cardinality:** `*`
