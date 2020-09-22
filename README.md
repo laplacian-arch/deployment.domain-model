@@ -77,6 +77,8 @@ $ ./script/generate
 component
 - [**PostgresTestDb**](<./doc/entities/PostgresTestDb.md>)
 postgres_test_db
+- [**ElasticsearchTestServer**](<./doc/entities/ElasticsearchTestServer.md>)
+elasticsearch_test_server
 - [**Springboot2ApiService**](<./doc/entities/Springboot2ApiService.md>)
 springboot2_api_service
 - [**DatasourceMapping**](<./doc/entities/DatasourceMapping.md>)
@@ -206,6 +208,7 @@ environment
 
 - [model/project.yaml](<./model/project.yaml>)
 - [src/model/entities/component/datastore/postgres_test_db.yaml](<./src/model/entities/component/datastore/postgres_test_db.yaml>)
+- [src/model/entities/component/search_engine/elasticsearch_test_server.yaml](<./src/model/entities/component/search_engine/elasticsearch_test_server.yaml>)
 - [src/model/entities/component/service/springboot2_api_service.yaml](<./src/model/entities/component/service/springboot2_api_service.yaml>)
 - [src/model/entities/component.yaml](<./src/model/entities/component.yaml>)
 - [src/model/entities/deployment/container_on_gce_instance.yaml](<./src/model/entities/deployment/container_on_gce_instance.yaml>)

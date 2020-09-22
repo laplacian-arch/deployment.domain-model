@@ -1,0 +1,18 @@
+entities:
+- name: elasticsearch_test_server
+  namespace: laplacian.arch.deployment
+  subtype_of: component
+
+  properties:
+  - name: container_image
+    type: string
+    optional: true
+    default_value: |
+      "elasticsearch:7.9.1"
+
+  - name: port
+    type: number
+    optional: true
+    default_value: |
+      9200
+
