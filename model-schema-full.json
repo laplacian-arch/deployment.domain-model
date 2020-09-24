@@ -240,19 +240,19 @@
       }
     }
     ,
-    "http_client_settings": {
-      "description": "http_client_setting",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/entities/http_client_setting"
-      }
-    }
-    ,
     "environments": {
       "description": "environment",
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/environment"
+      }
+    }
+    ,
+    "external_rest_api_endpoints": {
+      "description": "external_rest_api_endpoint",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/external_rest_api_endpoint"
       }
     }
   },
@@ -2618,7 +2618,7 @@
             "description": "The type of this component.",
             "enum":[
               "postgres_test_db",
-              "elasticsearch_test_server",
+              "elasticsearch_server",
               "springboot2_api_service"
             ],
             "type": "string"
@@ -2637,7 +2637,7 @@
         },
         "allOf": [
           { "$ref": "#/definitions/entities/postgres_test_db" },
-          { "$ref": "#/definitions/entities/elasticsearch_test_server" },
+          { "$ref": "#/definitions/entities/elasticsearch_server" },
           { "$ref": "#/definitions/entities/springboot2_api_service" }
         ]
       },
@@ -2657,7 +2657,7 @@
             "description": "The type of this component.",
             "enum":[
               "postgres_test_db",
-              "elasticsearch_test_server",
+              "elasticsearch_server",
               "springboot2_api_service"
             ],
             "type": "string"
@@ -2696,10 +2696,10 @@
         }
         }
       },
-      "elasticsearch_test_server": {
-        "description": "elasticsearch_test_server",
+      "elasticsearch_server": {
+        "description": "elasticsearch_server",
         "if": { "properties": {
-          "type": { "const": "elasticsearch_test_server" }
+          "type": { "const": "elasticsearch_server" }
         }},
         "then": {
         "additionalProperties": false,
@@ -2712,7 +2712,7 @@
             "description": "The type of this component.",
             "enum":[
               "postgres_test_db",
-              "elasticsearch_test_server",
+              "elasticsearch_server",
               "springboot2_api_service"
             ],
             "type": "string"
@@ -2729,14 +2729,69 @@
             "type": "string"
           },
           "container_image": {
-            "description": "The container_image of this elasticsearch_test_server.",
+            "description": "The container_image of this elasticsearch_server.",
             "type": "string"
           },
           "port": {
-            "description": "The port of this elasticsearch_test_server.",
+            "description": "The port of this elasticsearch_server.",
             "type": "number"
           }
         }
+        }
+      },
+      "datasource_mapping": {
+        "description": "datasource_mapping",
+        "type": "object",
+        "required": [
+          "component_name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this datasource_mapping.",
+            "type": "string"
+          },
+          "component_name": {
+            "description": "The component_name of this datasource_mapping.",
+            "type": "string"
+          }
+        }
+      },
+      "external_rest_api_mapping": {
+        "description": "external_rest_api_mapping",
+        "type": "object",
+        "required": [
+          "name",
+          "external_rest_api_endpoint_name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this external_rest_api_mapping.",
+            "type": "string"
+          },
+          "external_rest_api_endpoint_name": {
+            "description": "The external_rest_api_endpoint_name of this external_rest_api_mapping.",
+            "type": "string"
+          }
+        }
+      },
+      "search_engine_mapping": {
+        "description": "search_engine_mapping",
+        "type": "object",
+        "required": [
+          "component_name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this search_engine_mapping.",
+            "type": "string"
+          },
+          "component_name": {
+            "description": "The component_name of this search_engine_mapping.",
+            "type": "string"
+          }
         }
       },
       "springboot2_api_service": {
@@ -2755,7 +2810,7 @@
             "description": "The type of this component.",
             "enum":[
               "postgres_test_db",
-              "elasticsearch_test_server",
+              "elasticsearch_server",
               "springboot2_api_service"
             ],
             "type": "string"
@@ -2827,55 +2882,21 @@
               "$ref": "#/definitions/entities/datasource_mapping"
             }
           },
-          "http_client_settings": {
-            "description": "http_client_settings",
+          "search_engine_mappings": {
+            "description": "search-engine-mappings",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/http_client_setting"
+              "$ref": "#/definitions/entities/search_engine_mapping"
+            }
+          },
+          "external_rest_api_mappings": {
+            "description": "external_rest_api_mappings",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/external_rest_api_mapping"
             }
           }
         }
-        }
-      },
-      "datasource_mapping": {
-        "description": "datasource_mapping",
-        "type": "object",
-        "required": [
-          "component_name"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this datasource_mapping.",
-            "type": "string"
-          },
-          "component_name": {
-            "description": "The component_name of this datasource_mapping.",
-            "type": "string"
-          }
-        }
-      },
-      "http_client_setting": {
-        "description": "http_client_setting",
-        "type": "object",
-        "required": [
-          "name",
-          "base_url"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this http_client_setting.",
-            "type": "string"
-          },
-          "base_url": {
-            "description": "The base_url of this http_client_setting.",
-            "type": "string"
-          },
-          "api_key": {
-            "description": "The api_key of this http_client_setting.",
-            "type": "string"
-          }
         }
       },
       "deployment": {
@@ -3023,6 +3044,29 @@
             "items": {
               "$ref": "#/definitions/entities/deployment"
             }
+          }
+        }
+      },
+      "external_rest_api_endpoint": {
+        "description": "external_rest_api_endpoint",
+        "type": "object",
+        "required": [
+          "name",
+          "base_url"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this external_rest_api_endpoint.",
+            "type": "string"
+          },
+          "base_url": {
+            "description": "The base_url of this external_rest_api_endpoint.",
+            "type": "string"
+          },
+          "api_key": {
+            "description": "The api_key of this external_rest_api_endpoint.",
+            "type": "string"
           }
         }
       }

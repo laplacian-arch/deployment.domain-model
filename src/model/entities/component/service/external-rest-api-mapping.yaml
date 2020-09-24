@@ -1,0 +1,26 @@
+entities:
+- name: external_rest_api_mapping
+  namespace: laplacian.arch.deployment
+
+  properties:
+  - name: name
+    type: string
+
+  - name: external_rest_api_endpoint_name
+    type: string
+
+  relationships:
+  - name: external_rest_api_endpoint
+    reference_entity_name: external_rest_api_endpoint
+    cardinality: '1'
+    mappings:
+    - from: external_rest_api_endpoint_name
+      to: name
+
+  - name: service
+    reference_entity_name: springboot2_api_service
+    cardinality: '1'
+    reverse_of: external_rest_api_mappings
+
+
+

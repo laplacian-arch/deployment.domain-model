@@ -1,7 +1,7 @@
-# **ElasticsearchTestServer**
+# **ElasticsearchServer**
 **namespace:** laplacian.arch.deployment
 
-elasticsearch_test_server
+elasticsearch_server
 
 
 
@@ -10,14 +10,14 @@ elasticsearch_test_server
 ## Properties
 
 ### container_image: `String`
-The container_image of this elasticsearch_test_server.
+The container_image of this elasticsearch_server.
 - **Default Value:**
   ```kotlin
-  "elasticsearch:7.9.1"
+  "elasticsearch"
   ```
 
 ### port: `Int`
-The port of this elasticsearch_test_server.
+The port of this elasticsearch_server.
 - **Default Value:**
   ```kotlin
   9200

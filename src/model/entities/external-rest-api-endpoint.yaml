@@ -1,0 +1,15 @@
+entities:
+- name: external_rest_api_endpoint
+  namespace: laplacian.arch.deployment
+
+  properties:
+  - name: name
+    type: string
+    primary_key: true
+
+  - name: base_url
+    type: string
+
+  - name: api_key
+    type: string
+    optional: true

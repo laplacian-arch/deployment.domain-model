@@ -77,14 +77,16 @@ $ ./script/generate
 component
 - [**PostgresTestDb**](<./doc/entities/PostgresTestDb.md>)
 postgres_test_db
-- [**ElasticsearchTestServer**](<./doc/entities/ElasticsearchTestServer.md>)
-elasticsearch_test_server
-- [**Springboot2ApiService**](<./doc/entities/Springboot2ApiService.md>)
-springboot2_api_service
+- [**ElasticsearchServer**](<./doc/entities/ElasticsearchServer.md>)
+elasticsearch_server
 - [**DatasourceMapping**](<./doc/entities/DatasourceMapping.md>)
 datasource_mapping
-- [**HttpClientSetting**](<./doc/entities/HttpClientSetting.md>)
-http_client_setting
+- [**ExternalRestApiMapping**](<./doc/entities/ExternalRestApiMapping.md>)
+external_rest_api_mapping
+- [**SearchEngineMapping**](<./doc/entities/SearchEngineMapping.md>)
+search_engine_mapping
+- [**Springboot2ApiService**](<./doc/entities/Springboot2ApiService.md>)
+springboot2_api_service
 - [**Deployment**](<./doc/entities/Deployment.md>)
 deployment
 - [**ContainerOnGceInstance**](<./doc/entities/ContainerOnGceInstance.md>)
@@ -95,6 +97,8 @@ container_on_gcp_cloudrun
 container_on_local_machine
 - [**Environment**](<./doc/entities/Environment.md>)
 environment
+- [**ExternalRestApiEndpoint**](<./doc/entities/ExternalRestApiEndpoint.md>)
+external_rest_api_endpoint
 ### Script List
 
 
@@ -208,14 +212,18 @@ environment
 
 - [model/project.yaml](<./model/project.yaml>)
 - [src/model/entities/component/datastore/postgres_test_db.yaml](<./src/model/entities/component/datastore/postgres_test_db.yaml>)
-- [src/model/entities/component/search_engine/elasticsearch_test_server.yaml](<./src/model/entities/component/search_engine/elasticsearch_test_server.yaml>)
-- [src/model/entities/component/service/springboot2_api_service.yaml](<./src/model/entities/component/service/springboot2_api_service.yaml>)
+- [src/model/entities/component/search_engine/elasticsearch_server.yaml](<./src/model/entities/component/search_engine/elasticsearch_server.yaml>)
+- [src/model/entities/component/service/datasource-mapping.yaml](<./src/model/entities/component/service/datasource-mapping.yaml>)
+- [src/model/entities/component/service/external-rest-api-mapping.yaml](<./src/model/entities/component/service/external-rest-api-mapping.yaml>)
+- [src/model/entities/component/service/search-engine-mappings.yaml](<./src/model/entities/component/service/search-engine-mappings.yaml>)
+- [src/model/entities/component/service/springboot2-api-service.yaml](<./src/model/entities/component/service/springboot2-api-service.yaml>)
 - [src/model/entities/component.yaml](<./src/model/entities/component.yaml>)
 - [src/model/entities/deployment/container_on_gce_instance.yaml](<./src/model/entities/deployment/container_on_gce_instance.yaml>)
 - [src/model/entities/deployment/container_on_gcp_cloudrun.yaml](<./src/model/entities/deployment/container_on_gcp_cloudrun.yaml>)
 - [src/model/entities/deployment/container_on_local_machine.yaml](<./src/model/entities/deployment/container_on_local_machine.yaml>)
 - [src/model/entities/deployment.yaml](<./src/model/entities/deployment.yaml>)
 - [src/model/entities/environment.yaml](<./src/model/entities/environment.yaml>)
+- [src/model/entities/external-rest-api-endpoint.yaml](<./src/model/entities/external-rest-api-endpoint.yaml>)
 
 
 <!-- @main-content@ -->

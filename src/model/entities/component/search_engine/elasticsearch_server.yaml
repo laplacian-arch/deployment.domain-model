@@ -1,5 +1,5 @@
 entities:
-- name: elasticsearch_test_server
+- name: elasticsearch_server
   namespace: laplacian.arch.deployment
   subtype_of: component
 
@@ -8,7 +8,7 @@ entities:
     type: string
     optional: true
     default_value: |
-      "elasticsearch:7.9.1"
+      "elasticsearch"
 
   - name: port
     type: number

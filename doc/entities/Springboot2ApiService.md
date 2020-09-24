@@ -92,6 +92,10 @@ function_model
 datasource_mappings
 - **Cardinality:** `*`
 
-### http_client_settings: `List<HttpClientSetting>`
-http_client_settings
+### search-engine-mappings: `List<SearchEngineMapping>`
+search-engine-mappings
+- **Cardinality:** `*`
+
+### external_rest_api_mappings: `List<ExternalRestApiMapping>`
+external_rest_api_mappings
 - **Cardinality:** `*`
