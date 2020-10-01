@@ -72,6 +72,12 @@ entities:
     default_value: |
       "1.0.9.RELEASE"
 
+  - name: graphql_extended_scalar_version
+    type: string
+    optional: true
+    default_value: |
+      "1.0.1"
+
   relationships:
   - name: function_model
     reference_entity_name: service

@@ -15,4 +15,3 @@ entities:
     optional: true
     default_value: |
       9200
-

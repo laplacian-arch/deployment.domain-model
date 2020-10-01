@@ -73,6 +73,8 @@ $ ./script/generate
 ### Entity list
 
 
+- [**ElasticsearchQueryParameter**](<./doc/entities/ElasticsearchQueryParameter.md>)
+elasticsearch_query_parameter
 - [**Component**](<./doc/entities/Component.md>)
 component
 - [**PostgresTestDb**](<./doc/entities/PostgresTestDb.md>)

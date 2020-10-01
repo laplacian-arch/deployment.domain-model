@@ -82,6 +82,13 @@ The spring_dependency_manager_version of this springboot2_api_service.
   "1.0.9.RELEASE"
   ```
 
+### graphql_extended_scalar_version: `String`
+The graphql_extended_scalar_version of this springboot2_api_service.
+- **Default Value:**
+  ```kotlin
+  "1.0.1"
+  ```
+
 ## Relationships
 
 ### function_model: `Service`
