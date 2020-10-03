@@ -30,7 +30,7 @@ The container_base_image of this springboot2_api_service.
 The gradle_version of this springboot2_api_service.
 - **Default Value:**
   ```kotlin
-  "6.5.1"
+  "6.6.1"
   ```
 
 ### jdk_major_version: `String`

@@ -23,7 +23,7 @@ entities:
     type: string
     optional: true
     default_value: |
-      "6.5.1"
+      "6.6.1"
 
   - name: jdk_major_version
     type: string

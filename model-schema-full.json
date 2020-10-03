@@ -184,6 +184,14 @@
       }
     }
     ,
+    "elasticsearch_indexes": {
+      "description": "elasticsearch_index",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/elasticsearch_index"
+      }
+    }
+    ,
     "elasticsearch_queries": {
       "description": "elasticsearch_query",
       "type": "array",
@@ -2130,6 +2138,32 @@
           }
         }
       },
+      "elasticsearch_index": {
+        "description": "elasticsearch_index",
+        "type": "object",
+        "required": [
+          "name",
+          "document_model_name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this elasticsearch_index.",
+            "type": "string"
+          },
+          "document_model_name": {
+            "description": "The document_model_name of this elasticsearch_index.",
+            "type": "string"
+          },
+          "queries": {
+            "description": "queries",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_query"
+            }
+          }
+        }
+      },
       "elasticsearch_query": {
         "description": "elasticsearch_query",
         "type": "object",
@@ -2626,10 +2660,6 @@
             "description": "The index_name of this indexed_document.",
             "type": "string"
           },
-          "document_model_name": {
-            "description": "The document_model_name of this indexed_document.",
-            "type": "string"
-          },
           "search_engine_client_name": {
             "description": "The search_engine_client_name of this indexed_document.",
             "type": "string"
@@ -2668,6 +2698,10 @@
           },
           "description": {
             "description": "The description of this graphql_type.",
+            "type": "string"
+          },
+          "index_name": {
+            "description": "The index_name of this query_to_elasticsearch.",
             "type": "string"
           },
           "query_name": {
