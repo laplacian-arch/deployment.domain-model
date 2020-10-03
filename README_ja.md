@@ -74,8 +74,6 @@ $ ./script/generate
 ### エンティティ一覧
 
 
-- [**ElasticsearchIndex**](<./doc/entities/ElasticsearchIndex.md>)
-elasticsearch_index
 - [**ElasticsearchQueryParameter**](<./doc/entities/ElasticsearchQueryParameter.md>)
 elasticsearch_query_parameter
 - [**Component**](<./doc/entities/Component.md>)
