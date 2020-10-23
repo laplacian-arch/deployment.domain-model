@@ -15,3 +15,37 @@ entities:
     optional: true
     default_value: |
       9200
+
+  - name: plugins
+    type: string
+    multiple: true
+    optional: true
+
+  - name: configuration_file_dir_path
+    type: string
+    optional: true
+    default_value: |
+      "/usr/share/elasticsearch/config"
+
+  - name: uses_custom_image
+    type: boolean
+    snippet: |
+      plugins.isNotEmpty() || configurationFiles.isNotEmpty()
+
+  relationships:
+  - name: configuration_files
+    reference_entity_name: elasticsearch_configuration_files
+    cardinality: '*'
+    aggregate: true
+
+- name: elasticsearch_configuration_files
+  properties:
+  - name: path
+    type: string
+    primary_key: true
+
+  - name: content
+    type: string
+    optional: true
+    default_value: |
+      ""

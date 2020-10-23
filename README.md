@@ -73,14 +73,61 @@ $ ./script/generate
 ### Entity list
 
 
-- [**ElasticsearchQueryParameter**](<./doc/entities/ElasticsearchQueryParameter.md>)
-elasticsearch_query_parameter
+- [**BucketScriptAggregate**](<./doc/entities/BucketScriptAggregate.md>)
+bucket_script_aggregate
+- [**BucketScriptPath**](<./doc/entities/BucketScriptPath.md>)
+bucket_script_path
+- [**BucketSelectorAggregate**](<./doc/entities/BucketSelectorAggregate.md>)
+bucket_selector_aggregate
+- [**BucketSortAggregate**](<./doc/entities/BucketSortAggregate.md>)
+bucket_sort_aggregate
+- [**DateHistogramAggregate**](<./doc/entities/DateHistogramAggregate.md>)
+date_histogram_aggregate
+- [**DateHistogramInterval**](<./doc/entities/DateHistogramInterval.md>)
+date_histogram_interval
+- [**DateHistogramCalendarInterval**](<./doc/entities/DateHistogramCalendarInterval.md>)
+date_histogram_calendar_interval
+- [**DateHistogramFixedInterval**](<./doc/entities/DateHistogramFixedInterval.md>)
+date_histogram_fixed_interval
+- [**DateRangeAggregate**](<./doc/entities/DateRangeAggregate.md>)
+date_range_aggregate
+- [**AggregateGroupRange**](<./doc/entities/AggregateGroupRange.md>)
+aggregate_group_range
+- [**FilterAggregate**](<./doc/entities/FilterAggregate.md>)
+filter_aggregate
+- [**FiltersAggregate**](<./doc/entities/FiltersAggregate.md>)
+filters_aggregate
+- [**KeyedFilter**](<./doc/entities/KeyedFilter.md>)
+keyed_filter
+- [**SumAggregate**](<./doc/entities/SumAggregate.md>)
+sum_aggregate
+- [**AvgAggregate**](<./doc/entities/AvgAggregate.md>)
+avg_aggregate
+- [**MinAggregate**](<./doc/entities/MinAggregate.md>)
+min_aggregate
+- [**MaxAggregate**](<./doc/entities/MaxAggregate.md>)
+max_aggregate
+- [**ValueCountAggregate**](<./doc/entities/ValueCountAggregate.md>)
+value_count_aggregate
+- [**TermsAggregate**](<./doc/entities/TermsAggregate.md>)
+A multi-bucket value source based aggregation where buckets are dynamically built
+- one per unique value.
+- [**ElasticsearchAggregate**](<./doc/entities/ElasticsearchAggregate.md>)
+elasticsearch_aggregate
+- [**ElasticsearchQuerySort**](<./doc/entities/ElasticsearchQuerySort.md>)
+elasticsearch_query_sort
+- [**ElasticsearchQueryScoreSort**](<./doc/entities/ElasticsearchQueryScoreSort.md>)
+elasticsearch_query_score_sort
+- [**ElasticsearchQueryFieldSort**](<./doc/entities/ElasticsearchQueryFieldSort.md>)
+elasticsearch_query_field_sort
 - [**Component**](<./doc/entities/Component.md>)
 component
 - [**PostgresTestDb**](<./doc/entities/PostgresTestDb.md>)
 postgres_test_db
 - [**ElasticsearchServer**](<./doc/entities/ElasticsearchServer.md>)
 elasticsearch_server
+- [**ElasticsearchConfigurationFiles**](<./doc/entities/ElasticsearchConfigurationFiles.md>)
+elasticsearch_configuration_files
 - [**DatasourceMapping**](<./doc/entities/DatasourceMapping.md>)
 datasource_mapping
 - [**ExternalRestApiMapping**](<./doc/entities/ExternalRestApiMapping.md>)

@@ -184,11 +184,83 @@
       }
     }
     ,
+    "api_call_arguments": {
+      "description": "api_call_argument",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/api_call_argument"
+      }
+    }
+    ,
+    "bucket_script_paths": {
+      "description": "bucket_script_path",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/bucket_script_path"
+      }
+    }
+    ,
+    "field_sorts": {
+      "description": "field_sort",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/field_sort"
+      }
+    }
+    ,
+    "date_histogram_intervals": {
+      "description": "date_histogram_interval",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/date_histogram_interval"
+      }
+    }
+    ,
+    "aggregate_group_ranges": {
+      "description": "aggregate_group_range",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/aggregate_group_range"
+      }
+    }
+    ,
+    "keyed_filters": {
+      "description": "keyed_filter",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/keyed_filter"
+      }
+    }
+    ,
+    "elasticsearch_aggregates": {
+      "description": "elasticsearch_aggregate",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/elasticsearch_aggregate"
+      }
+    }
+    ,
     "elasticsearch_indexes": {
       "description": "elasticsearch_index",
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/elasticsearch_index"
+      }
+    }
+    ,
+    "elasticsearch_query_predicates": {
+      "description": "elasticsearch_query_predicate",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/elasticsearch_query_predicate"
+      }
+    }
+    ,
+    "elasticsearch_query_sorts": {
+      "description": "elasticsearch_query_sort",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/elasticsearch_query_sort"
       }
     }
     ,
@@ -200,14 +272,6 @@
       }
     }
     ,
-    "elasticsearch_query_parameters": {
-      "description": "elasticsearch_query_parameter",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/entities/elasticsearch_query_parameter"
-      }
-    }
-    ,
     "graphql_types": {
       "description": "graphql_type",
       "type": "array",
@@ -216,19 +280,19 @@
       }
     }
     ,
-    "rest_resources": {
-      "description": "rest_resource",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/entities/rest_resource"
-      }
-    }
-    ,
     "rest_request_parameters": {
       "description": "rest_request_parameter",
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/rest_request_parameter"
+      }
+    }
+    ,
+    "rest_resources": {
+      "description": "rest_resource",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/rest_resource"
       }
     }
     ,
@@ -261,6 +325,14 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/component"
+      }
+    }
+    ,
+    "elasticsearch_configuration_fileses": {
+      "description": "elasticsearch_configuration_files",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/elasticsearch_configuration_files"
       }
     }
     ,
@@ -480,11 +552,17 @@
         "type": "string"
       },
       "basic_type": {
-        "description": "基本型",
+        "description": "basic scalar type",
         "enum":[
            "string",
            "boolean",
-           "number"
+           "number",
+           "int",
+           "float",
+           "double",
+           "date",
+           "time",
+           "datetime"
         ],
         "type": "string"
       },
@@ -507,6 +585,16 @@
            "PATCH",
            "DELETE"
         ],
+        "type": "string"
+      },
+      "integer_or_placeholder": {
+        "description": "integer_or_placeholder",
+        "pattern": "^\\$\\{[^}]*\\}|[1-9][0-9]*|0$",
+        "type": "string"
+      },
+      "sort_order_or_placeholder": {
+        "description": "sort_order_or_placeholder",
+        "pattern": "^\\$\\{[^}]*\\}|asc|desc$",
         "type": "string"
       },
       "url_path_with_placeholders": {
@@ -2138,6 +2226,1023 @@
           }
         }
       },
+      "api_call_argument": {
+        "description": "api_call_argument",
+        "type": "object",
+        "required": [
+          "name",
+          "type"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this api_call_argument.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this api_call_argument.",
+            "enum":[
+              "string",
+              "int",
+              "float",
+              "boolean",
+              "date",
+              "time",
+              "datetime"
+            ],
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this api_call_argument.",
+            "type": "string"
+          },
+          "required": {
+            "description": "Defines this api_call_argument is required or not.",
+            "type": "boolean"
+          },
+          "multiple": {
+            "description": "Defines this api_call_argument is multiple or not.",
+            "type": "boolean"
+          },
+          "default_value": {
+            "description": "The default_value of this api_call_argument.",
+            "type": "string"
+          }
+        }
+      },
+      "bucket_script_aggregate": {
+        "description": "bucket_script_aggregate",
+        "if": { "properties": {
+          "aggregation_type": { "const": "bucket_script" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "aggregation_type": {
+            "description": "The aggregation_type of this elasticsearch_aggregate.",
+            "enum":[
+              "bucket_script",
+              "bucket_selector",
+              "bucket_sort",
+              "date_histogram",
+              "date_range",
+              "filter",
+              "filters",
+              "sum",
+              "avg",
+              "min",
+              "max",
+              "count",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "field": {
+            "description": "The field of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "script": {
+            "description": "The script of this bucket_script_aggregate.",
+            "type": "string"
+          },
+          "sub_aggregates": {
+            "description": "sub_aggregates",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+            }
+          },
+          "buckets_path": {
+            "description": "buckets_path",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/bucket_script_path"
+            }
+          }
+        }
+        }
+      },
+      "bucket_script_path": {
+        "description": "bucket_script_path",
+        "type": "object",
+        "required": [
+          "name",
+          "path"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this bucket_script_path.",
+            "type": "string"
+          },
+          "path": {
+            "description": "The path of this bucket_script_path.",
+            "type": "string"
+          }
+        }
+      },
+      "bucket_selector_aggregate": {
+        "description": "bucket_selector_aggregate",
+        "if": { "properties": {
+          "aggregation_type": { "const": "bucket_selector" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "aggregation_type": {
+            "description": "The aggregation_type of this elasticsearch_aggregate.",
+            "enum":[
+              "bucket_script",
+              "bucket_selector",
+              "bucket_sort",
+              "date_histogram",
+              "date_range",
+              "filter",
+              "filters",
+              "sum",
+              "avg",
+              "min",
+              "max",
+              "count",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "field": {
+            "description": "The field of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "script": {
+            "description": "The script of this bucket_selector_aggregate.",
+            "type": "string"
+          },
+          "sub_aggregates": {
+            "description": "sub_aggregates",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+            }
+          },
+          "buckets_path": {
+            "description": "buckets_path",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/bucket_script_path"
+            }
+          }
+        }
+        }
+      },
+      "bucket_sort_aggregate": {
+        "description": "bucket_sort_aggregate",
+        "if": { "properties": {
+          "aggregation_type": { "const": "bucket_sort" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "aggregation_type": {
+            "description": "The aggregation_type of this elasticsearch_aggregate.",
+            "enum":[
+              "bucket_script",
+              "bucket_selector",
+              "bucket_sort",
+              "date_histogram",
+              "date_range",
+              "filter",
+              "filters",
+              "sum",
+              "avg",
+              "min",
+              "max",
+              "count",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "field": {
+            "description": "The field of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "sub_aggregates": {
+            "description": "sub_aggregates",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+            }
+          },
+          "sorts": {
+            "description": "sorts",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/field_sort"
+            }
+          }
+        }
+        }
+      },
+      "field_sort": {
+        "description": "field_sort",
+        "type": "object",
+        "required": [
+          "field"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "description": "The field of this field_sort.",
+            "type": "string"
+          },
+          "order": {
+            "description": "The order of this field_sort.",
+            "pattern": "^\\$\\{[^}]*\\}|asc|desc$",
+            "type": "string"
+          }
+        }
+      },
+      "date_histogram_aggregate": {
+        "description": "date_histogram_aggregate",
+        "if": { "properties": {
+          "aggregation_type": { "const": "date_histogram" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "aggregation_type": {
+            "description": "The aggregation_type of this elasticsearch_aggregate.",
+            "enum":[
+              "bucket_script",
+              "bucket_selector",
+              "bucket_sort",
+              "date_histogram",
+              "date_range",
+              "filter",
+              "filters",
+              "sum",
+              "avg",
+              "min",
+              "max",
+              "count",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "field": {
+            "description": "The field of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "format": {
+            "description": "The format of this date_histogram_aggregate.",
+            "type": "string"
+          },
+          "timezone": {
+            "description": "The timezone of this date_histogram_aggregate.",
+            "type": "string"
+          },
+          "sub_aggregates": {
+            "description": "sub_aggregates",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+            }
+          },
+          "interval": {
+            "description": "interval",
+            "$ref": "#/definitions/entities/date_histogram_interval"
+          }
+        }
+        }
+      },
+      "date_histogram_interval": {
+        "description": "date_histogram_interval",
+        "type": "object",
+        "required": [
+          "type",
+          "unit",
+          "value"
+        ],
+        "properties": {
+          "type": {
+            "description": "The type of this date_histogram_interval.",
+            "enum":[
+              "calendar",
+              "fixed"
+            ],
+            "type": "string"
+          },
+          "unit": {
+            "description": "The unit of this date_histogram_interval.",
+            "type": "string"
+          },
+          "value": {
+            "description": "The value of this date_histogram_interval.",
+            "type": "string"
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/date_histogram_calendar_interval" },
+          { "$ref": "#/definitions/entities/date_histogram_fixed_interval" }
+        ]
+      },
+      "date_histogram_calendar_interval": {
+        "description": "date_histogram_calendar_interval",
+        "if": { "properties": {
+          "type": { "const": "calendar" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "The type of this date_histogram_interval.",
+            "enum":[
+              "calendar",
+              "fixed"
+            ],
+            "type": "string"
+          },
+          "unit": {
+            "description": "The unit of this date_histogram_interval.",
+            "type": "string"
+          },
+          "value": {
+            "description": "The value of this date_histogram_interval.",
+            "type": "string"
+          },
+          "unit": {
+            "description": "The unit of this date_histogram_calendar_interval.",
+            "pattern": "^\\$\\{[^}]*\\}|minute|hour|day|week|month|quarter|year$",
+            "type": "string"
+          }
+        }
+        }
+      },
+      "date_histogram_fixed_interval": {
+        "description": "date_histogram_fixed_interval",
+        "if": { "properties": {
+          "type": { "const": "fixed" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "The type of this date_histogram_interval.",
+            "enum":[
+              "calendar",
+              "fixed"
+            ],
+            "type": "string"
+          },
+          "unit": {
+            "description": "The unit of this date_histogram_interval.",
+            "type": "string"
+          },
+          "value": {
+            "description": "The value of this date_histogram_interval.",
+            "type": "string"
+          },
+          "unit": {
+            "description": "The unit of this date_histogram_fixed_interval.",
+            "pattern": "^\\$\\{[^}]*\\}|millisecond|second|minute|hour|day$",
+            "type": "string"
+          },
+          "value": {
+            "description": "The value of this date_histogram_fixed_interval.",
+            "pattern": "^\\$\\{[^}]*\\}|[0-9]*$",
+            "type": "string"
+          }
+        }
+        }
+      },
+      "date_range_aggregate": {
+        "description": "date_range_aggregate",
+        "if": { "properties": {
+          "aggregation_type": { "const": "date_range" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "aggregation_type": {
+            "description": "The aggregation_type of this elasticsearch_aggregate.",
+            "enum":[
+              "bucket_script",
+              "bucket_selector",
+              "bucket_sort",
+              "date_histogram",
+              "date_range",
+              "filter",
+              "filters",
+              "sum",
+              "avg",
+              "min",
+              "max",
+              "count",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "field": {
+            "description": "The field of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "format": {
+            "description": "The format of this date_range_aggregate.",
+            "type": "string"
+          },
+          "sub_aggregates": {
+            "description": "sub_aggregates",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+            }
+          },
+          "ranges": {
+            "description": "ranges",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/aggregate_group_range"
+            }
+          }
+        }
+        }
+      },
+      "aggregate_group_range": {
+        "description": "aggregate_group_range",
+        "type": "object",
+        "required": [
+          "key"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "key": {
+            "description": "The key of this aggregate_group_range.",
+            "type": "string"
+          },
+          "from": {
+            "description": "The from of this aggregate_group_range.",
+            "type": "string"
+          },
+          "to": {
+            "description": "The to of this aggregate_group_range.",
+            "type": "string"
+          }
+        }
+      },
+      "filter_aggregate": {
+        "description": "filter_aggregate",
+        "if": { "properties": {
+          "aggregation_type": { "const": "filter" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "aggregation_type": {
+            "description": "The aggregation_type of this elasticsearch_aggregate.",
+            "enum":[
+              "bucket_script",
+              "bucket_selector",
+              "bucket_sort",
+              "date_histogram",
+              "date_range",
+              "filter",
+              "filters",
+              "sum",
+              "avg",
+              "min",
+              "max",
+              "count",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "field": {
+            "description": "The field of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "sub_aggregates": {
+            "description": "sub_aggregates",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+            }
+          },
+          "predicate": {
+            "description": "predicate",
+            "$ref": "#/definitions/entities/elasticsearch_query_predicate"
+          }
+        }
+        }
+      },
+      "filters_aggregate": {
+        "description": "filters_aggregate",
+        "if": { "properties": {
+          "aggregation_type": { "const": "filters" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "aggregation_type": {
+            "description": "The aggregation_type of this elasticsearch_aggregate.",
+            "enum":[
+              "bucket_script",
+              "bucket_selector",
+              "bucket_sort",
+              "date_histogram",
+              "date_range",
+              "filter",
+              "filters",
+              "sum",
+              "avg",
+              "min",
+              "max",
+              "count",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "field": {
+            "description": "The field of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "sub_aggregates": {
+            "description": "sub_aggregates",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+            }
+          },
+          "filters": {
+            "description": "filters",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/keyed_filter"
+            }
+          }
+        }
+        }
+      },
+      "keyed_filter": {
+        "description": "keyed_filter",
+        "type": "object",
+        "required": [
+          "key"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "key": {
+            "description": "The key of this keyed_filter.",
+            "type": "string"
+          },
+          "predicate": {
+            "description": "predicate",
+            "$ref": "#/definitions/entities/elasticsearch_query_predicate"
+          }
+        }
+      },
+      "sum_aggregate": {
+        "description": "sum_aggregate",
+        "if": { "properties": {
+          "aggregation_type": { "const": "sum" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "aggregation_type": {
+            "description": "The aggregation_type of this elasticsearch_aggregate.",
+            "enum":[
+              "bucket_script",
+              "bucket_selector",
+              "bucket_sort",
+              "date_histogram",
+              "date_range",
+              "filter",
+              "filters",
+              "sum",
+              "avg",
+              "min",
+              "max",
+              "count",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "field": {
+            "description": "The field of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "sub_aggregates": {
+            "description": "sub_aggregates",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+            }
+          }
+        }
+        }
+      },
+      "avg_aggregate": {
+        "description": "avg_aggregate",
+        "if": { "properties": {
+          "aggregation_type": { "const": "avg" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "aggregation_type": {
+            "description": "The aggregation_type of this elasticsearch_aggregate.",
+            "enum":[
+              "bucket_script",
+              "bucket_selector",
+              "bucket_sort",
+              "date_histogram",
+              "date_range",
+              "filter",
+              "filters",
+              "sum",
+              "avg",
+              "min",
+              "max",
+              "count",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "field": {
+            "description": "The field of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "sub_aggregates": {
+            "description": "sub_aggregates",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+            }
+          }
+        }
+        }
+      },
+      "min_aggregate": {
+        "description": "min_aggregate",
+        "if": { "properties": {
+          "aggregation_type": { "const": "min" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "aggregation_type": {
+            "description": "The aggregation_type of this elasticsearch_aggregate.",
+            "enum":[
+              "bucket_script",
+              "bucket_selector",
+              "bucket_sort",
+              "date_histogram",
+              "date_range",
+              "filter",
+              "filters",
+              "sum",
+              "avg",
+              "min",
+              "max",
+              "count",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "field": {
+            "description": "The field of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "sub_aggregates": {
+            "description": "sub_aggregates",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+            }
+          }
+        }
+        }
+      },
+      "max_aggregate": {
+        "description": "max_aggregate",
+        "if": { "properties": {
+          "aggregation_type": { "const": "max" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "aggregation_type": {
+            "description": "The aggregation_type of this elasticsearch_aggregate.",
+            "enum":[
+              "bucket_script",
+              "bucket_selector",
+              "bucket_sort",
+              "date_histogram",
+              "date_range",
+              "filter",
+              "filters",
+              "sum",
+              "avg",
+              "min",
+              "max",
+              "count",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "field": {
+            "description": "The field of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "sub_aggregates": {
+            "description": "sub_aggregates",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+            }
+          }
+        }
+        }
+      },
+      "value_count_aggregate": {
+        "description": "value_count_aggregate",
+        "if": { "properties": {
+          "aggregation_type": { "const": "count" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "aggregation_type": {
+            "description": "The aggregation_type of this elasticsearch_aggregate.",
+            "enum":[
+              "bucket_script",
+              "bucket_selector",
+              "bucket_sort",
+              "date_histogram",
+              "date_range",
+              "filter",
+              "filters",
+              "sum",
+              "avg",
+              "min",
+              "max",
+              "count",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "field": {
+            "description": "The field of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "sub_aggregates": {
+            "description": "sub_aggregates",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+            }
+          }
+        }
+        }
+      },
+      "terms_aggregate": {
+        "description": "A multi-bucket value source based aggregation where buckets are dynamically built\n- one per unique value.",
+        "if": { "properties": {
+          "aggregation_type": { "const": "terms" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "aggregation_type": {
+            "description": "The aggregation_type of this elasticsearch_aggregate.",
+            "enum":[
+              "bucket_script",
+              "bucket_selector",
+              "bucket_sort",
+              "date_histogram",
+              "date_range",
+              "filter",
+              "filters",
+              "sum",
+              "avg",
+              "min",
+              "max",
+              "count",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "field": {
+            "description": "The field of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "max_results": {
+            "allOf": [{
+            "description": "The number of term buckets should be returned (default: 10)",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/integer_or_placeholder"
+            }]
+          },
+          "sort_by_count": {
+            "allOf": [{
+            "description": "The sort order ('asc' or 'desc') in which the buckets will be returned",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/sort_order_or_placeholder"
+            }]
+          },
+          "shard_size": {
+            "allOf": [{
+            "description": "The number of term buckets each shard will return to the coordinating node\n(the node that coordinates the search execution)",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/integer_or_placeholder"
+            }]
+          },
+          "min_doc_count": {
+            "allOf": [{
+            "description": "the minimum document count required per term",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/integer_or_placeholder"
+            }]
+          },
+          "sub_aggregates": {
+            "description": "sub_aggregates",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+            }
+          }
+        }
+        }
+      },
+      "elasticsearch_aggregate": {
+        "description": "elasticsearch_aggregate",
+        "type": "object",
+        "required": [
+          "name",
+          "aggregation_type"
+        ],
+        "properties": {
+          "name": {
+            "description": "The name of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "aggregation_type": {
+            "description": "The aggregation_type of this elasticsearch_aggregate.",
+            "enum":[
+              "bucket_script",
+              "bucket_selector",
+              "bucket_sort",
+              "date_histogram",
+              "date_range",
+              "filter",
+              "filters",
+              "sum",
+              "avg",
+              "min",
+              "max",
+              "count",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "field": {
+            "description": "The field of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "sub_aggregates": {
+            "description": "sub_aggregates",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+            }
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/bucket_script_aggregate" },
+          { "$ref": "#/definitions/entities/bucket_selector_aggregate" },
+          { "$ref": "#/definitions/entities/bucket_sort_aggregate" },
+          { "$ref": "#/definitions/entities/date_histogram_aggregate" },
+          { "$ref": "#/definitions/entities/date_range_aggregate" },
+          { "$ref": "#/definitions/entities/filter_aggregate" },
+          { "$ref": "#/definitions/entities/filters_aggregate" },
+          { "$ref": "#/definitions/entities/sum_aggregate" },
+          { "$ref": "#/definitions/entities/avg_aggregate" },
+          { "$ref": "#/definitions/entities/min_aggregate" },
+          { "$ref": "#/definitions/entities/max_aggregate" },
+          { "$ref": "#/definitions/entities/value_count_aggregate" },
+          { "$ref": "#/definitions/entities/terms_aggregate" }
+        ]
+      },
       "elasticsearch_index": {
         "description": "elasticsearch_index",
         "type": "object",
@@ -2151,17 +3256,134 @@
             "description": "The name of this elasticsearch_index.",
             "type": "string"
           },
+          "description": {
+            "description": "The description of this elasticsearch_index.",
+            "type": "string"
+          },
           "document_model_name": {
             "description": "The document_model_name of this elasticsearch_index.",
             "type": "string"
-          },
-          "queries": {
-            "description": "queries",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/elasticsearch_query"
-            }
           }
+        }
+      },
+      "elasticsearch_query_predicate": {
+        "description": "elasticsearch_query_predicate",
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "description": "The type of this elasticsearch_query_predicate.",
+            "enum":[
+              "bool",
+              "exists",
+              "match_all",
+              "match",
+              "multi_match",
+              "range",
+              "term",
+              "terms"
+            ],
+            "type": "string"
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/bool_query_predicate" },
+          { "$ref": "#/definitions/entities/exists_query_predicate" },
+          { "$ref": "#/definitions/entities/match_all_query_predicate" },
+          { "$ref": "#/definitions/entities/match_query_predicate" },
+          { "$ref": "#/definitions/entities/multi_match_query_predicate" },
+          { "$ref": "#/definitions/entities/range_query_predicate" },
+          { "$ref": "#/definitions/entities/term_query_predicate" },
+          { "$ref": "#/definitions/entities/terms_query_predicate" }
+        ]
+      },
+      "elasticsearch_query_sort": {
+        "description": "elasticsearch_query_sort",
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "description": "The type of this elasticsearch_query_sort.",
+            "enum":[
+              "score",
+              "field"
+            ],
+            "type": "string"
+          },
+          "order": {
+            "allOf": [{
+            "description": "The order of this elasticsearch_query_sort.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/sort_order_or_placeholder"
+            }]
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/elasticsearch_query_score_sort" },
+          { "$ref": "#/definitions/entities/elasticsearch_query_field_sort" }
+        ]
+      },
+      "elasticsearch_query_score_sort": {
+        "description": "elasticsearch_query_score_sort",
+        "if": { "properties": {
+          "type": { "const": "score" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "The type of this elasticsearch_query_sort.",
+            "enum":[
+              "score",
+              "field"
+            ],
+            "type": "string"
+          },
+          "order": {
+            "allOf": [{
+            "description": "The order of this elasticsearch_query_sort.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/sort_order_or_placeholder"
+            }]
+          }
+        }
+        }
+      },
+      "elasticsearch_query_field_sort": {
+        "description": "elasticsearch_query_field_sort",
+        "if": { "properties": {
+          "type": { "const": "field" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "The type of this elasticsearch_query_sort.",
+            "enum":[
+              "score",
+              "field"
+            ],
+            "type": "string"
+          },
+          "order": {
+            "allOf": [{
+            "description": "The order of this elasticsearch_query_sort.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/sort_order_or_placeholder"
+            }]
+          },
+          "name": {
+            "description": "The name of this elasticsearch_query_field_sort.",
+            "type": "string"
+          }
+        }
         }
       },
       "elasticsearch_query": {
@@ -2181,6 +3403,37 @@
             "description": "The index_name of this elasticsearch_query.",
             "type": "string"
           },
+          "description": {
+            "description": "The description of this elasticsearch_query.",
+            "type": "string"
+          },
+          "page_size": {
+            "allOf": [{
+            "description": "The size of the page to be returned",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/integer_or_placeholder"
+            }]
+          },
+          "page_number": {
+            "allOf": [{
+            "description": "Zero-based page index.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/integer_or_placeholder"
+            }]
+          },
+          "predicate": {
+            "description": "predicate",
+            "$ref": "#/definitions/entities/elasticsearch_query_predicate"
+          },
+          "sort": {
+            "description": "sort",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_query_sort"
+            }
+          },
           "aggregates": {
             "description": "aggregates",
             "type": "array",
@@ -2192,262 +3445,302 @@
             "description": "parameters",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_query_parameter"
+              "$ref": "#/definitions/entities/api_call_argument"
             }
           }
         }
       },
-      "elasticsearch_query_parameter": {
-        "description": "elasticsearch_query_parameter",
-        "type": "object",
-        "required": [
-          "name",
-          "type"
-        ],
+      "bool_query_predicate": {
+        "description": "bool_query_predicate",
+        "if": { "properties": {
+          "type": { "const": "bool" }
+        }},
+        "then": {
         "additionalProperties": false,
         "properties": {
-          "name": {
-            "description": "The name of this elasticsearch_query_parameter.",
-            "type": "string"
-          },
           "type": {
-            "description": "The type of this elasticsearch_query_parameter.",
+            "description": "The type of this elasticsearch_query_predicate.",
             "enum":[
-              "string",
-              "number",
-              "boolean",
-              "date"
-            ],
-            "type": "string"
-          }
-        }
-      },
-      "elasticsearch_aggregate": {
-        "description": "elasticsearch_aggregate",
-        "type": "object",
-        "required": [
-          "aggregation_type"
-        ],
-        "properties": {
-          "name": {
-            "description": "The name of this elasticsearch_aggregate.",
-            "type": "string"
-          },
-          "aggregation_type": {
-            "description": "The aggregation_type of this elasticsearch_aggregate.",
-            "enum":[
-              "terms",
-              "date_range",
-              "date_histogram",
-              "sum"
+              "bool",
+              "exists",
+              "match_all",
+              "match",
+              "multi_match",
+              "range",
+              "term",
+              "terms"
             ],
             "type": "string"
           },
-          "fields": {
-            "description": "fields",
+          "must": {
+            "description": "must",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/aggregates_field"
+              "$ref": "#/definitions/entities/elasticsearch_query_predicate"
             }
           },
-          "sub_aggregates": {
-            "description": "sub_aggregates",
+          "must_not": {
+            "description": "must_not",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/elasticsearch_query_predicate"
+            }
+          },
+          "should": {
+            "description": "should",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_query_predicate"
+            }
+          },
+          "filter": {
+            "description": "filter",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_query_predicate"
             }
           }
-        },
-        "allOf": [
-          { "$ref": "#/definitions/entities/terms_aggregate" },
-          { "$ref": "#/definitions/entities/date_range_aggregate" },
-          { "$ref": "#/definitions/entities/date_histogram_aggregate" },
-          { "$ref": "#/definitions/entities/sum_metric" }
-        ]
-      },
-      "aggregates_field": {
-        "description": "aggregates_field",
-        "type": "object",
-        "required": [
-          "name"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this aggregates_field.",
-            "type": "string"
-          }
+        }
         }
       },
-      "terms_aggregate": {
-        "description": "terms_aggregate",
+      "exists_query_predicate": {
+        "description": "exists_query_predicate",
         "if": { "properties": {
-          "aggregation_type": { "const": "terms" }
+          "type": { "const": "exists" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
-          "name": {
-            "description": "The name of this elasticsearch_aggregate.",
-            "type": "string"
-          },
-          "aggregation_type": {
-            "description": "The aggregation_type of this elasticsearch_aggregate.",
+          "type": {
+            "description": "The type of this elasticsearch_query_predicate.",
             "enum":[
-              "terms",
-              "date_range",
-              "date_histogram",
-              "sum"
+              "bool",
+              "exists",
+              "match_all",
+              "match",
+              "multi_match",
+              "range",
+              "term",
+              "terms"
             ],
             "type": "string"
           },
-          "fields": {
-            "description": "fields",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/aggregates_field"
-            }
+          "field": {
+            "description": "The field of this exists_query_predicate.",
+            "type": "string"
+          }
+        }
+        }
+      },
+      "match_all_query_predicate": {
+        "description": "match_all_query_predicate",
+        "if": { "properties": {
+          "type": { "const": "match_all" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "The type of this elasticsearch_query_predicate.",
+            "enum":[
+              "bool",
+              "exists",
+              "match_all",
+              "match",
+              "multi_match",
+              "range",
+              "term",
+              "terms"
+            ],
+            "type": "string"
+          }
+        }
+        }
+      },
+      "match_query_predicate": {
+        "description": "match_query_predicate",
+        "if": { "properties": {
+          "type": { "const": "match" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "The type of this elasticsearch_query_predicate.",
+            "enum":[
+              "bool",
+              "exists",
+              "match_all",
+              "match",
+              "multi_match",
+              "range",
+              "term",
+              "terms"
+            ],
+            "type": "string"
           },
-          "sub_aggregates": {
-            "description": "sub_aggregates",
+          "field": {
+            "description": "The field of this match_query_predicate.",
+            "type": "string"
+          },
+          "value": {
+            "description": "The value of this match_query_predicate.",
+            "type": "string"
+          }
+        }
+        }
+      },
+      "multi_match_query_predicate": {
+        "description": "multi_match_query_predicate",
+        "if": { "properties": {
+          "type": { "const": "multi_match" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "The type of this elasticsearch_query_predicate.",
+            "enum":[
+              "bool",
+              "exists",
+              "match_all",
+              "match",
+              "multi_match",
+              "range",
+              "term",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "value": {
+            "description": "The value of this multi_match_query_predicate.",
+            "type": "string"
+          },
+          "fields": {
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+            "description": "The fields of this multi_match_query_predicate.",
+            "type": "string"
             }
           }
         }
         }
       },
-      "date_range_aggregate": {
-        "description": "date_range_aggregate",
+      "range_query_predicate": {
+        "description": "range_query_predicate",
         "if": { "properties": {
-          "aggregation_type": { "const": "date_range" }
+          "type": { "const": "range" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
-          "name": {
-            "description": "The name of this elasticsearch_aggregate.",
-            "type": "string"
-          },
-          "aggregation_type": {
-            "description": "The aggregation_type of this elasticsearch_aggregate.",
+          "type": {
+            "description": "The type of this elasticsearch_query_predicate.",
             "enum":[
-              "terms",
-              "date_range",
-              "date_histogram",
-              "sum"
+              "bool",
+              "exists",
+              "match_all",
+              "match",
+              "multi_match",
+              "range",
+              "term",
+              "terms"
             ],
             "type": "string"
           },
-          "date_from": {
-            "description": "The date_from of this date_range_aggregate.",
+          "field": {
+            "description": "The field of this range_query_predicate.",
             "type": "string"
           },
-          "date_to": {
-            "description": "The date_to of this date_range_aggregate.",
+          "from": {
+            "description": "The from of this range_query_predicate.",
             "type": "string"
           },
-          "fields": {
-            "description": "fields",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/aggregates_field"
-            }
+          "to": {
+            "description": "The to of this range_query_predicate.",
+            "type": "string"
           },
-          "sub_aggregates": {
-            "description": "sub_aggregates",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
-            }
+          "include_lower": {
+            "description": "Defines this range_query_predicate is include_lower or not.",
+            "type": "boolean"
+          },
+          "include_upper": {
+            "description": "Defines this range_query_predicate is include_upper or not.",
+            "type": "boolean"
           }
         }
         }
       },
-      "date_histogram_aggregate": {
-        "description": "date_histogram_aggregate",
+      "term_query_predicate": {
+        "description": "term_query_predicate",
         "if": { "properties": {
-          "aggregation_type": { "const": "date_histogram" }
+          "type": { "const": "term" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
-          "name": {
-            "description": "The name of this elasticsearch_aggregate.",
-            "type": "string"
-          },
-          "aggregation_type": {
-            "description": "The aggregation_type of this elasticsearch_aggregate.",
+          "type": {
+            "description": "The type of this elasticsearch_query_predicate.",
             "enum":[
-              "terms",
-              "date_range",
-              "date_histogram",
-              "sum"
+              "bool",
+              "exists",
+              "match_all",
+              "match",
+              "multi_match",
+              "range",
+              "term",
+              "terms"
             ],
             "type": "string"
           },
-          "calendar_interval": {
-            "description": "The calendar_interval of this date_histogram_aggregate.",
-            "enum":[
-              "year",
-              "month",
-              "day"
-            ],
+          "field": {
+            "description": "The field of this term_query_predicate.",
             "type": "string"
           },
-          "fields": {
-            "description": "fields",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/aggregates_field"
-            }
+          "value": {
+            "description": "The value of this term_query_predicate.",
+            "type": "string"
           },
-          "sub_aggregates": {
-            "description": "sub_aggregates",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
-            }
+          "boost": {
+            "description": "The boost of this term_query_predicate.",
+            "type": "number"
           }
         }
         }
       },
-      "sum_metric": {
-        "description": "sum_metric",
+      "terms_query_predicate": {
+        "description": "terms_query_predicate",
         "if": { "properties": {
-          "aggregation_type": { "const": "sum" }
+          "type": { "const": "terms" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
-          "name": {
-            "description": "The name of this elasticsearch_aggregate.",
-            "type": "string"
-          },
-          "aggregation_type": {
-            "description": "The aggregation_type of this elasticsearch_aggregate.",
+          "type": {
+            "description": "The type of this elasticsearch_query_predicate.",
             "enum":[
-              "terms",
-              "date_range",
-              "date_histogram",
-              "sum"
+              "bool",
+              "exists",
+              "match_all",
+              "match",
+              "multi_match",
+              "range",
+              "term",
+              "terms"
             ],
             "type": "string"
           },
-          "fields": {
-            "description": "fields",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/aggregates_field"
-            }
+          "field": {
+            "description": "The field of this terms_query_predicate.",
+            "type": "string"
           },
-          "sub_aggregates": {
-            "description": "sub_aggregates",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
-            }
+          "value": {
+            "description": "The value of this terms_query_predicate.",
+            "type": "string"
+          },
+          "boost": {
+            "description": "The boost of this terms_query_predicate.",
+            "type": "number"
           }
         }
         }
@@ -2468,7 +3761,7 @@
             "description": "The resolver_type of this graphql_type.",
             "enum":[
               "entity_on_database",
-              "external_rest_api",
+              "external_rest_resource",
               "indexed_document",
               "query_to_elasticsearch"
             ],
@@ -2488,7 +3781,7 @@
         },
         "allOf": [
           { "$ref": "#/definitions/entities/entity_on_database" },
-          { "$ref": "#/definitions/entities/external_rest_api" },
+          { "$ref": "#/definitions/entities/external_rest_resource" },
           { "$ref": "#/definitions/entities/indexed_document" },
           { "$ref": "#/definitions/entities/query_to_elasticsearch" }
         ]
@@ -2554,7 +3847,7 @@
             "description": "The resolver_type of this graphql_type.",
             "enum":[
               "entity_on_database",
-              "external_rest_api",
+              "external_rest_resource",
               "indexed_document",
               "query_to_elasticsearch"
             ],
@@ -2582,10 +3875,10 @@
         }
         }
       },
-      "external_rest_api": {
-        "description": "external_rest_api",
+      "external_rest_resource": {
+        "description": "external_rest_resource",
         "if": { "properties": {
-          "resolver_type": { "const": "external_rest_api" }
+          "resolver_type": { "const": "external_rest_resource" }
         }},
         "then": {
         "additionalProperties": false,
@@ -2598,7 +3891,7 @@
             "description": "The resolver_type of this graphql_type.",
             "enum":[
               "entity_on_database",
-              "external_rest_api",
+              "external_rest_resource",
               "indexed_document",
               "query_to_elasticsearch"
             ],
@@ -2609,15 +3902,11 @@
             "type": "string"
           },
           "rest_resource_name": {
-            "description": "The rest_resource_name of this external_rest_api.",
-            "type": "string"
-          },
-          "operation_name": {
-            "description": "The operation_name of this external_rest_api.",
+            "description": "The rest_resource_name of this external_rest_resource.",
             "type": "string"
           },
           "rest_client_name": {
-            "description": "The rest_client_name of this external_rest_api.",
+            "description": "The rest_client_name of this external_rest_resource.",
             "type": "string"
           },
           "relationships": {
@@ -2646,7 +3935,7 @@
             "description": "The resolver_type of this graphql_type.",
             "enum":[
               "entity_on_database",
-              "external_rest_api",
+              "external_rest_resource",
               "indexed_document",
               "query_to_elasticsearch"
             ],
@@ -2690,7 +3979,7 @@
             "description": "The resolver_type of this graphql_type.",
             "enum":[
               "entity_on_database",
-              "external_rest_api",
+              "external_rest_resource",
               "indexed_document",
               "query_to_elasticsearch"
             ],
@@ -2716,32 +4005,6 @@
             }
           }
         }
-        }
-      },
-      "rest_resource": {
-        "description": "rest_resource",
-        "type": "object",
-        "required": [
-          "name",
-          "resource_model_name"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this rest_resource.",
-            "type": "string"
-          },
-          "resource_model_name": {
-            "description": "The resource_model_name of this rest_resource.",
-            "type": "string"
-          },
-          "operations": {
-            "description": "operations",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/rest_operation"
-            }
-          }
         }
       },
       "rest_operation": {
@@ -2770,6 +4033,21 @@
             "description": "The name of this rest_operation.",
             "type": "string"
           },
+          "description": {
+            "description": "The description of this rest_operation.",
+            "type": "string"
+          },
+          "response_model_name": {
+            "description": "The response_model_name of this rest_operation.",
+            "type": "string"
+          },
+          "arguments": {
+            "description": "arguments",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/api_call_argument"
+            }
+          },
           "path_parameters": {
             "description": "path_parameters",
             "type": "array",
@@ -2783,6 +4061,13 @@
             "items": {
               "$ref": "#/definitions/entities/rest_request_parameter"
             }
+          },
+          "http_headers": {
+            "description": "http_headers",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/rest_request_parameter"
+            }
           }
         }
       },
@@ -2791,7 +4076,8 @@
         "type": "object",
         "required": [
           "name",
-          "type"
+          "type",
+          "value"
         ],
         "additionalProperties": false,
         "properties": {
@@ -2805,10 +4091,46 @@
               "string",
               "number",
               "boolean",
-              "array",
               "object"
             ],
             "type": "string"
+          },
+          "multiple": {
+            "description": "Defines this rest_request_parameter is multiple or not.",
+            "type": "boolean"
+          },
+          "value": {
+            "description": "The value of this rest_request_parameter.",
+            "type": "string"
+          }
+        }
+      },
+      "rest_resource": {
+        "description": "rest_resource",
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this rest_resource.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this rest_resource.",
+            "type": "string"
+          },
+          "resource_model_name": {
+            "description": "The resource_model_name of this rest_resource.",
+            "type": "string"
+          },
+          "operations": {
+            "description": "operations",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/rest_operation"
+            }
           }
         }
       },
@@ -3109,8 +4431,44 @@
           "port": {
             "description": "The port of this elasticsearch_server.",
             "type": "number"
+          },
+          "plugins": {
+            "type": "array",
+            "items": {
+            "description": "The plugins of this elasticsearch_server.",
+            "type": "string"
+            }
+          },
+          "configuration_file_dir_path": {
+            "description": "The configuration_file_dir_path of this elasticsearch_server.",
+            "type": "string"
+          },
+          "configuration_files": {
+            "description": "configuration_files",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/elasticsearch_configuration_files"
+            }
           }
         }
+        }
+      },
+      "elasticsearch_configuration_files": {
+        "description": "elasticsearch_configuration_files",
+        "type": "object",
+        "required": [
+          "path"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "description": "The path of this elasticsearch_configuration_files.",
+            "type": "string"
+          },
+          "content": {
+            "description": "The content of this elasticsearch_configuration_files.",
+            "type": "string"
+          }
         }
       },
       "datasource_mapping": {
