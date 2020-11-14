@@ -122,6 +122,8 @@ elasticsearch_query_score_sort
 elasticsearch_query_field_sort
 - [**Component**](<./doc/entities/Component.md>)
 component
+- [**RedisServer**](<./doc/entities/RedisServer.md>)
+redis_server
 - [**PostgresTestDb**](<./doc/entities/PostgresTestDb.md>)
 postgres_test_db
 - [**ElasticsearchServer**](<./doc/entities/ElasticsearchServer.md>)
@@ -260,6 +262,7 @@ external_rest_api_endpoint
 
 
 - [model/project.yaml](<./model/project.yaml>)
+- [src/model/entities/component/cache_server/redis_server.yaml](<./src/model/entities/component/cache_server/redis_server.yaml>)
 - [src/model/entities/component/datastore/postgres_test_db.yaml](<./src/model/entities/component/datastore/postgres_test_db.yaml>)
 - [src/model/entities/component/search_engine/elasticsearch_server.yaml](<./src/model/entities/component/search_engine/elasticsearch_server.yaml>)
 - [src/model/entities/component/service/datasource-mapping.yaml](<./src/model/entities/component/service/datasource-mapping.yaml>)

@@ -192,6 +192,14 @@
       }
     }
     ,
+    "durations": {
+      "description": "duration",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/duration"
+      }
+    }
+    ,
     "bucket_script_paths": {
       "description": "bucket_script_path",
       "type": "array",
@@ -229,6 +237,14 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/keyed_filter"
+      }
+    }
+    ,
+    "cache_policies": {
+      "description": "cache_policy",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/cache_policy"
       }
     }
     ,
@@ -272,14 +288,6 @@
       }
     }
     ,
-    "graphql_types": {
-      "description": "graphql_type",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/entities/graphql_type"
-      }
-    }
-    ,
     "rest_request_parameters": {
       "description": "rest_request_parameter",
       "type": "array",
@@ -304,6 +312,30 @@
       }
     }
     ,
+    "elastic_search_clients": {
+      "description": "elastic_search_client",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/elastic_search_client"
+      }
+    }
+    ,
+    "graphql_types": {
+      "description": "graphql_type",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/graphql_type"
+      }
+    }
+    ,
+    "graphql_type_relationship_field_mappings": {
+      "description": "graphql_type_relationship_field_mapping",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/graphql_type_relationship_field_mapping"
+      }
+    }
+    ,
     "rest_clients": {
       "description": "rest_client",
       "type": "array",
@@ -312,11 +344,27 @@
       }
     }
     ,
-    "search_engine_clients": {
-      "description": "search_engine_client",
+    "service_configurations": {
+      "description": "service_configuration",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/search_engine_client"
+        "$ref": "#/definitions/entities/service_configuration"
+      }
+    }
+    ,
+    "service_configuration_categories": {
+      "description": "service_configuration_category",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/service_configuration_category"
+      }
+    }
+    ,
+    "configuration_bindings": {
+      "description": "configuration_binding",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/configuration_binding"
       }
     }
     ,
@@ -590,6 +638,16 @@
       "integer_or_placeholder": {
         "description": "integer_or_placeholder",
         "pattern": "^\\$\\{[^}]*\\}|[1-9][0-9]*|0$",
+        "type": "string"
+      },
+      "service_configuration_name": {
+        "description": "service_configuration_name",
+        "pattern": "^[a-z]+(-[0-9a-z]+)*$",
+        "type": "string"
+      },
+      "service_configuration_category": {
+        "description": "service_configuration_category",
+        "pattern": "^[a-z][-a-z0-9]*(\\.[a-z][-a-z0-9]*)*$",
         "type": "string"
       },
       "sort_order_or_placeholder": {
@@ -2246,6 +2304,29 @@
           }
         }
       },
+      "duration": {
+        "description": "duration",
+        "type": "object",
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "amount": {
+            "description": "The amount of this duration.",
+            "type": "number"
+          },
+          "unit": {
+            "description": "The unit of this duration.",
+            "enum":[
+              "day",
+              "hour",
+              "second",
+              "millisecond"
+            ],
+            "type": "string"
+          }
+        }
+      },
       "bucket_script_aggregate": {
         "description": "bucket_script_aggregate",
         "if": { "properties": {
@@ -2421,6 +2502,22 @@
           "field": {
             "description": "The field of this elasticsearch_aggregate.",
             "type": "string"
+          },
+          "from": {
+            "allOf": [{
+            "description": "Zero-based from index.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/integer_or_placeholder"
+            }]
+          },
+          "bucket_size": {
+            "allOf": [{
+            "description": "The size of the bucket_sort to be returned.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/integer_or_placeholder"
+            }]
           },
           "sub_aggregates": {
             "description": "sub_aggregates",
@@ -3151,6 +3248,101 @@
         }
         }
       },
+      "cache_policy": {
+        "description": "cache_policy",
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "description": "The name of this cache_policy.",
+            "type": "string"
+          },
+          "store_type": {
+            "description": "The store_type of this cache_policy.",
+            "enum":[
+              "heap",
+              "redis"
+            ],
+            "type": "string"
+          },
+          "ignore_error": {
+            "description": "Defines this cache_policy is ignore_error or not.",
+            "type": "boolean"
+          },
+          "expiration_time": {
+            "description": "expiration_time",
+            "$ref": "#/definitions/entities/duration"
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/heap_memory_cache_policy" },
+          { "$ref": "#/definitions/entities/redis_cache_policy" }
+        ]
+      },
+      "heap_memory_cache_policy": {
+        "description": "heap_memory_cache_policy",
+        "if": { "properties": {
+          "store_type": { "const": "heap" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this cache_policy.",
+            "type": "string"
+          },
+          "store_type": {
+            "description": "The store_type of this cache_policy.",
+            "enum":[
+              "heap",
+              "redis"
+            ],
+            "type": "string"
+          },
+          "ignore_error": {
+            "description": "Defines this cache_policy is ignore_error or not.",
+            "type": "boolean"
+          },
+          "expiration_time": {
+            "description": "expiration_time",
+            "$ref": "#/definitions/entities/duration"
+          }
+        }
+        }
+      },
+      "redis_cache_policy": {
+        "description": "redis_cache_policy",
+        "if": { "properties": {
+          "store_type": { "const": "redis" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this cache_policy.",
+            "type": "string"
+          },
+          "store_type": {
+            "description": "The store_type of this cache_policy.",
+            "enum":[
+              "heap",
+              "redis"
+            ],
+            "type": "string"
+          },
+          "ignore_error": {
+            "description": "Defines this cache_policy is ignore_error or not.",
+            "type": "boolean"
+          },
+          "expiration_time": {
+            "description": "expiration_time",
+            "$ref": "#/definitions/entities/duration"
+          }
+        }
+        }
+      },
       "elasticsearch_aggregate": {
         "description": "elasticsearch_aggregate",
         "type": "object",
@@ -3714,90 +3906,6 @@
         }
         }
       },
-      "graphql_type": {
-        "description": "graphql_type",
-        "type": "object",
-        "required": [
-          "name"
-        ],
-        "properties": {
-          "name": {
-            "description": "The name of this graphql_type.",
-            "type": "string"
-          },
-          "resolver_type": {
-            "description": "The resolver_type of this graphql_type.",
-            "enum":[
-              "entity_on_database",
-              "external_rest_resource",
-              "indexed_document",
-              "query_to_elasticsearch"
-            ],
-            "type": "string"
-          },
-          "description": {
-            "description": "The description of this graphql_type.",
-            "type": "string"
-          },
-          "relationships": {
-            "description": "relationships",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/graphql_type_relationship"
-            }
-          }
-        },
-        "allOf": [
-          { "$ref": "#/definitions/entities/entity_on_database" },
-          { "$ref": "#/definitions/entities/external_rest_resource" },
-          { "$ref": "#/definitions/entities/indexed_document" },
-          { "$ref": "#/definitions/entities/query_to_elasticsearch" }
-        ]
-      },
-      "graphql_type_relationship": {
-        "description": "graphql_type_relationship",
-        "type": "object",
-        "required": [
-          "name"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this graphql_type_relationship.",
-            "type": "string"
-          },
-          "referencing_type_name": {
-            "description": "The referencing_type_name of this graphql_type_relationship.",
-            "type": "string"
-          },
-          "mappings": {
-            "description": "mappings",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/graphql_type_mapping"
-            }
-          }
-        }
-      },
-      "graphql_type_mapping": {
-        "description": "graphql_type_mapping",
-        "type": "object",
-        "required": [
-          "from",
-          "to"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "from": {
-            "description": "The from of this graphql_type_mapping.",
-            "type": "string"
-          },
-          "to": {
-            "description": "The to of this graphql_type_mapping.",
-            "type": "string"
-          }
-        }
-      },
       "entity_on_database": {
         "description": "entity_on_database",
         "if": { "properties": {
@@ -3815,8 +3923,7 @@
             "enum":[
               "entity_on_database",
               "external_rest_resource",
-              "indexed_document",
-              "query_to_elasticsearch"
+              "indexed_document"
             ],
             "type": "string"
           },
@@ -3859,8 +3966,7 @@
             "enum":[
               "entity_on_database",
               "external_rest_resource",
-              "indexed_document",
-              "query_to_elasticsearch"
+              "indexed_document"
             ],
             "type": "string"
           },
@@ -3903,8 +4009,7 @@
             "enum":[
               "entity_on_database",
               "external_rest_resource",
-              "indexed_document",
-              "query_to_elasticsearch"
+              "indexed_document"
             ],
             "type": "string"
           },
@@ -3920,48 +4025,8 @@
             "description": "The search_engine_client_name of this indexed_document.",
             "type": "string"
           },
-          "relationships": {
-            "description": "relationships",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/graphql_type_relationship"
-            }
-          }
-        }
-        }
-      },
-      "query_to_elasticsearch": {
-        "description": "query_to_elasticsearch",
-        "if": { "properties": {
-          "resolver_type": { "const": "query_to_elasticsearch" }
-        }},
-        "then": {
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this graphql_type.",
-            "type": "string"
-          },
-          "resolver_type": {
-            "description": "The resolver_type of this graphql_type.",
-            "enum":[
-              "entity_on_database",
-              "external_rest_resource",
-              "indexed_document",
-              "query_to_elasticsearch"
-            ],
-            "type": "string"
-          },
-          "description": {
-            "description": "The description of this graphql_type.",
-            "type": "string"
-          },
-          "index_name": {
-            "description": "The index_name of this query_to_elasticsearch.",
-            "type": "string"
-          },
-          "query_name": {
-            "description": "The query_name of this query_to_elasticsearch.",
+          "default_searcher_name": {
+            "description": "The default_searcher_name of this indexed_document.",
             "type": "string"
           },
           "relationships": {
@@ -4004,6 +4069,10 @@
           },
           "response_model_name": {
             "description": "The response_model_name of this rest_operation.",
+            "type": "string"
+          },
+          "cache_policy_name": {
+            "description": "The cache_policy_name of this rest_operation.",
             "type": "string"
           },
           "arguments": {
@@ -4088,11 +4157,26 @@
             "description": "The resource_model_name of this rest_resource.",
             "type": "string"
           },
+          "base_url": {
+            "description": "The base_url of this rest_resource.",
+            "type": "string"
+          },
+          "cache_policy_name": {
+            "description": "The cache_policy_name of this rest_resource.",
+            "type": "string"
+          },
           "operations": {
             "description": "operations",
             "type": "array",
             "items": {
               "$ref": "#/definitions/entities/rest_operation"
+            }
+          },
+          "configurations": {
+            "description": "configurations",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/configuration_binding"
             }
           }
         }
@@ -4101,6 +4185,7 @@
         "description": "service",
         "type": "object",
         "required": [
+          "name"
         ],
         "additionalProperties": false,
         "properties": {
@@ -4110,34 +4195,6 @@
           },
           "version": {
             "description": "The version of this service.",
-            "type": "string"
-          },
-          "api_version": {
-            "description": "The api_version of this service.",
-            "type": "string"
-          },
-          "endpoint": {
-            "description": "The endpoint of this service.",
-            "type": "string"
-          },
-          "host": {
-            "description": "The host of this service.",
-            "type": "string"
-          },
-          "port": {
-            "description": "The port of this service.",
-            "type": "number"
-          },
-          "protocol": {
-            "description": "The protocol of this service.",
-            "enum":[
-              "http",
-              "https"
-            ],
-            "type": "string"
-          },
-          "path": {
-            "description": "The path of this service.",
             "type": "string"
           },
           "namespace": {
@@ -4173,11 +4230,18 @@
               "$ref": "#/definitions/entities/rest_client"
             }
           },
-          "search_engine_clients": {
-            "description": "search_engine_clients",
+          "elastic_search_clients": {
+            "description": "elastic_search_clients",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/search_engine_client"
+              "$ref": "#/definitions/entities/elastic_search_client"
+            }
+          },
+          "configuration_categories": {
+            "description": "configuration_categories",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/service_configuration_category"
             }
           }
         }
@@ -4207,6 +4271,109 @@
           }
         }
       },
+      "elastic_search_client": {
+        "description": "elastic_search_client",
+        "type": "object",
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this elastic_search_client.",
+            "type": "string"
+          },
+          "is_default": {
+            "description": "Defines this elastic_search_client is is_default or not.",
+            "type": "boolean"
+          },
+          "configuration_category": {
+            "allOf": [{
+            "description": "The configuration_category of this elastic_search_client.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/service_configuration_category"
+            }]
+          },
+          "configuration_name_of_endpoints": {
+            "allOf": [{
+            "description": "The configuration_name_of_endpoints of this elastic_search_client.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/service_configuration_name"
+            }]
+          },
+          "configuration_name_of_path_prefix": {
+            "allOf": [{
+            "description": "The configuration_name_of_path_prefix of this elastic_search_client.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/service_configuration_name"
+            }]
+          },
+          "configuration_name_of_connect_timeout": {
+            "allOf": [{
+            "description": "The configuration_name_of_connect_timeout of this elastic_search_client.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/service_configuration_name"
+            }]
+          },
+          "configuration_name_of_socket_timeout": {
+            "allOf": [{
+            "description": "The configuration_name_of_socket_timeout of this elastic_search_client.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/service_configuration_name"
+            }]
+          },
+          "configuration_name_of_max_in_memory_size": {
+            "allOf": [{
+            "description": "The configuration_name_of_max_in_memory_size of this elastic_search_client.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/service_configuration_name"
+            }]
+          }
+        }
+      },
+      "graphql_type": {
+        "description": "graphql_type",
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "description": "The name of this graphql_type.",
+            "type": "string"
+          },
+          "resolver_type": {
+            "description": "The resolver_type of this graphql_type.",
+            "enum":[
+              "entity_on_database",
+              "external_rest_resource",
+              "indexed_document"
+            ],
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this graphql_type.",
+            "type": "string"
+          },
+          "relationships": {
+            "description": "relationships",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/graphql_type_relationship"
+            }
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/entity_on_database" },
+          { "$ref": "#/definitions/entities/external_rest_resource" },
+          { "$ref": "#/definitions/entities/indexed_document" }
+        ]
+      },
       "graphql_type_entry": {
         "description": "graphql_type_entry",
         "type": "object",
@@ -4216,6 +4383,108 @@
         "properties": {
           "name": {
             "description": "The name of this graphql_type_entry.",
+            "type": "string"
+          }
+        }
+      },
+      "graphql_type_relationship": {
+        "description": "graphql_type_relationship",
+        "type": "object",
+        "required": [
+        ],
+        "properties": {
+          "name": {
+            "description": "The name of this graphql_type_relationship.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this graphql_type_relationship.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this graphql_type_relationship.",
+            "enum":[
+              "indexed_document"
+            ],
+            "type": "string"
+          },
+          "referencing_graphql_type_name": {
+            "description": "The referencing_graphql_type_name of this graphql_type_relationship.",
+            "type": "string"
+          },
+          "multiple": {
+            "description": "Defines this graphql_type_relationship is multiple or not.",
+            "type": "boolean"
+          },
+          "nullable": {
+            "description": "Defines this graphql_type_relationship is nullable or not.",
+            "type": "boolean"
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/graphql_indexed_document_relationship" }
+        ]
+      },
+      "graphql_indexed_document_relationship": {
+        "description": "graphql_indexed_document_relationship",
+        "if": { "properties": {
+          "type": { "const": "indexed_document" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this graphql_type_relationship.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this graphql_type_relationship.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this graphql_type_relationship.",
+            "enum":[
+              "indexed_document"
+            ],
+            "type": "string"
+          },
+          "referencing_graphql_type_name": {
+            "description": "The referencing_graphql_type_name of this graphql_type_relationship.",
+            "type": "string"
+          },
+          "multiple": {
+            "description": "Defines this graphql_type_relationship is multiple or not.",
+            "type": "boolean"
+          },
+          "nullable": {
+            "description": "Defines this graphql_type_relationship is nullable or not.",
+            "type": "boolean"
+          },
+          "field_mappings": {
+            "description": "field_mappings",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/graphql_type_relationship_field_mapping"
+            }
+          }
+        }
+        }
+      },
+      "graphql_type_relationship_field_mapping": {
+        "description": "graphql_type_relationship_field_mapping",
+        "type": "object",
+        "required": [
+          "from",
+          "to"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "from": {
+            "description": "The from of this graphql_type_relationship_field_mapping.",
+            "type": "string"
+          },
+          "to": {
+            "description": "The to of this graphql_type_relationship_field_mapping.",
             "type": "string"
           }
         }
@@ -4234,23 +4503,87 @@
           }
         }
       },
-      "search_engine_client": {
-        "description": "search_engine_client",
+      "service_configuration": {
+        "description": "service_configuration",
         "type": "object",
         "required": [
+          "name",
+          "category"
         ],
         "additionalProperties": false,
         "properties": {
           "name": {
-            "description": "The name of this search_engine_client.",
+            "allOf": [{
+            "description": "The name of this service_configuration.",
             "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/service_configuration_name"
+            }]
+          },
+          "category": {
+            "allOf": [{
+            "description": "The category of this service_configuration.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/service_configuration_category"
+            }]
           },
           "type": {
-            "description": "The type of this search_engine_client.",
+            "description": "The type of this service_configuration.",
             "enum":[
-              "elasticsearch",
-              "solr"
+              "string",
+              "int",
+              "float",
+              "boolean"
             ],
+            "type": "string"
+          },
+          "default_value": {
+            "description": "The default_value of this service_configuration.",
+            "type": "string"
+          },
+          "environment_variable_name": {
+            "description": "The environment_variable_name of this service_configuration.",
+            "type": "string"
+          }
+        }
+      },
+      "service_configuration_category": {
+        "description": "service_configuration_category",
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this service_configuration_category.",
+            "type": "string"
+          }
+        }
+      },
+      "configuration_binding": {
+        "description": "configuration_binding",
+        "type": "object",
+        "required": [
+          "name",
+          "category"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this configuration_binding.",
+            "pattern": "^[a-z][-a-z0-9]*$",
+            "type": "string"
+          },
+          "category": {
+            "description": "The category of this configuration_binding.",
+            "pattern": "^[a-z][-a-z0-9]*(\\.[a-z][-a-z0-9]*)*$",
+            "type": "string"
+          },
+          "variable_name": {
+            "description": "The variable_name of this configuration_binding.",
+            "pattern": "^[a-z][a-zA-Z0-9]*$",
             "type": "string"
           }
         }
@@ -4269,6 +4602,7 @@
           "type": {
             "description": "The type of this component.",
             "enum":[
+              "redis_server",
               "postgres_test_db",
               "elasticsearch_server",
               "springboot2_api_service"
@@ -4288,10 +4622,55 @@
           }
         },
         "allOf": [
+          { "$ref": "#/definitions/entities/redis_server" },
           { "$ref": "#/definitions/entities/postgres_test_db" },
           { "$ref": "#/definitions/entities/elasticsearch_server" },
           { "$ref": "#/definitions/entities/springboot2_api_service" }
         ]
+      },
+      "redis_server": {
+        "description": "redis_server",
+        "if": { "properties": {
+          "type": { "const": "redis_server" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this component.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this component.",
+            "enum":[
+              "redis_server",
+              "postgres_test_db",
+              "elasticsearch_server",
+              "springboot2_api_service"
+            ],
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+            "description": "The tags of this component.",
+            "type": "string"
+            }
+          },
+          "instance_name": {
+            "description": "The instance_name of this component.",
+            "type": "string"
+          },
+          "container_image": {
+            "description": "The container_image of this redis_server.",
+            "type": "string"
+          },
+          "port": {
+            "description": "The port of this redis_server.",
+            "type": "number"
+          }
+        }
+        }
       },
       "postgres_test_db": {
         "description": "postgres_test_db",
@@ -4308,6 +4687,7 @@
           "type": {
             "description": "The type of this component.",
             "enum":[
+              "redis_server",
               "postgres_test_db",
               "elasticsearch_server",
               "springboot2_api_service"
@@ -4363,6 +4743,7 @@
           "type": {
             "description": "The type of this component.",
             "enum":[
+              "redis_server",
               "postgres_test_db",
               "elasticsearch_server",
               "springboot2_api_service"
@@ -4493,6 +4874,7 @@
           "type": {
             "description": "The type of this component.",
             "enum":[
+              "redis_server",
               "postgres_test_db",
               "elasticsearch_server",
               "springboot2_api_service"
