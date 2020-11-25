@@ -384,6 +384,14 @@
       }
     }
     ,
+    "maven_artifacts": {
+      "description": "maven_artifact",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/maven_artifact"
+      }
+    }
+    ,
     "environments": {
       "description": "environment",
       "type": "array",
@@ -2338,8 +2346,12 @@
         "additionalProperties": false,
         "properties": {
           "amount": {
+            "allOf": [{
             "description": "The amount of this duration.",
-            "type": "number"
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/integer_or_placeholder"
+            }]
           },
           "unit": {
             "description": "The unit of this duration.",
@@ -3306,6 +3318,13 @@
           "expiration_time": {
             "description": "expiration_time",
             "$ref": "#/definitions/entities/duration"
+          },
+          "configurations": {
+            "description": "configurations",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/configuration_binding"
+            }
           }
         },
         "allOf": [
@@ -3340,6 +3359,13 @@
           "expiration_time": {
             "description": "expiration_time",
             "$ref": "#/definitions/entities/duration"
+          },
+          "configurations": {
+            "description": "configurations",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/configuration_binding"
+            }
           }
         }
         }
@@ -3371,6 +3397,13 @@
           "expiration_time": {
             "description": "expiration_time",
             "$ref": "#/definitions/entities/duration"
+          },
+          "configurations": {
+            "description": "configurations",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/configuration_binding"
+            }
           }
         }
         }
@@ -3862,6 +3895,10 @@
           "include_upper": {
             "description": "Defines this range_query_predicate is include_upper or not.",
             "type": "boolean"
+          },
+          "timezone": {
+            "description": "The timezone of this range_query_predicate.",
+            "type": "string"
           }
         }
         }
@@ -4895,6 +4932,30 @@
           }
         }
       },
+      "maven_artifact": {
+        "description": "maven_artifact",
+        "type": "object",
+        "required": [
+          "group",
+          "name",
+          "version"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "group": {
+            "description": "The group of this maven_artifact.",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name of this maven_artifact.",
+            "type": "string"
+          },
+          "version": {
+            "description": "The version of this maven_artifact.",
+            "type": "string"
+          }
+        }
+      },
       "search_engine_mapping": {
         "description": "search_engine_mapping",
         "type": "object",
@@ -4999,6 +5060,13 @@
             "description": "The graphql_extended_scalar_version of this springboot2_api_service.",
             "type": "string"
           },
+          "repositories": {
+            "type": "array",
+            "items": {
+            "description": "The repositories of this springboot2_api_service.",
+            "type": "string"
+            }
+          },
           "datasource_mappings": {
             "description": "datasource_mappings",
             "type": "array",
@@ -5018,6 +5086,13 @@
             "type": "array",
             "items": {
               "$ref": "#/definitions/entities/external_rest_api_mapping"
+            }
+          },
+          "additional_libraries": {
+            "description": "additional_libraries",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/maven_artifact"
             }
           }
         }

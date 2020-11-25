@@ -78,6 +78,15 @@ entities:
     default_value: |
       "1.0.1"
 
+  - name: repositories
+    type: string
+    multiple: true
+    optional: true
+    default_value: |
+      listOf(
+        "jcenter()"
+      )
+
   relationships:
   - name: function_model
     reference_entity_name: service
@@ -98,5 +107,10 @@ entities:
 
   - name: external_rest_api_mappings
     reference_entity_name: external_rest_api_mapping
+    cardinality: '*'
+    aggregate: true
+
+  - name: additional_libraries
+    reference_entity_name: maven_artifact
     cardinality: '*'
     aggregate: true

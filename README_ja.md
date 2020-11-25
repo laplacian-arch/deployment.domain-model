@@ -135,6 +135,8 @@ elasticsearch_configuration_files
 datasource_mapping
 - [**ExternalRestApiMapping**](<./doc/entities/ExternalRestApiMapping.md>)
 external_rest_api_mapping
+- [**MavenArtifact**](<./doc/entities/MavenArtifact.md>)
+maven_artifact
 - [**SearchEngineMapping**](<./doc/entities/SearchEngineMapping.md>)
 search_engine_mapping
 - [**Springboot2ApiService**](<./doc/entities/Springboot2ApiService.md>)
@@ -260,6 +262,7 @@ external_rest_api_endpoint
 - [src/model/entities/component/search_engine/elasticsearch_server.yaml](<./src/model/entities/component/search_engine/elasticsearch_server.yaml>)
 - [src/model/entities/component/service/datasource-mapping.yaml](<./src/model/entities/component/service/datasource-mapping.yaml>)
 - [src/model/entities/component/service/external-rest-api-mapping.yaml](<./src/model/entities/component/service/external-rest-api-mapping.yaml>)
+- [src/model/entities/component/service/maven_artifiact.yaml](<./src/model/entities/component/service/maven_artifiact.yaml>)
 - [src/model/entities/component/service/search-engine-mappings.yaml](<./src/model/entities/component/service/search-engine-mappings.yaml>)
 - [src/model/entities/component/service/springboot2-api-service.yaml](<./src/model/entities/component/service/springboot2-api-service.yaml>)
 - [src/model/entities/component.yaml](<./src/model/entities/component.yaml>)

@@ -89,6 +89,15 @@ The graphql_extended_scalar_version of this springboot2_api_service.
   "1.0.1"
   ```
 
+### repositories: `List<String>`
+The repositories of this springboot2_api_service.
+- **Default Value:**
+  ```kotlin
+  listOf(
+    "jcenter()"
+  )
+  ```
+
 ## Relationships
 
 ### function_model: `Service`
@@ -105,4 +114,8 @@ search-engine-mappings
 
 ### external_rest_api_mappings: `List<ExternalRestApiMapping>`
 external_rest_api_mappings
+- **Cardinality:** `*`
+
+### additional_libraries: `List<MavenArtifact>`
+additional_libraries
 - **Cardinality:** `*`
