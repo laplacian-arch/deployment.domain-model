@@ -61,6 +61,13 @@ The r2dbc_postgres_driver_version of this springboot2_api_service.
   "0.8.3.RELEASE"
   ```
 
+### oracle_jdbc_driver_version: `String`
+The oracle_jdbc_driver_version of this springboot2_api_service.
+- **Default Value:**
+  ```kotlin
+  "19.8.0.0"
+  ```
+
 ### springboot_version: `String`
 The springboot_version of this springboot2_api_service.
 - **Default Value:**
@@ -87,6 +94,13 @@ The graphql_extended_scalar_version of this springboot2_api_service.
 - **Default Value:**
   ```kotlin
   "1.0.1"
+  ```
+
+### springboot_mybatis_version: `String`
+The springboot_mybatis_version of this springboot2_api_service.
+- **Default Value:**
+  ```kotlin
+  "2.1.4"
   ```
 
 ### repositories: `List<String>`

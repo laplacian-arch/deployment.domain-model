@@ -54,6 +54,12 @@ entities:
     default_value: |
       "0.8.3.RELEASE"
 
+  - name: oracle_jdbc_driver_version
+    type: string
+    optional: true
+    default_value: |
+      "19.8.0.0"
+
   - name: springboot_version
     type: string
     optional: true
@@ -77,6 +83,12 @@ entities:
     optional: true
     default_value: |
       "1.0.1"
+
+  - name: springboot_mybatis_version
+    type: string
+    optional: true
+    default_value: |
+      "2.1.4"
 
   - name: repositories
     type: string

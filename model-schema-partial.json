@@ -192,6 +192,30 @@
       }
     }
     ,
+    "cache_policies": {
+      "description": "cache_policy",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/cache_policy"
+      }
+    }
+    ,
+    "datasources": {
+      "description": "A *DataSource* represents an interface through which a client application access to a data store.\nThis includes the following models.\n- The entity that the datastore exposes to the client\n- Statement issued by the client to the datastore",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/datasource"
+      }
+    }
+    ,
+    "datasource_entries": {
+      "description": "datasource_entry",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/datasource_entry"
+      }
+    }
+    ,
     "durations": {
       "description": "duration",
       "type": "array",
@@ -240,14 +264,6 @@
       }
     }
     ,
-    "cache_policies": {
-      "description": "cache_policy",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/entities/cache_policy"
-      }
-    }
-    ,
     "elasticsearch_aggregates": {
       "description": "elasticsearch_aggregate",
       "type": "array",
@@ -285,6 +301,14 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/elasticsearch_query"
+      }
+    }
+    ,
+    "mybatis_mappers": {
+      "description": "mybatis_mapper",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/mybatis_mapper"
       }
     }
     ,
@@ -2312,6 +2336,223 @@
           }
         }
       },
+      "cache_policy": {
+        "description": "cache_policy",
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "description": "The name of this cache_policy.",
+            "type": "string"
+          },
+          "store_type": {
+            "description": "The store_type of this cache_policy.",
+            "enum":[
+              "heap",
+              "redis"
+            ],
+            "type": "string"
+          },
+          "ignore_error": {
+            "description": "Defines this cache_policy is ignore_error or not.",
+            "type": "boolean"
+          },
+          "expiration_time": {
+            "description": "expiration_time",
+            "$ref": "#/definitions/entities/duration"
+          },
+          "configurations": {
+            "description": "configurations",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/configuration_binding"
+            }
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/heap_memory_cache_policy" },
+          { "$ref": "#/definitions/entities/redis_cache_policy" }
+        ]
+      },
+      "heap_memory_cache_policy": {
+        "description": "heap_memory_cache_policy",
+        "if": { "properties": {
+          "store_type": { "const": "heap" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this cache_policy.",
+            "type": "string"
+          },
+          "store_type": {
+            "description": "The store_type of this cache_policy.",
+            "enum":[
+              "heap",
+              "redis"
+            ],
+            "type": "string"
+          },
+          "ignore_error": {
+            "description": "Defines this cache_policy is ignore_error or not.",
+            "type": "boolean"
+          },
+          "expiration_time": {
+            "description": "expiration_time",
+            "$ref": "#/definitions/entities/duration"
+          },
+          "configurations": {
+            "description": "configurations",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/configuration_binding"
+            }
+          }
+        }
+        }
+      },
+      "redis_cache_policy": {
+        "description": "redis_cache_policy",
+        "if": { "properties": {
+          "store_type": { "const": "redis" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this cache_policy.",
+            "type": "string"
+          },
+          "store_type": {
+            "description": "The store_type of this cache_policy.",
+            "enum":[
+              "heap",
+              "redis"
+            ],
+            "type": "string"
+          },
+          "ignore_error": {
+            "description": "Defines this cache_policy is ignore_error or not.",
+            "type": "boolean"
+          },
+          "expiration_time": {
+            "description": "expiration_time",
+            "$ref": "#/definitions/entities/duration"
+          },
+          "configurations": {
+            "description": "configurations",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/configuration_binding"
+            }
+          }
+        }
+        }
+      },
+      "datasource": {
+        "description": "A *DataSource* represents an interface through which a client application access to a data store.\nThis includes the following models.\n- The entity that the datastore exposes to the client\n- Statement issued by the client to the datastore",
+        "type": "object",
+        "required": [
+        ],
+        "properties": {
+          "type": {
+            "description": "The type of this datasource.",
+            "enum":[
+              "oracle_jdbc"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "description": "The name of this datasource.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this datasource.",
+            "type": "string"
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/oracle_datasource" }
+        ]
+      },
+      "datasource_entry": {
+        "description": "datasource_entry",
+        "type": "object",
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this datasource_entry.",
+            "type": "string"
+          }
+        }
+      },
+      "oracle_datasource": {
+        "description": "oracle_datasource",
+        "if": { "properties": {
+          "type": { "const": "oracle_jdbc" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "The type of this datasource.",
+            "enum":[
+              "oracle_jdbc"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "description": "The name of this datasource.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this datasource.",
+            "type": "string"
+          },
+          "url": {
+            "description": "The url of this oracle_datasource.",
+            "type": "string"
+          },
+          "username": {
+            "description": "The username of this oracle_datasource.",
+            "type": "string"
+          },
+          "password": {
+            "description": "The password of this oracle_datasource.",
+            "type": "string"
+          },
+          "driver_class_name": {
+            "description": "The driver_class_name of this oracle_datasource.",
+            "type": "string"
+          },
+          "minimum_idle_connections": {
+            "description": "The minimum_idle_connections of this oracle_datasource.",
+            "type": "number"
+          },
+          "maximum_connections": {
+            "description": "The maximum_connections of this oracle_datasource.",
+            "type": "number"
+          },
+          "idle_connection_timeout": {
+            "description": "The idle_connection_timeout of this oracle_datasource.",
+            "type": "number"
+          },
+          "maximum_connection_lifetime": {
+            "description": "The maximum_connection_lifetime of this oracle_datasource.",
+            "type": "number"
+          },
+          "connection_timeout": {
+            "description": "The connection_timeout of this oracle_datasource.",
+            "type": "number"
+          }
+        }
+        }
+      },
       "duration": {
         "description": "duration",
         "type": "object",
@@ -3218,7 +3459,7 @@
             "description": "The field of this elasticsearch_aggregate.",
             "type": "string"
           },
-          "max_results": {
+          "max_buckets": {
             "allOf": [{
             "description": "The number of term buckets should be returned (default: 10)",
             "type": "string"
@@ -3255,122 +3496,6 @@
             "type": "array",
             "items": {
               "$ref": "#/definitions/entities/elasticsearch_aggregate"
-            }
-          }
-        }
-        }
-      },
-      "cache_policy": {
-        "description": "cache_policy",
-        "type": "object",
-        "required": [
-          "name"
-        ],
-        "properties": {
-          "name": {
-            "description": "The name of this cache_policy.",
-            "type": "string"
-          },
-          "store_type": {
-            "description": "The store_type of this cache_policy.",
-            "enum":[
-              "heap",
-              "redis"
-            ],
-            "type": "string"
-          },
-          "ignore_error": {
-            "description": "Defines this cache_policy is ignore_error or not.",
-            "type": "boolean"
-          },
-          "expiration_time": {
-            "description": "expiration_time",
-            "$ref": "#/definitions/entities/duration"
-          },
-          "configurations": {
-            "description": "configurations",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/configuration_binding"
-            }
-          }
-        },
-        "allOf": [
-          { "$ref": "#/definitions/entities/heap_memory_cache_policy" },
-          { "$ref": "#/definitions/entities/redis_cache_policy" }
-        ]
-      },
-      "heap_memory_cache_policy": {
-        "description": "heap_memory_cache_policy",
-        "if": { "properties": {
-          "store_type": { "const": "heap" }
-        }},
-        "then": {
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this cache_policy.",
-            "type": "string"
-          },
-          "store_type": {
-            "description": "The store_type of this cache_policy.",
-            "enum":[
-              "heap",
-              "redis"
-            ],
-            "type": "string"
-          },
-          "ignore_error": {
-            "description": "Defines this cache_policy is ignore_error or not.",
-            "type": "boolean"
-          },
-          "expiration_time": {
-            "description": "expiration_time",
-            "$ref": "#/definitions/entities/duration"
-          },
-          "configurations": {
-            "description": "configurations",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/configuration_binding"
-            }
-          }
-        }
-        }
-      },
-      "redis_cache_policy": {
-        "description": "redis_cache_policy",
-        "if": { "properties": {
-          "store_type": { "const": "redis" }
-        }},
-        "then": {
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this cache_policy.",
-            "type": "string"
-          },
-          "store_type": {
-            "description": "The store_type of this cache_policy.",
-            "enum":[
-              "heap",
-              "redis"
-            ],
-            "type": "string"
-          },
-          "ignore_error": {
-            "description": "Defines this cache_policy is ignore_error or not.",
-            "type": "boolean"
-          },
-          "expiration_time": {
-            "description": "expiration_time",
-            "$ref": "#/definitions/entities/duration"
-          },
-          "configurations": {
-            "description": "configurations",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/configuration_binding"
             }
           }
         }
@@ -3475,6 +3600,7 @@
               "match_all",
               "match",
               "multi_match",
+              "query_string",
               "range",
               "term",
               "terms"
@@ -3488,6 +3614,7 @@
           { "$ref": "#/definitions/entities/match_all_query_predicate" },
           { "$ref": "#/definitions/entities/match_query_predicate" },
           { "$ref": "#/definitions/entities/multi_match_query_predicate" },
+          { "$ref": "#/definitions/entities/query_string_predicate" },
           { "$ref": "#/definitions/entities/range_query_predicate" },
           { "$ref": "#/definitions/entities/term_query_predicate" },
           { "$ref": "#/definitions/entities/terms_query_predicate" }
@@ -3660,6 +3787,7 @@
               "match_all",
               "match",
               "multi_match",
+              "query_string",
               "range",
               "term",
               "terms"
@@ -3713,6 +3841,7 @@
               "match_all",
               "match",
               "multi_match",
+              "query_string",
               "range",
               "term",
               "terms"
@@ -3742,6 +3871,7 @@
               "match_all",
               "match",
               "multi_match",
+              "query_string",
               "range",
               "term",
               "terms"
@@ -3767,6 +3897,7 @@
               "match_all",
               "match",
               "multi_match",
+              "query_string",
               "range",
               "term",
               "terms"
@@ -3800,6 +3931,7 @@
               "match_all",
               "match",
               "multi_match",
+              "query_string",
               "range",
               "term",
               "terms"
@@ -3820,6 +3952,133 @@
         }
         }
       },
+      "query_string_predicate": {
+        "description": "query_string_predicate",
+        "if": { "properties": {
+          "type": { "const": "query_string" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "description": "The type of this elasticsearch_query_predicate.",
+            "enum":[
+              "bool",
+              "exists",
+              "match_all",
+              "match",
+              "multi_match",
+              "query_string",
+              "range",
+              "term",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "query": {
+            "description": "The query of this query_string_predicate.",
+            "type": "string"
+          },
+          "default_field": {
+            "description": "The default_field of this query_string_predicate.",
+            "type": "string"
+          },
+          "allow_leading_wildcard": {
+            "description": "Defines this query_string_predicate is allow_leading_wildcard or not.",
+            "type": "boolean"
+          },
+          "analyze_wildcard": {
+            "description": "Defines this query_string_predicate is analyze_wildcard or not.",
+            "type": "boolean"
+          },
+          "analyzer": {
+            "description": "The analyzer of this query_string_predicate.",
+            "type": "string"
+          },
+          "auto_generate_synonyms_phrase_query": {
+            "description": "Defines this query_string_predicate is auto_generate_synonyms_phrase_query or not.",
+            "type": "boolean"
+          },
+          "boost": {
+            "description": "The boost of this query_string_predicate.",
+            "type": "float"
+          },
+          "default_operator": {
+            "description": "The default_operator of this query_string_predicate.",
+            "enum":[
+              "OR",
+              "AND"
+            ],
+            "type": "string"
+          },
+          "enable_position_increments": {
+            "description": "Defines this query_string_predicate is enable_position_increments or not.",
+            "type": "boolean"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+            "description": "The fields of this query_string_predicate.",
+            "type": "string"
+            }
+          },
+          "fuzziness": {
+            "description": "The fuzziness of this query_string_predicate.",
+            "enum":[
+              "AUTO",
+              "ONE",
+              "TWO",
+              "ZERO"
+            ],
+            "type": "string"
+          },
+          "fuzzy_max_expansion": {
+            "description": "The fuzzy_max_expansion of this query_string_predicate.",
+            "type": "int"
+          },
+          "fuzzy_prefix_length": {
+            "description": "The fuzzy_prefix_length of this query_string_predicate.",
+            "type": "int"
+          },
+          "fuzzy_transpositions": {
+            "description": "Defines this query_string_predicate is fuzzy_transpositions or not.",
+            "type": "boolean"
+          },
+          "lenient": {
+            "description": "Defines this query_string_predicate is lenient or not.",
+            "type": "boolean"
+          },
+          "max_determinized_states": {
+            "description": "The max_determinized_states of this query_string_predicate.",
+            "type": "int"
+          },
+          "minimum_should_match": {
+            "description": "The minimum_should_match of this query_string_predicate.",
+            "type": "string"
+          },
+          "quote_analyzer": {
+            "description": "The quote_analyzer of this query_string_predicate.",
+            "type": "string"
+          },
+          "phrase_slop": {
+            "description": "The phrase_slop of this query_string_predicate.",
+            "type": "int"
+          },
+          "quote_field_suffix": {
+            "description": "The quote_field_suffix of this query_string_predicate.",
+            "type": "string"
+          },
+          "rewrite": {
+            "description": "The rewrite of this query_string_predicate.",
+            "type": "string"
+          },
+          "time_zone": {
+            "description": "The time_zone of this query_string_predicate.",
+            "type": "string"
+          }
+        }
+        }
+      },
       "range_query_predicate": {
         "description": "range_query_predicate",
         "if": { "properties": {
@@ -3836,6 +4095,7 @@
               "match_all",
               "match",
               "multi_match",
+              "query_string",
               "range",
               "term",
               "terms"
@@ -3885,6 +4145,7 @@
               "match_all",
               "match",
               "multi_match",
+              "query_string",
               "range",
               "term",
               "terms"
@@ -3922,6 +4183,7 @@
               "match_all",
               "match",
               "multi_match",
+              "query_string",
               "range",
               "term",
               "terms"
@@ -3960,7 +4222,8 @@
             "enum":[
               "entity_on_database",
               "external_rest_resource",
-              "indexed_document"
+              "indexed_document",
+              "rdbms_table"
             ],
             "type": "string"
           },
@@ -4003,7 +4266,8 @@
             "enum":[
               "entity_on_database",
               "external_rest_resource",
-              "indexed_document"
+              "indexed_document",
+              "rdbms_table"
             ],
             "type": "string"
           },
@@ -4046,7 +4310,8 @@
             "enum":[
               "entity_on_database",
               "external_rest_resource",
-              "indexed_document"
+              "indexed_document",
+              "rdbms_table"
             ],
             "type": "string"
           },
@@ -4074,6 +4339,141 @@
             }
           }
         }
+        }
+      },
+      "rdbms_table": {
+        "description": "rdbms_table",
+        "if": { "properties": {
+          "resolver_type": { "const": "rdbms_table" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this graphql_type.",
+            "type": "string"
+          },
+          "resolver_type": {
+            "description": "The resolver_type of this graphql_type.",
+            "enum":[
+              "entity_on_database",
+              "external_rest_resource",
+              "indexed_document",
+              "rdbms_table"
+            ],
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this graphql_type.",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name of this rdbms_table.",
+            "type": "string"
+          },
+          "data_model_name": {
+            "description": "The data_model_name of this rdbms_table.",
+            "type": "string"
+          },
+          "table_name": {
+            "description": "The table_name of this rdbms_table.",
+            "type": "string"
+          },
+          "datasource_name": {
+            "description": "The datasource_name of this rdbms_table.",
+            "type": "string"
+          },
+          "relationships": {
+            "description": "relationships",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/graphql_type_relationship"
+            }
+          },
+          "mybatis_mapper_entries": {
+            "description": "mybatis_mapper_entries",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/mybatis_mapper_entry"
+            }
+          }
+        }
+        }
+      },
+      "mybatis_mapper": {
+        "description": "mybatis_mapper",
+        "type": "object",
+        "required": [
+          "group_id",
+          "id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "group_id": {
+            "allOf": [{
+            "description": "The group_id of this mybatis_mapper.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/namespace"
+            }]
+          },
+          "id": {
+            "allOf": [{
+            "description": "The id of this mybatis_mapper.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/identifier"
+            }]
+          },
+          "result_model_name": {
+            "description": "The result_model_name of this mybatis_mapper.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this mybatis_mapper.",
+            "enum":[
+              "select",
+              "insert",
+              "update",
+              "delete",
+              "fragment"
+            ],
+            "type": "string"
+          },
+          "statement": {
+            "description": "The statement of this mybatis_mapper.",
+            "type": "string"
+          },
+          "parameters": {
+            "description": "parameters",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/api_call_argument"
+            }
+          }
+        }
+      },
+      "mybatis_mapper_entry": {
+        "description": "mybatis_mapper_entry",
+        "type": "object",
+        "required": [
+          "group_id",
+          "id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "group_id": {
+            "description": "The group_id of this mybatis_mapper_entry.",
+            "type": "string"
+          },
+          "id": {
+            "description": "The id of this mybatis_mapper_entry.",
+            "type": "string"
+          },
+          "context_entity_name": {
+            "description": "The context_entity_name of this mybatis_mapper_entry.",
+            "type": "string"
+          }
         }
       },
       "rest_operation": {
@@ -4246,11 +4646,11 @@
             "description": "The description of this service.",
             "type": "string"
           },
-          "datasources": {
-            "description": "datasources",
+          "datasource_entries": {
+            "description": "datasource_entries",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/datasource"
+              "$ref": "#/definitions/entities/datasource_entry"
             }
           },
           "graphql_type_entries": {
@@ -4280,31 +4680,6 @@
             "items": {
               "$ref": "#/definitions/entities/service_configuration_category"
             }
-          }
-        }
-      },
-      "datasource": {
-        "description": "A *DataSource* represents an interface through which a client application access to a data store.\nThis includes the following models.\n- The entity that the datastore exposes to the client\n- Statement issued by the client to the datastore",
-        "type": "object",
-        "required": [
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this datasource.",
-            "type": "string"
-          },
-          "type": {
-            "description": "The type of this datasource.",
-            "enum":[
-              "postgres",
-              "bigquery"
-            ],
-            "type": "string"
-          },
-          "description": {
-            "description": "The description of this datasource.",
-            "type": "string"
           }
         }
       },
@@ -4389,7 +4764,8 @@
             "enum":[
               "entity_on_database",
               "external_rest_resource",
-              "indexed_document"
+              "indexed_document",
+              "rdbms_table"
             ],
             "type": "string"
           },
@@ -4408,7 +4784,8 @@
         "allOf": [
           { "$ref": "#/definitions/entities/entity_on_database" },
           { "$ref": "#/definitions/entities/external_rest_resource" },
-          { "$ref": "#/definitions/entities/indexed_document" }
+          { "$ref": "#/definitions/entities/indexed_document" },
+          { "$ref": "#/definitions/entities/rdbms_table" }
         ]
       },
       "graphql_type_entry": {
@@ -4989,6 +5366,10 @@
             "description": "The r2dbc_postgres_driver_version of this springboot2_api_service.",
             "type": "string"
           },
+          "oracle_jdbc_driver_version": {
+            "description": "The oracle_jdbc_driver_version of this springboot2_api_service.",
+            "type": "string"
+          },
           "springboot_version": {
             "description": "The springboot_version of this springboot2_api_service.",
             "type": "string"
@@ -5003,6 +5384,10 @@
           },
           "graphql_extended_scalar_version": {
             "description": "The graphql_extended_scalar_version of this springboot2_api_service.",
+            "type": "string"
+          },
+          "springboot_mybatis_version": {
+            "description": "The springboot_mybatis_version of this springboot2_api_service.",
             "type": "string"
           },
           "repositories": {
