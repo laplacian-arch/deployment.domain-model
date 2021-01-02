@@ -5337,6 +5337,14 @@
             "description": "The port of this springboot2_api_service.",
             "type": "number"
           },
+          "enable_jmx": {
+            "description": "Defines this springboot2_api_service is enable_jmx or not.",
+            "type": "boolean"
+          },
+          "enable_debug": {
+            "description": "Defines this springboot2_api_service is enable_debug or not.",
+            "type": "boolean"
+          },
           "container_base_image": {
             "description": "The container_base_image of this springboot2_api_service.",
             "type": "string"

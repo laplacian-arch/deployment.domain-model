@@ -13,6 +13,18 @@ entities:
     default_value: |
       8080
 
+  - name: enable_jmx
+    type: boolean
+    optional: true
+    default_value: |
+      false
+
+  - name: enable_debug
+    type: boolean
+    optional: true
+    default_value: |
+      false
+
   - name: container_base_image
     type: string
     optional: true

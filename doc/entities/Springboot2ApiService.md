@@ -19,6 +19,20 @@ The port of this springboot2_api_service.
   8080
   ```
 
+### enable_jmx: `Boolean`
+Defines this springboot2_api_service is enable_jmx or not.
+- **Default Value:**
+  ```kotlin
+  false
+  ```
+
+### enable_debug: `Boolean`
+Defines this springboot2_api_service is enable_debug or not.
+- **Default Value:**
+  ```kotlin
+  false
+  ```
+
 ### container_base_image: `String`
 The container_base_image of this springboot2_api_service.
 - **Default Value:**
