@@ -1,7 +1,7 @@
 # **Environment**
 **namespace:** laplacian.arch.deployment
 
-environment
+An entity describing a environment.
 
 
 
@@ -37,13 +37,29 @@ Defines this environment is uses_gcp or not.
 ## Relationships
 
 ### deployments: `List<Deployment>`
-deployments
+The deployments of this environment.
 - **Cardinality:** `*`
 
 ### components: `List<Component>`
-components
+The components of this environment.
 - **Cardinality:** `*`
 - **Code:**
   ```kotlin
   deployments.map{ it.component }.distinct()
+  ```
+
+### container_deployments: `List<ContainerDeployment>`
+The container_deployments of this environment.
+- **Cardinality:** `*`
+- **Code:**
+  ```kotlin
+  deployments.filterIsInstance<ContainerDeployment>()
+  ```
+
+### container_images: `List<ContainerImage>`
+The container_images of this environment.
+- **Cardinality:** `*`
+- **Code:**
+  ```kotlin
+  components.filterIsInstance<ContainerImage>()
   ```

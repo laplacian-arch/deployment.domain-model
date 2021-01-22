@@ -1,7 +1,7 @@
 # **ContainerOnGceInstance**
 **namespace:** laplacian.arch.deployment
 
-container_on_gce_instance
+An entity describing a container_on_gce_instance.
 
 
 

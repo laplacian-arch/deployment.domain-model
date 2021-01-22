@@ -1,7 +1,7 @@
 # **Deployment**
 **namespace:** laplacian.arch.deployment
 
-deployment
+An entity describing a deployment.
 
 
 
@@ -19,9 +19,9 @@ The type of this deployment.
 ## Relationships
 
 ### environment: `Environment`
-environment
+The environment of this deployment.
 - **Cardinality:** `1`
 
 ### component: `Component`
-component
+The component of this deployment.
 - **Cardinality:** `1`

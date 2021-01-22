@@ -1,7 +1,7 @@
 # **Component**
-**namespace:** laplacian.arch.deployment
+**namespace:** laplacian.arch.deployment.component
 
-component
+An entity describing a component.
 
 
 
@@ -18,12 +18,5 @@ The type of this component.
 
 ### tags: `List<String>`
 The tags of this component.
-
-### instance_name: `String`
-The instance_name of this component.
-- **Default Value:**
-  ```kotlin
-  name.lowerHyphenize()
-  ```
 
 ## Relationships

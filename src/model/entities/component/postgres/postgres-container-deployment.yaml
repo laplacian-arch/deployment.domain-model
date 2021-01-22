@@ -1,0 +1,40 @@
+entities:
+- name: postgres_container_deployment
+  namespace: laplacian.arch.deployment.component.postgres
+  supertype_name: container_deployment
+  supertype_namespace: laplacian.arch.deployment.container
+
+  properties:
+  - name: username
+    type: string
+    optional: true
+    default_value: |
+      "test"
+
+  - name: password
+    type: string
+    optional: true
+    default_value: |
+      "secret"
+
+  - name: database_name
+    type: string
+    optional: true
+    default_value: |
+      component.name.lowerHyphenize()
+
+  - name: port
+    type: number
+    optional: true
+    default_value: |
+      5432
+
+  - name: jdbc_connection_string
+    type: string
+    snippet: |
+      "jdbc:postgresql://${instanceName}:${port}/${databaseName}"
+
+  - name: r2dbc_connection_string
+    type: string
+    snippet: |
+      "r2dbc:pool:postgresql://${instanceName}:${port}/${databaseName}"

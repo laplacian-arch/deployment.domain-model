@@ -36,11 +36,26 @@ entities:
   - name: deployments
     cardinality: "*"
     reference_entity_name: deployment
+    reference_entity_namespace: laplacian.arch.deployment
     aggregate: true
 
   - name: components
     cardinality: "*"
     reference_entity_name: component
+    reference_entity_namespace: laplacian.arch.deployment.component
     snippet: |
       deployments.map{ it.component }.distinct()
 
+  - name: container_deployments
+    cardinality: "*"
+    reference_entity_name: container_deployment
+    reference_entity_namespace: laplacian.arch.deployment.container
+    snippet: |
+      deployments.filterIsInstance<ContainerDeployment>()
+
+  - name: container_images
+    cardinality: "*"
+    reference_entity_name: container_image
+    reference_entity_namespace: laplacian.arch.deployment.component.container
+    snippet: |
+      components.filterIsInstance<ContainerImage>()

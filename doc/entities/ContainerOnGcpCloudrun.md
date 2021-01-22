@@ -1,7 +1,7 @@
 # **ContainerOnGcpCloudrun**
 **namespace:** laplacian.arch.deployment
 
-container_on_gcp_cloudrun
+An entity describing a container_on_gcp_cloudrun.
 
 
 

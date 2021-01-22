@@ -6,20 +6,21 @@
   "required": [],
   "properties": {
     "sections": {
-      "description": "section",
+      "description": "An entity describing a section.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/section"
+        "$ref": "#/definitions/entities/laplacian.project.document.Section"
       }
     }
     ,
-    "project": {
-        "description": "project",
+    "laplacian.project.Project": {
+        "description": "An entity describing a project.",
         "type": "object",
         "required": [
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "project" },
           "group": {
             "description": "The group of this project.",
             "type": "string"
@@ -83,120 +84,120 @@
             }
           },
           "description": {
-            "description": "description",
-            "$ref": "#/definitions/entities/multilingual_text"
+            "description": "The description of this project.",
+            "$ref": "#/definitions/entities/laplacian.common.MultilingualText"
           },
           "subprojects": {
-            "description": "subprojects",
+            "description": "The subprojects of this project.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/project"
+              "$ref": "#/definitions/entities/laplacian.project.Project"
             }
           },
           "source_repository": {
-            "description": "source_repository",
-            "$ref": "#/definitions/entities/source_repository"
+            "description": "The source_repository of this project.",
+            "$ref": "#/definitions/entities/laplacian.project.SourceRepository"
           },
           "module_repositories": {
-            "description": "module_repositories",
-            "$ref": "#/definitions/entities/module_repository_list"
+            "description": "The module_repositories of this project.",
+            "$ref": "#/definitions/entities/laplacian.project.ModuleRepositoryList"
           },
           "document": {
-            "description": "document",
-            "$ref": "#/definitions/entities/document"
+            "description": "The document of this project.",
+            "$ref": "#/definitions/entities/laplacian.project.Document"
           },
           "scripts": {
-            "description": "scripts",
+            "description": "The scripts of this project.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/script"
+              "$ref": "#/definitions/entities/laplacian.project.Script"
             }
           },
           "models": {
-            "description": "models",
+            "description": "The models of this project.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/module"
+              "$ref": "#/definitions/entities/laplacian.project.Module"
             }
           },
           "templates": {
-            "description": "templates",
+            "description": "The templates of this project.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/module"
+              "$ref": "#/definitions/entities/laplacian.project.Module"
             }
           },
           "plugins": {
-            "description": "plugins",
+            "description": "The plugins of this project.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/module"
+              "$ref": "#/definitions/entities/laplacian.project.Module"
             }
           }
         }
       }
     ,
     "project_types": {
-      "description": "project_type",
+      "description": "An entity describing a project_type.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/project_type"
+        "$ref": "#/definitions/entities/laplacian.project.ProjectType"
       }
     }
     ,
     "scripts": {
-      "description": "script",
+      "description": "An entity describing a script.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/script"
+        "$ref": "#/definitions/entities/laplacian.project.Script"
       }
     }
     ,
     "options": {
-      "description": "option",
+      "description": "An entity describing a option.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/option"
+        "$ref": "#/definitions/entities/laplacian.project.script.Option"
       }
     }
     ,
     "multilingual_texts": {
-      "description": "multilingual_text",
+      "description": "An entity describing a multilingual_text.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/multilingual_text"
+        "$ref": "#/definitions/entities/laplacian.common.MultilingualText"
       }
     }
     ,
     "entities": {
-      "description": "エンティティ",
+      "description": "An entity describing a entity.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/entity"
+        "$ref": "#/definitions/entities/laplacian.metamodel.Entity"
       }
     }
     ,
     "value_domain_types": {
-      "description": "value_domain_type",
+      "description": "An entity describing a value_domain_type.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/value_domain_type"
+        "$ref": "#/definitions/entities/laplacian.metamodel.ValueDomainType"
       }
     }
     ,
     "api_call_arguments": {
-      "description": "api_call_argument",
+      "description": "An entity describing a api_call_argument.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/api_call_argument"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.ApiCallArgument"
       }
     }
     ,
     "cache_policies": {
-      "description": "cache_policy",
+      "description": "An entity describing a cache_policy.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/cache_policy"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.cache.CachePolicy"
       }
     }
     ,
@@ -204,231 +205,271 @@
       "description": "A *DataSource* represents an interface through which a client application access to a data store.\nThis includes the following models.\n- The entity that the datastore exposes to the client\n- Statement issued by the client to the datastore",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/datasource"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.datasource.Datasource"
       }
     }
     ,
     "datasource_entries": {
-      "description": "datasource_entry",
+      "description": "An entity describing a datasource_entry.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/datasource_entry"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.datasource.DatasourceEntry"
       }
     }
     ,
     "durations": {
-      "description": "duration",
+      "description": "An entity describing a duration.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/duration"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.Duration"
       }
     }
     ,
     "bucket_script_paths": {
-      "description": "bucket_script_path",
+      "description": "An entity describing a bucket_script_path.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/bucket_script_path"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.BucketScriptPath"
       }
     }
     ,
     "field_sorts": {
-      "description": "field_sort",
+      "description": "An entity describing a field_sort.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/field_sort"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.FieldSort"
+      }
+    }
+    ,
+    "date_histogram_extended_boundses": {
+      "description": "An entity describing a date_histogram_extended_bounds.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.DateHistogramExtendedBounds"
       }
     }
     ,
     "date_histogram_intervals": {
-      "description": "date_histogram_interval",
+      "description": "An entity describing a date_histogram_interval.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/date_histogram_interval"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.DateHistogramInterval"
       }
     }
     ,
     "aggregate_group_ranges": {
-      "description": "aggregate_group_range",
+      "description": "An entity describing a aggregate_group_range.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/aggregate_group_range"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.AggregateGroupRange"
       }
     }
     ,
     "keyed_filters": {
-      "description": "keyed_filter",
+      "description": "An entity describing a keyed_filter.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/keyed_filter"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.KeyedFilter"
       }
     }
     ,
     "elasticsearch_aggregates": {
-      "description": "elasticsearch_aggregate",
+      "description": "An entity describing a elasticsearch_aggregate.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/elasticsearch_aggregate"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
       }
     }
     ,
     "elasticsearch_indexes": {
-      "description": "elasticsearch_index",
+      "description": "An entity describing a elasticsearch_index.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/elasticsearch_index"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.ElasticsearchIndex"
+      }
+    }
+    ,
+    "elasticsearch_index_sorts": {
+      "description": "An entity describing a elasticsearch_index_sort.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.ElasticsearchIndexSort"
       }
     }
     ,
     "elasticsearch_query_predicates": {
-      "description": "elasticsearch_query_predicate",
+      "description": "An entity describing a elasticsearch_query_predicate.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/elasticsearch_query_predicate"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.ElasticsearchQueryPredicate"
       }
     }
     ,
     "elasticsearch_query_sorts": {
-      "description": "elasticsearch_query_sort",
+      "description": "An entity describing a elasticsearch_query_sort.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/elasticsearch_query_sort"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.ElasticsearchQuerySort"
       }
     }
     ,
     "elasticsearch_queries": {
-      "description": "elasticsearch_query",
+      "description": "An entity describing a elasticsearch_query.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/elasticsearch_query"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.ElasticsearchQuery"
       }
     }
     ,
     "mybatis_mappers": {
-      "description": "mybatis_mapper",
+      "description": "An entity describing a mybatis_mapper.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/mybatis_mapper"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.rdb.mybatis.MybatisMapper"
       }
     }
     ,
     "rest_request_parameters": {
-      "description": "rest_request_parameter",
+      "description": "An entity describing a rest_request_parameter.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/rest_request_parameter"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestRequestParameter"
       }
     }
     ,
     "rest_resources": {
-      "description": "rest_resource",
+      "description": "An entity describing a rest_resource.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/rest_resource"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestResource"
       }
     }
     ,
     "services": {
-      "description": "service",
+      "description": "An entity describing a service.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/service"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.Service"
       }
     }
     ,
     "elastic_search_clients": {
-      "description": "elastic_search_client",
+      "description": "An entity describing a elastic_search_client.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/elastic_search_client"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.ElasticSearchClient"
       }
     }
     ,
     "graphql_types": {
-      "description": "graphql_type",
+      "description": "An entity describing a graphql_type.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/graphql_type"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlType"
       }
     }
     ,
     "graphql_type_relationship_field_mappings": {
-      "description": "graphql_type_relationship_field_mapping",
+      "description": "An entity describing a graphql_type_relationship_field_mapping.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/graphql_type_relationship_field_mapping"
-      }
-    }
-    ,
-    "rest_clients": {
-      "description": "rest_client",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/entities/rest_client"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationshipFieldMapping"
       }
     }
     ,
     "service_configurations": {
-      "description": "service_configuration",
+      "description": "An entity describing a service_configuration.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/service_configuration"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.ServiceConfiguration"
       }
     }
     ,
     "service_configuration_categories": {
-      "description": "service_configuration_category",
+      "description": "An entity describing a service_configuration_category.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/service_configuration_category"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.ServiceConfigurationCategory"
       }
     }
     ,
     "configuration_bindings": {
-      "description": "configuration_binding",
+      "description": "An entity describing a configuration_binding.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/configuration_binding"
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.ConfigurationBinding"
       }
     }
     ,
     "components": {
-      "description": "component",
+      "description": "An entity describing a component.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/component"
+        "$ref": "#/definitions/entities/laplacian.arch.deployment.component.Component"
       }
     }
     ,
-    "elasticsearch_configuration_fileses": {
-      "description": "elasticsearch_configuration_files",
+    "environment_variable_definitions": {
+      "description": "An entity describing a environment_variable_definition.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/elasticsearch_configuration_files"
+        "$ref": "#/definitions/entities/laplacian.arch.deployment.component.container.EnvironmentVariableDefinition"
+      }
+    }
+    ,
+    "configuration_files": {
+      "description": "An entity describing a configuration_file.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/laplacian.arch.deployment.component.elasticsearch.ConfigurationFile"
       }
     }
     ,
     "maven_artifacts": {
-      "description": "maven_artifact",
+      "description": "An entity describing a maven_artifact.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/maven_artifact"
+        "$ref": "#/definitions/entities/laplacian.arch.deployment.component.MavenArtifact"
+      }
+    }
+    ,
+    "redis_container_deployments": {
+      "description": "An entity describing a redis_container_deployment.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/laplacian.arch.deployment.component.redis.RedisContainerDeployment"
+      }
+    }
+    ,
+    "redis_container_images": {
+      "description": "An entity describing a redis_container_image.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/laplacian.arch.deployment.component.redis.RedisContainerImage"
+      }
+    }
+    ,
+    "datasets": {
+      "description": "An entity describing a dataset.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/laplacian.arch.deployment.Dataset"
+      }
+    }
+    ,
+    "data_files": {
+      "description": "An entity describing a data_file.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DataFile"
       }
     }
     ,
     "environments": {
-      "description": "environment",
+      "description": "An entity describing a environment.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/environment"
-      }
-    }
-    ,
-    "external_rest_api_endpoints": {
-      "description": "external_rest_api_endpoint",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/entities/external_rest_api_endpoint"
+        "$ref": "#/definitions/entities/laplacian.arch.deployment.Environment"
       }
     }
   },
@@ -642,7 +683,8 @@
            "double",
            "date",
            "time",
-           "datetime"
+           "datetime",
+           "any_entity"
         ],
         "type": "string"
       },
@@ -694,13 +736,14 @@
       }
     },
     "entities": {
-      "document": {
-        "description": "document",
+      "laplacian.project.Document": {
+        "description": "An entity describing a document.",
         "type": "object",
         "required": [
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "document" },
           "title": {
             "description": "The title of this document.",
             "type": "string"
@@ -718,23 +761,23 @@
             "type": "string"
           },
           "sections": {
-            "description": "sections",
+            "description": "The sections of this document.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/section"
+              "$ref": "#/definitions/entities/laplacian.project.document.Section"
             }
           },
           "languages": {
-            "description": "languages",
+            "description": "The languages of this document.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/document_language"
+              "$ref": "#/definitions/entities/laplacian.project.document.DocumentLanguage"
             }
           }
         }
       },
-      "document_language": {
-        "description": "document_language",
+      "laplacian.project.document.DocumentLanguage": {
+        "description": "An entity describing a document_language.",
         "type": "object",
         "required": [
           "name",
@@ -742,6 +785,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "document_language" },
           "name": {
             "description": "The name of this document_language.",
             "type": "string"
@@ -756,14 +800,15 @@
           }
         }
       },
-      "section": {
-        "description": "section",
+      "laplacian.project.document.Section": {
+        "description": "An entity describing a section.",
         "type": "object",
         "required": [
           "name"
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "section" },
           "name": {
             "description": "The name of this section.",
             "type": "string"
@@ -773,24 +818,24 @@
             "type": "number"
           },
           "title": {
-            "description": "title",
-            "$ref": "#/definitions/entities/multilingual_text"
+            "description": "The title of this section.",
+            "$ref": "#/definitions/entities/laplacian.common.MultilingualText"
           },
           "content": {
-            "description": "content",
-            "$ref": "#/definitions/entities/multilingual_text"
+            "description": "The content of this section.",
+            "$ref": "#/definitions/entities/laplacian.common.MultilingualText"
           },
           "sub_sections": {
-            "description": "sub_sections",
+            "description": "The sub_sections of this section.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/section"
+              "$ref": "#/definitions/entities/laplacian.project.document.Section"
             }
           }
         }
       },
-      "module": {
-        "description": "module",
+      "laplacian.project.Module": {
+        "description": "An entity describing a module.",
         "type": "object",
         "required": [
           "name",
@@ -799,6 +844,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "module" },
           "name": {
             "description": "The name of this module.",
             "type": "string"
@@ -813,13 +859,14 @@
           }
         }
       },
-      "module_repository_list": {
-        "description": "module_repository_list",
+      "laplacian.project.ModuleRepositoryList": {
+        "description": "An entity describing a module_repository_list.",
         "type": "object",
         "required": [
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "module_repository_list" },
           "local": {
             "description": "The local of this module_repository_list.",
             "type": "string"
@@ -833,8 +880,8 @@
           }
         }
       },
-      "project": {
-        "description": "project",
+      "laplacian.project.Project": {
+        "description": "An entity describing a project.",
         "type": "object",
         "required": [
           "group",
@@ -844,6 +891,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "project" },
           "group": {
             "description": "The group of this project.",
             "type": "string"
@@ -907,66 +955,67 @@
             }
           },
           "description": {
-            "description": "description",
-            "$ref": "#/definitions/entities/multilingual_text"
+            "description": "The description of this project.",
+            "$ref": "#/definitions/entities/laplacian.common.MultilingualText"
           },
           "subprojects": {
-            "description": "subprojects",
+            "description": "The subprojects of this project.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/project"
+              "$ref": "#/definitions/entities/laplacian.project.Project"
             }
           },
           "source_repository": {
-            "description": "source_repository",
-            "$ref": "#/definitions/entities/source_repository"
+            "description": "The source_repository of this project.",
+            "$ref": "#/definitions/entities/laplacian.project.SourceRepository"
           },
           "module_repositories": {
-            "description": "module_repositories",
-            "$ref": "#/definitions/entities/module_repository_list"
+            "description": "The module_repositories of this project.",
+            "$ref": "#/definitions/entities/laplacian.project.ModuleRepositoryList"
           },
           "document": {
-            "description": "document",
-            "$ref": "#/definitions/entities/document"
+            "description": "The document of this project.",
+            "$ref": "#/definitions/entities/laplacian.project.Document"
           },
           "scripts": {
-            "description": "scripts",
+            "description": "The scripts of this project.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/script"
+              "$ref": "#/definitions/entities/laplacian.project.Script"
             }
           },
           "models": {
-            "description": "models",
+            "description": "The models of this project.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/module"
+              "$ref": "#/definitions/entities/laplacian.project.Module"
             }
           },
           "templates": {
-            "description": "templates",
+            "description": "The templates of this project.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/module"
+              "$ref": "#/definitions/entities/laplacian.project.Module"
             }
           },
           "plugins": {
-            "description": "plugins",
+            "description": "The plugins of this project.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/module"
+              "$ref": "#/definitions/entities/laplacian.project.Module"
             }
           }
         }
       },
-      "project_type": {
-        "description": "project_type",
+      "laplacian.project.ProjectType": {
+        "description": "An entity describing a project_type.",
         "type": "object",
         "required": [
           "name"
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "project_type" },
           "name": {
             "description": "The name of this project_type.",
             "type": "string"
@@ -990,61 +1039,63 @@
             "type": "string"
           },
           "models": {
-            "description": "models",
+            "description": "The models of this project_type.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/module"
+              "$ref": "#/definitions/entities/laplacian.project.Module"
             }
           },
           "templates": {
-            "description": "templates",
+            "description": "The templates of this project_type.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/module"
+              "$ref": "#/definitions/entities/laplacian.project.Module"
             }
           },
           "plugins": {
-            "description": "plugins",
+            "description": "The plugins of this project_type.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/module"
+              "$ref": "#/definitions/entities/laplacian.project.Module"
             }
           }
         }
       },
-      "script": {
-        "description": "script",
+      "laplacian.project.Script": {
+        "description": "An entity describing a script.",
         "type": "object",
         "required": [
           "name"
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "script" },
           "name": {
             "description": "The name of this script.",
             "type": "string"
           },
           "description": {
-            "description": "description",
-            "$ref": "#/definitions/entities/multilingual_text"
+            "description": "The description of this script.",
+            "$ref": "#/definitions/entities/laplacian.common.MultilingualText"
           },
           "options": {
-            "description": "options",
+            "description": "The options of this script.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/option"
+              "$ref": "#/definitions/entities/laplacian.project.script.Option"
             }
           }
         }
       },
-      "option": {
-        "description": "option",
+      "laplacian.project.script.Option": {
+        "description": "An entity describing a option.",
         "type": "object",
         "required": [
           "name"
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "option" },
           "name": {
             "description": "The name of this option.",
             "type": "string"
@@ -1079,19 +1130,20 @@
             "type": "string"
           },
           "description": {
-            "description": "description",
-            "$ref": "#/definitions/entities/multilingual_text"
+            "description": "The description of this option.",
+            "$ref": "#/definitions/entities/laplacian.common.MultilingualText"
           }
         }
       },
-      "source_repository": {
-        "description": "source_repository",
+      "laplacian.project.SourceRepository": {
+        "description": "An entity describing a source_repository.",
         "type": "object",
         "required": [
           "url"
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "source_repository" },
           "url": {
             "description": "The url of this source_repository.",
             "type": "string"
@@ -1102,8 +1154,8 @@
           }
         }
       },
-      "localized_text": {
-        "description": "localized_text",
+      "laplacian.common.LocalizedText": {
+        "description": "An entity describing a localized_text.",
         "type": "object",
         "required": [
           "language",
@@ -1111,6 +1163,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "localized_text" },
           "language": {
             "description": "The language of this localized_text.",
             "type": "string"
@@ -1121,13 +1174,14 @@
           }
         }
       },
-      "multilingual_text": {
-        "description": "multilingual_text",
+      "laplacian.common.MultilingualText": {
+        "description": "An entity describing a multilingual_text.",
         "type": "object",
         "required": [
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "multilingual_text" },
           "ab": {
             "description": "In Abkhazian",
             "type": "string"
@@ -1878,8 +1932,8 @@
           }
         }
       },
-      "named_param": {
-        "description": "named_param",
+      "laplacian.common.NamedParam": {
+        "description": "An entity describing a named_param.",
         "type": "object",
         "required": [
           "name",
@@ -1887,6 +1941,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "named_param" },
           "name": {
             "description": "The name of this named_param.",
             "type": "string"
@@ -1901,8 +1956,8 @@
           }
         }
       },
-      "named_value": {
-        "description": "named_value",
+      "laplacian.common.NamedValue": {
+        "description": "An entity describing a named_value.",
         "type": "object",
         "required": [
           "name",
@@ -1910,6 +1965,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "named_value" },
           "name": {
             "description": "The name of this named_value.",
             "type": "string"
@@ -1920,21 +1976,23 @@
           }
         }
       },
-      "entity": {
-        "description": "エンティティ",
+      "laplacian.metamodel.Entity": {
+        "description": "An entity describing a entity.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "namespace"
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "entity" },
           "name": {
-            "description": "名称",
+            "description": "The name of this entity.",
             "type": "string"
           },
           "namespace": {
             "allOf": [{
-            "description": "名前空間",
+            "description": "The namespace of this entity.",
             "type": "string"
             }, {
             "$ref": "#/definitions/value_domain_types/namespace"
@@ -1942,7 +2000,7 @@
           },
           "identifier": {
             "allOf": [{
-            "description": "識別子 省略時は名称を使用",
+            "description": "The identifier of this entity.",
             "type": "string"
             }, {
             "$ref": "#/definitions/value_domain_types/identifier"
@@ -1953,15 +2011,19 @@
             "type": "boolean"
           },
           "description": {
-            "description": "詳細",
+            "description": "The description of this entity.",
             "type": "string"
           },
           "value_object": {
-            "description": "値オブジェクトかどうか",
+            "description": "Defines this entity is value_object or not.",
             "type": "boolean"
           },
-          "subtype_of": {
-            "description": "The name of the entity which this entity is subtype of",
+          "supertype_name": {
+            "description": "The supertype_name of this entity.",
+            "type": "string"
+          },
+          "supertype_namespace": {
+            "description": "The supertype_namespace of this entity.",
             "type": "string"
           },
           "subtype_key_value": {
@@ -1983,27 +2045,27 @@
             "description": "The properties of this entity (excluding supertypes')",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/property"
+              "$ref": "#/definitions/entities/laplacian.metamodel.Property"
             }
           },
           "relationships": {
             "description": "The relationships with other entities (excluding supertypes')",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/relationship"
+              "$ref": "#/definitions/entities/laplacian.metamodel.Relationship"
             }
           },
           "queries": {
             "description": "このエンティティに対するルートクエリ",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/query"
+              "$ref": "#/definitions/entities/laplacian.metamodel.Query"
             }
           }
         }
       },
-      "property": {
-        "description": "property",
+      "laplacian.metamodel.Property": {
+        "description": "An entity describing a property.",
         "type": "object",
         "required": [
           "name",
@@ -2011,6 +2073,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "property" },
           "name": {
             "description": "The name of this property.",
             "type": "string"
@@ -2040,11 +2103,11 @@
             }]
           },
           "domain_type_name": {
-            "description": "制約型名",
+            "description": "The name of predefined value domain type for this property.",
             "type": "string"
           },
           "size": {
-            "description": "the maximum allowed size of the content of this property",
+            "description": "The maximum allowed size of the content of this property.",
             "type": "number"
           },
           "optional": {
@@ -2083,13 +2146,13 @@
             "type": "boolean"
           },
           "domain": {
-            "description": "domain",
-            "$ref": "#/definitions/entities/value_domain"
+            "description": "The domain of this property.",
+            "$ref": "#/definitions/entities/laplacian.metamodel.ValueDomain"
           }
         }
       },
-      "property_mapping": {
-        "description": "property_mapping",
+      "laplacian.metamodel.PropertyMapping": {
+        "description": "An entity describing a property_mapping.",
         "type": "object",
         "required": [
           "from",
@@ -2097,6 +2160,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "property_mapping" },
           "from": {
             "description": "The from of this property_mapping.",
             "type": "string"
@@ -2111,7 +2175,7 @@
           }
         }
       },
-      "query": {
+      "laplacian.metamodel.Query": {
         "description": "The queries from which all navigation originates.",
         "type": "object",
         "required": [
@@ -2120,6 +2184,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "query" },
           "name": {
             "description": "クエリ名称",
             "type": "string"
@@ -2158,8 +2223,8 @@
           }
         }
       },
-      "relationship": {
-        "description": "relationship",
+      "laplacian.metamodel.Relationship": {
+        "description": "An entity describing a relationship.",
         "type": "object",
         "required": [
           "name",
@@ -2168,6 +2233,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "relationship" },
           "name": {
             "description": "The name of this relationship.",
             "type": "string"
@@ -2192,6 +2258,10 @@
           },
           "reference_entity_name": {
             "description": "The reference_entity_name of this relationship.",
+            "type": "string"
+          },
+          "reference_entity_namespace": {
+            "description": "The reference_entity_namespace of this relationship.",
             "type": "string"
           },
           "aggregate": {
@@ -2226,36 +2296,37 @@
             }
           },
           "mappings": {
-            "description": "mappings",
+            "description": "The mappings of this relationship.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/property_mapping"
+              "$ref": "#/definitions/entities/laplacian.metamodel.PropertyMapping"
             }
           }
         }
       },
-      "value_domain": {
-        "description": "value_domain",
+      "laplacian.metamodel.ValueDomain": {
+        "description": "An entity describing a value_domain.",
         "type": "object",
         "required": [
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "value_domain" },
           "pattern": {
-            "description": "許容される値のパターン(正規表現)",
+            "description": "Allowed pattern in Regular expression.",
             "type": "string"
           },
           "choices": {
-            "description": "許容される値のリスト",
+            "description": "The list of allowed values.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/value_item"
+              "$ref": "#/definitions/entities/laplacian.metamodel.ValueItem"
             }
           }
         }
       },
-      "value_domain_type": {
-        "description": "value_domain_type",
+      "laplacian.metamodel.ValueDomainType": {
+        "description": "An entity describing a value_domain_type.",
         "type": "object",
         "required": [
           "name",
@@ -2264,6 +2335,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "value_domain_type" },
           "name": {
             "description": "The name of this value_domain_type.",
             "type": "string"
@@ -2289,19 +2361,20 @@
             "type": "string"
           },
           "domain": {
-            "description": "domain",
-            "$ref": "#/definitions/entities/value_domain"
+            "description": "The domain of this value_domain_type.",
+            "$ref": "#/definitions/entities/laplacian.metamodel.ValueDomain"
           }
         }
       },
-      "value_item": {
-        "description": "value_item",
+      "laplacian.metamodel.ValueItem": {
+        "description": "An entity describing a value_item.",
         "type": "object",
         "required": [
           "value"
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "value_item" },
           "value": {
             "description": "The value of this value_item.",
             "type": "string"
@@ -2316,8 +2389,8 @@
           }
         }
       },
-      "api_call_argument": {
-        "description": "api_call_argument",
+      "laplacian.arch.api.service.ApiCallArgument": {
+        "description": "An entity describing a api_call_argument.",
         "type": "object",
         "required": [
           "name",
@@ -2325,6 +2398,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "api_call_argument" },
           "name": {
             "description": "The name of this api_call_argument.",
             "type": "string"
@@ -2360,14 +2434,15 @@
           }
         }
       },
-      "cache_policy": {
-        "description": "cache_policy",
+      "laplacian.arch.api.service.cache.CachePolicy": {
+        "description": "An entity describing a cache_policy.",
         "type": "object",
         "required": [
           "name",
           "store_type"
         ],
         "properties": {
+          "_class_": { "const": "cache_policy" },
           "name": {
             "description": "The name of this cache_policy.",
             "type": "string"
@@ -2385,30 +2460,31 @@
             "type": "boolean"
           },
           "expiration_time": {
-            "description": "expiration_time",
-            "$ref": "#/definitions/entities/duration"
+            "description": "The expiration_time of this cache_policy.",
+            "$ref": "#/definitions/entities/laplacian.arch.api.service.Duration"
           },
           "configurations": {
-            "description": "configurations",
+            "description": "The configurations of this cache_policy.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/configuration_binding"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ConfigurationBinding"
             }
           }
         },
         "allOf": [
-          { "$ref": "#/definitions/entities/heap_memory_cache_policy" },
-          { "$ref": "#/definitions/entities/redis_cache_policy" }
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.cache.HeapMemoryCachePolicy" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.cache.RedisCachePolicy" }
         ]
       },
-      "heap_memory_cache_policy": {
-        "description": "heap_memory_cache_policy",
+      "laplacian.arch.api.service.cache.HeapMemoryCachePolicy": {
+        "description": "An entity describing a heap_memory_cache_policy.",
         "if": { "properties": {
           "store_type": { "const": "heap" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "heap_memory_cache_policy" },
           "name": {
             "description": "The name of this cache_policy.",
             "type": "string"
@@ -2426,27 +2502,28 @@
             "type": "boolean"
           },
           "expiration_time": {
-            "description": "expiration_time",
-            "$ref": "#/definitions/entities/duration"
+            "description": "The expiration_time of this cache_policy.",
+            "$ref": "#/definitions/entities/laplacian.arch.api.service.Duration"
           },
           "configurations": {
-            "description": "configurations",
+            "description": "The configurations of this cache_policy.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/configuration_binding"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ConfigurationBinding"
             }
           }
         }
         }
       },
-      "redis_cache_policy": {
-        "description": "redis_cache_policy",
+      "laplacian.arch.api.service.cache.RedisCachePolicy": {
+        "description": "An entity describing a redis_cache_policy.",
         "if": { "properties": {
           "store_type": { "const": "redis" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "redis_cache_policy" },
           "name": {
             "description": "The name of this cache_policy.",
             "type": "string"
@@ -2464,26 +2541,27 @@
             "type": "boolean"
           },
           "expiration_time": {
-            "description": "expiration_time",
-            "$ref": "#/definitions/entities/duration"
+            "description": "The expiration_time of this cache_policy.",
+            "$ref": "#/definitions/entities/laplacian.arch.api.service.Duration"
           },
           "configurations": {
-            "description": "configurations",
+            "description": "The configurations of this cache_policy.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/configuration_binding"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ConfigurationBinding"
             }
           }
         }
         }
       },
-      "datasource": {
+      "laplacian.arch.api.service.datasource.Datasource": {
         "description": "A *DataSource* represents an interface through which a client application access to a data store.\nThis includes the following models.\n- The entity that the datastore exposes to the client\n- Statement issued by the client to the datastore",
         "type": "object",
         "required": [
           "type"
         ],
         "properties": {
+          "_class_": { "const": "datasource" },
           "type": {
             "description": "The type of this datasource.",
             "enum":[
@@ -2498,34 +2576,43 @@
           "description": {
             "description": "The description of this datasource.",
             "type": "string"
+          },
+          "configurations": {
+            "description": "The configurations of this datasource.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ConfigurationBinding"
+            }
           }
         },
         "allOf": [
-          { "$ref": "#/definitions/entities/oracle_datasource" }
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.datasource.OracleDatasource" }
         ]
       },
-      "datasource_entry": {
-        "description": "datasource_entry",
+      "laplacian.arch.api.service.datasource.DatasourceEntry": {
+        "description": "An entity describing a datasource_entry.",
         "type": "object",
         "required": [
           "name"
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "datasource_entry" },
           "name": {
             "description": "The name of this datasource_entry.",
             "type": "string"
           }
         }
       },
-      "oracle_datasource": {
-        "description": "oracle_datasource",
+      "laplacian.arch.api.service.datasource.OracleDatasource": {
+        "description": "An entity describing a oracle_datasource.",
         "if": { "properties": {
           "type": { "const": "oracle_jdbc" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "oracle_datasource" },
           "type": {
             "description": "The type of this datasource.",
             "enum":[
@@ -2576,12 +2663,19 @@
           "connection_timeout": {
             "description": "The connection_timeout of this oracle_datasource.",
             "type": "number"
+          },
+          "configurations": {
+            "description": "The configurations of this datasource.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ConfigurationBinding"
+            }
           }
         }
         }
       },
-      "duration": {
-        "description": "duration",
+      "laplacian.arch.api.service.Duration": {
+        "description": "An entity describing a duration.",
         "type": "object",
         "required": [
           "amount",
@@ -2589,6 +2683,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "duration" },
           "amount": {
             "allOf": [{
             "description": "The amount of this duration.",
@@ -2609,14 +2704,15 @@
           }
         }
       },
-      "bucket_script_aggregate": {
-        "description": "bucket_script_aggregate",
+      "laplacian.arch.api.service.elasticsearch.aggregate.AvgBucketAggregate": {
+        "description": "An entity describing a avg_bucket_aggregate.",
         "if": { "properties": {
-          "aggregation_type": { "const": "bucket_script" }
+          "aggregation_type": { "const": "avg_bucket" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "avg_bucket_aggregate" },
           "name": {
             "description": "The name of this elasticsearch_aggregate.",
             "type": "string"
@@ -2628,6 +2724,62 @@
           "aggregation_type": {
             "description": "The aggregation_type of this elasticsearch_aggregate.",
             "enum":[
+              "avg_bucket",
+              "bucket_script",
+              "bucket_selector",
+              "bucket_sort",
+              "date_histogram",
+              "date_range",
+              "filter",
+              "filters",
+              "sum",
+              "avg",
+              "min",
+              "max",
+              "count",
+              "terms"
+            ],
+            "type": "string"
+          },
+          "field": {
+            "description": "The field of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "buckets_path": {
+            "description": "The buckets_path of this avg_bucket_aggregate.",
+            "type": "string"
+          },
+          "sub_aggregates": {
+            "description": "The sub_aggregates of this elasticsearch_aggregate.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
+            }
+          }
+        }
+        }
+      },
+      "laplacian.arch.api.service.elasticsearch.aggregate.BucketScriptAggregate": {
+        "description": "An entity describing a bucket_script_aggregate.",
+        "if": { "properties": {
+          "aggregation_type": { "const": "bucket_script" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "bucket_script_aggregate" },
+          "name": {
+            "description": "The name of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this elasticsearch_aggregate.",
+            "type": "string"
+          },
+          "aggregation_type": {
+            "description": "The aggregation_type of this elasticsearch_aggregate.",
+            "enum":[
+              "avg_bucket",
               "bucket_script",
               "bucket_selector",
               "bucket_sort",
@@ -2653,24 +2805,24 @@
             "type": "string"
           },
           "sub_aggregates": {
-            "description": "sub_aggregates",
+            "description": "The sub_aggregates of this elasticsearch_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
             }
           },
           "buckets_path": {
-            "description": "buckets_path",
+            "description": "The buckets_path of this bucket_script_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/bucket_script_path"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.BucketScriptPath"
             }
           }
         }
         }
       },
-      "bucket_script_path": {
-        "description": "bucket_script_path",
+      "laplacian.arch.api.service.elasticsearch.aggregate.BucketScriptPath": {
+        "description": "An entity describing a bucket_script_path.",
         "type": "object",
         "required": [
           "name",
@@ -2678,6 +2830,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "bucket_script_path" },
           "name": {
             "description": "The name of this bucket_script_path.",
             "type": "string"
@@ -2688,14 +2841,15 @@
           }
         }
       },
-      "bucket_selector_aggregate": {
-        "description": "bucket_selector_aggregate",
+      "laplacian.arch.api.service.elasticsearch.aggregate.BucketSelectorAggregate": {
+        "description": "An entity describing a bucket_selector_aggregate.",
         "if": { "properties": {
           "aggregation_type": { "const": "bucket_selector" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "bucket_selector_aggregate" },
           "name": {
             "description": "The name of this elasticsearch_aggregate.",
             "type": "string"
@@ -2707,6 +2861,7 @@
           "aggregation_type": {
             "description": "The aggregation_type of this elasticsearch_aggregate.",
             "enum":[
+              "avg_bucket",
               "bucket_script",
               "bucket_selector",
               "bucket_sort",
@@ -2732,30 +2887,31 @@
             "type": "string"
           },
           "sub_aggregates": {
-            "description": "sub_aggregates",
+            "description": "The sub_aggregates of this elasticsearch_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
             }
           },
           "buckets_path": {
-            "description": "buckets_path",
+            "description": "The buckets_path of this bucket_selector_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/bucket_script_path"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.BucketScriptPath"
             }
           }
         }
         }
       },
-      "bucket_sort_aggregate": {
-        "description": "bucket_sort_aggregate",
+      "laplacian.arch.api.service.elasticsearch.aggregate.BucketSortAggregate": {
+        "description": "An entity describing a bucket_sort_aggregate.",
         "if": { "properties": {
           "aggregation_type": { "const": "bucket_sort" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "bucket_sort_aggregate" },
           "name": {
             "description": "The name of this elasticsearch_aggregate.",
             "type": "string"
@@ -2767,6 +2923,7 @@
           "aggregation_type": {
             "description": "The aggregation_type of this elasticsearch_aggregate.",
             "enum":[
+              "avg_bucket",
               "bucket_script",
               "bucket_selector",
               "bucket_sort",
@@ -2804,30 +2961,31 @@
             }]
           },
           "sub_aggregates": {
-            "description": "sub_aggregates",
+            "description": "The sub_aggregates of this elasticsearch_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
             }
           },
           "sorts": {
-            "description": "sorts",
+            "description": "The sorts of this bucket_sort_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/field_sort"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.FieldSort"
             }
           }
         }
         }
       },
-      "field_sort": {
-        "description": "field_sort",
+      "laplacian.arch.api.service.elasticsearch.aggregate.FieldSort": {
+        "description": "An entity describing a field_sort.",
         "type": "object",
         "required": [
           "field"
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "field_sort" },
           "field": {
             "description": "The field of this field_sort.",
             "type": "string"
@@ -2839,14 +2997,15 @@
           }
         }
       },
-      "date_histogram_aggregate": {
-        "description": "date_histogram_aggregate",
+      "laplacian.arch.api.service.elasticsearch.aggregate.DateHistogramAggregate": {
+        "description": "An entity describing a date_histogram_aggregate.",
         "if": { "properties": {
           "aggregation_type": { "const": "date_histogram" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "date_histogram_aggregate" },
           "name": {
             "description": "The name of this elasticsearch_aggregate.",
             "type": "string"
@@ -2858,6 +3017,7 @@
           "aggregation_type": {
             "description": "The aggregation_type of this elasticsearch_aggregate.",
             "enum":[
+              "avg_bucket",
               "bucket_script",
               "bucket_selector",
               "bucket_sort",
@@ -2886,22 +3046,52 @@
             "description": "The timezone of this date_histogram_aggregate.",
             "type": "string"
           },
+          "min_doc_count": {
+            "allOf": [{
+            "description": "the minimum document count required per bucket",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/integer_or_placeholder"
+            }]
+          },
           "sub_aggregates": {
-            "description": "sub_aggregates",
+            "description": "The sub_aggregates of this elasticsearch_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
             }
           },
           "interval": {
-            "description": "interval",
-            "$ref": "#/definitions/entities/date_histogram_interval"
+            "description": "The interval of this date_histogram_aggregate.",
+            "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.DateHistogramInterval"
+          },
+          "extended_bounds": {
+            "description": "The extended_bounds of this date_histogram_aggregate.",
+            "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.DateHistogramExtendedBounds"
           }
         }
         }
       },
-      "date_histogram_interval": {
-        "description": "date_histogram_interval",
+      "laplacian.arch.api.service.elasticsearch.aggregate.DateHistogramExtendedBounds": {
+        "description": "An entity describing a date_histogram_extended_bounds.",
+        "type": "object",
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "date_histogram_extended_bounds" },
+          "min": {
+            "description": "The min of this date_histogram_extended_bounds.",
+            "type": "string"
+          },
+          "max": {
+            "description": "The max of this date_histogram_extended_bounds.",
+            "type": "string"
+          }
+        }
+      },
+      "laplacian.arch.api.service.elasticsearch.aggregate.DateHistogramInterval": {
+        "description": "An entity describing a date_histogram_interval.",
         "type": "object",
         "required": [
           "type",
@@ -2909,6 +3099,7 @@
           "value"
         ],
         "properties": {
+          "_class_": { "const": "date_histogram_interval" },
           "type": {
             "description": "The type of this date_histogram_interval.",
             "enum":[
@@ -2927,18 +3118,19 @@
           }
         },
         "allOf": [
-          { "$ref": "#/definitions/entities/date_histogram_calendar_interval" },
-          { "$ref": "#/definitions/entities/date_histogram_fixed_interval" }
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.DateHistogramCalendarInterval" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.DateHistogramFixedInterval" }
         ]
       },
-      "date_histogram_calendar_interval": {
-        "description": "date_histogram_calendar_interval",
+      "laplacian.arch.api.service.elasticsearch.aggregate.DateHistogramCalendarInterval": {
+        "description": "An entity describing a date_histogram_calendar_interval.",
         "if": { "properties": {
           "type": { "const": "calendar" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "date_histogram_calendar_interval" },
           "type": {
             "description": "The type of this date_histogram_interval.",
             "enum":[
@@ -2963,14 +3155,15 @@
         }
         }
       },
-      "date_histogram_fixed_interval": {
-        "description": "date_histogram_fixed_interval",
+      "laplacian.arch.api.service.elasticsearch.aggregate.DateHistogramFixedInterval": {
+        "description": "An entity describing a date_histogram_fixed_interval.",
         "if": { "properties": {
           "type": { "const": "fixed" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "date_histogram_fixed_interval" },
           "type": {
             "description": "The type of this date_histogram_interval.",
             "enum":[
@@ -3000,14 +3193,15 @@
         }
         }
       },
-      "date_range_aggregate": {
-        "description": "date_range_aggregate",
+      "laplacian.arch.api.service.elasticsearch.aggregate.DateRangeAggregate": {
+        "description": "An entity describing a date_range_aggregate.",
         "if": { "properties": {
           "aggregation_type": { "const": "date_range" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "date_range_aggregate" },
           "name": {
             "description": "The name of this elasticsearch_aggregate.",
             "type": "string"
@@ -3019,6 +3213,7 @@
           "aggregation_type": {
             "description": "The aggregation_type of this elasticsearch_aggregate.",
             "enum":[
+              "avg_bucket",
               "bucket_script",
               "bucket_selector",
               "bucket_sort",
@@ -3044,30 +3239,31 @@
             "type": "string"
           },
           "sub_aggregates": {
-            "description": "sub_aggregates",
+            "description": "The sub_aggregates of this elasticsearch_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
             }
           },
           "ranges": {
-            "description": "ranges",
+            "description": "The ranges of this date_range_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/aggregate_group_range"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.AggregateGroupRange"
             }
           }
         }
         }
       },
-      "aggregate_group_range": {
-        "description": "aggregate_group_range",
+      "laplacian.arch.api.service.elasticsearch.aggregate.AggregateGroupRange": {
+        "description": "An entity describing a aggregate_group_range.",
         "type": "object",
         "required": [
           "key"
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "aggregate_group_range" },
           "key": {
             "description": "The key of this aggregate_group_range.",
             "type": "string"
@@ -3082,14 +3278,15 @@
           }
         }
       },
-      "filter_aggregate": {
-        "description": "filter_aggregate",
+      "laplacian.arch.api.service.elasticsearch.aggregate.FilterAggregate": {
+        "description": "An entity describing a filter_aggregate.",
         "if": { "properties": {
           "aggregation_type": { "const": "filter" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "filter_aggregate" },
           "name": {
             "description": "The name of this elasticsearch_aggregate.",
             "type": "string"
@@ -3101,6 +3298,7 @@
           "aggregation_type": {
             "description": "The aggregation_type of this elasticsearch_aggregate.",
             "enum":[
+              "avg_bucket",
               "bucket_script",
               "bucket_selector",
               "bucket_sort",
@@ -3122,27 +3320,28 @@
             "type": "string"
           },
           "sub_aggregates": {
-            "description": "sub_aggregates",
+            "description": "The sub_aggregates of this elasticsearch_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
             }
           },
           "predicate": {
-            "description": "predicate",
-            "$ref": "#/definitions/entities/elasticsearch_query_predicate"
+            "description": "The predicate of this filter_aggregate.",
+            "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.ElasticsearchQueryPredicate"
           }
         }
         }
       },
-      "filters_aggregate": {
-        "description": "filters_aggregate",
+      "laplacian.arch.api.service.elasticsearch.aggregate.FiltersAggregate": {
+        "description": "An entity describing a filters_aggregate.",
         "if": { "properties": {
           "aggregation_type": { "const": "filters" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "filters_aggregate" },
           "name": {
             "description": "The name of this elasticsearch_aggregate.",
             "type": "string"
@@ -3154,6 +3353,7 @@
           "aggregation_type": {
             "description": "The aggregation_type of this elasticsearch_aggregate.",
             "enum":[
+              "avg_bucket",
               "bucket_script",
               "bucket_selector",
               "bucket_sort",
@@ -3175,48 +3375,50 @@
             "type": "string"
           },
           "sub_aggregates": {
-            "description": "sub_aggregates",
+            "description": "The sub_aggregates of this elasticsearch_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
             }
           },
           "filters": {
-            "description": "filters",
+            "description": "The filters of this filters_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/keyed_filter"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.KeyedFilter"
             }
           }
         }
         }
       },
-      "keyed_filter": {
-        "description": "keyed_filter",
+      "laplacian.arch.api.service.elasticsearch.aggregate.KeyedFilter": {
+        "description": "An entity describing a keyed_filter.",
         "type": "object",
         "required": [
           "key"
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "keyed_filter" },
           "key": {
             "description": "The key of this keyed_filter.",
             "type": "string"
           },
           "predicate": {
-            "description": "predicate",
-            "$ref": "#/definitions/entities/elasticsearch_query_predicate"
+            "description": "The predicate of this keyed_filter.",
+            "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.ElasticsearchQueryPredicate"
           }
         }
       },
-      "sum_aggregate": {
-        "description": "sum_aggregate",
+      "laplacian.arch.api.service.elasticsearch.aggregate.SumAggregate": {
+        "description": "An entity describing a sum_aggregate.",
         "if": { "properties": {
           "aggregation_type": { "const": "sum" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "sum_aggregate" },
           "name": {
             "description": "The name of this elasticsearch_aggregate.",
             "type": "string"
@@ -3228,6 +3430,7 @@
           "aggregation_type": {
             "description": "The aggregation_type of this elasticsearch_aggregate.",
             "enum":[
+              "avg_bucket",
               "bucket_script",
               "bucket_selector",
               "bucket_sort",
@@ -3249,23 +3452,24 @@
             "type": "string"
           },
           "sub_aggregates": {
-            "description": "sub_aggregates",
+            "description": "The sub_aggregates of this elasticsearch_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
             }
           }
         }
         }
       },
-      "avg_aggregate": {
-        "description": "avg_aggregate",
+      "laplacian.arch.api.service.elasticsearch.aggregate.AvgAggregate": {
+        "description": "An entity describing a avg_aggregate.",
         "if": { "properties": {
           "aggregation_type": { "const": "avg" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "avg_aggregate" },
           "name": {
             "description": "The name of this elasticsearch_aggregate.",
             "type": "string"
@@ -3277,6 +3481,7 @@
           "aggregation_type": {
             "description": "The aggregation_type of this elasticsearch_aggregate.",
             "enum":[
+              "avg_bucket",
               "bucket_script",
               "bucket_selector",
               "bucket_sort",
@@ -3298,23 +3503,24 @@
             "type": "string"
           },
           "sub_aggregates": {
-            "description": "sub_aggregates",
+            "description": "The sub_aggregates of this elasticsearch_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
             }
           }
         }
         }
       },
-      "min_aggregate": {
-        "description": "min_aggregate",
+      "laplacian.arch.api.service.elasticsearch.aggregate.MinAggregate": {
+        "description": "An entity describing a min_aggregate.",
         "if": { "properties": {
           "aggregation_type": { "const": "min" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "min_aggregate" },
           "name": {
             "description": "The name of this elasticsearch_aggregate.",
             "type": "string"
@@ -3326,6 +3532,7 @@
           "aggregation_type": {
             "description": "The aggregation_type of this elasticsearch_aggregate.",
             "enum":[
+              "avg_bucket",
               "bucket_script",
               "bucket_selector",
               "bucket_sort",
@@ -3347,23 +3554,24 @@
             "type": "string"
           },
           "sub_aggregates": {
-            "description": "sub_aggregates",
+            "description": "The sub_aggregates of this elasticsearch_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
             }
           }
         }
         }
       },
-      "max_aggregate": {
-        "description": "max_aggregate",
+      "laplacian.arch.api.service.elasticsearch.aggregate.MaxAggregate": {
+        "description": "An entity describing a max_aggregate.",
         "if": { "properties": {
           "aggregation_type": { "const": "max" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "max_aggregate" },
           "name": {
             "description": "The name of this elasticsearch_aggregate.",
             "type": "string"
@@ -3375,6 +3583,7 @@
           "aggregation_type": {
             "description": "The aggregation_type of this elasticsearch_aggregate.",
             "enum":[
+              "avg_bucket",
               "bucket_script",
               "bucket_selector",
               "bucket_sort",
@@ -3396,23 +3605,24 @@
             "type": "string"
           },
           "sub_aggregates": {
-            "description": "sub_aggregates",
+            "description": "The sub_aggregates of this elasticsearch_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
             }
           }
         }
         }
       },
-      "value_count_aggregate": {
-        "description": "value_count_aggregate",
+      "laplacian.arch.api.service.elasticsearch.aggregate.ValueCountAggregate": {
+        "description": "An entity describing a value_count_aggregate.",
         "if": { "properties": {
           "aggregation_type": { "const": "count" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "value_count_aggregate" },
           "name": {
             "description": "The name of this elasticsearch_aggregate.",
             "type": "string"
@@ -3424,6 +3634,7 @@
           "aggregation_type": {
             "description": "The aggregation_type of this elasticsearch_aggregate.",
             "enum":[
+              "avg_bucket",
               "bucket_script",
               "bucket_selector",
               "bucket_sort",
@@ -3445,16 +3656,16 @@
             "type": "string"
           },
           "sub_aggregates": {
-            "description": "sub_aggregates",
+            "description": "The sub_aggregates of this elasticsearch_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
             }
           }
         }
         }
       },
-      "terms_aggregate": {
+      "laplacian.arch.api.service.elasticsearch.aggregate.TermsAggregate": {
         "description": "A multi-bucket value source based aggregation where buckets are dynamically built\n- one per unique value.",
         "if": { "properties": {
           "aggregation_type": { "const": "terms" }
@@ -3462,6 +3673,7 @@
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "terms_aggregate" },
           "name": {
             "description": "The name of this elasticsearch_aggregate.",
             "type": "string"
@@ -3473,6 +3685,7 @@
           "aggregation_type": {
             "description": "The aggregation_type of this elasticsearch_aggregate.",
             "enum":[
+              "avg_bucket",
               "bucket_script",
               "bucket_selector",
               "bucket_sort",
@@ -3526,23 +3739,24 @@
             }]
           },
           "sub_aggregates": {
-            "description": "sub_aggregates",
+            "description": "The sub_aggregates of this elasticsearch_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
             }
           }
         }
         }
       },
-      "elasticsearch_aggregate": {
-        "description": "elasticsearch_aggregate",
+      "laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate": {
+        "description": "An entity describing a elasticsearch_aggregate.",
         "type": "object",
         "required": [
           "name",
           "aggregation_type"
         ],
         "properties": {
+          "_class_": { "const": "elasticsearch_aggregate" },
           "name": {
             "description": "The name of this elasticsearch_aggregate.",
             "type": "string"
@@ -3554,6 +3768,7 @@
           "aggregation_type": {
             "description": "The aggregation_type of this elasticsearch_aggregate.",
             "enum":[
+              "avg_bucket",
               "bucket_script",
               "bucket_selector",
               "bucket_sort",
@@ -3575,31 +3790,32 @@
             "type": "string"
           },
           "sub_aggregates": {
-            "description": "sub_aggregates",
+            "description": "The sub_aggregates of this elasticsearch_aggregate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
             }
           }
         },
         "allOf": [
-          { "$ref": "#/definitions/entities/bucket_script_aggregate" },
-          { "$ref": "#/definitions/entities/bucket_selector_aggregate" },
-          { "$ref": "#/definitions/entities/bucket_sort_aggregate" },
-          { "$ref": "#/definitions/entities/date_histogram_aggregate" },
-          { "$ref": "#/definitions/entities/date_range_aggregate" },
-          { "$ref": "#/definitions/entities/filter_aggregate" },
-          { "$ref": "#/definitions/entities/filters_aggregate" },
-          { "$ref": "#/definitions/entities/sum_aggregate" },
-          { "$ref": "#/definitions/entities/avg_aggregate" },
-          { "$ref": "#/definitions/entities/min_aggregate" },
-          { "$ref": "#/definitions/entities/max_aggregate" },
-          { "$ref": "#/definitions/entities/value_count_aggregate" },
-          { "$ref": "#/definitions/entities/terms_aggregate" }
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.AvgBucketAggregate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.BucketScriptAggregate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.BucketSelectorAggregate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.BucketSortAggregate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.DateHistogramAggregate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.DateRangeAggregate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.FilterAggregate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.FiltersAggregate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.SumAggregate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.AvgAggregate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.MinAggregate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.MaxAggregate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ValueCountAggregate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.TermsAggregate" }
         ]
       },
-      "elasticsearch_index": {
-        "description": "elasticsearch_index",
+      "laplacian.arch.api.service.elasticsearch.ElasticsearchIndex": {
+        "description": "An entity describing a elasticsearch_index.",
         "type": "object",
         "required": [
           "name",
@@ -3607,6 +3823,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "elasticsearch_index" },
           "name": {
             "description": "The name of this elasticsearch_index.",
             "type": "string"
@@ -3618,16 +3835,51 @@
           "document_model_name": {
             "description": "The document_model_name of this elasticsearch_index.",
             "type": "string"
+          },
+          "default_sorts": {
+            "description": "The default_sorts of this elasticsearch_index.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.ElasticsearchIndexSort"
+            }
           }
         }
       },
-      "elasticsearch_query_predicate": {
-        "description": "elasticsearch_query_predicate",
+      "laplacian.arch.api.service.elasticsearch.ElasticsearchIndexSort": {
+        "description": "An entity describing a elasticsearch_index_sort.",
+        "type": "object",
+        "required": [
+          "field"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "elasticsearch_index_sort" },
+          "field": {
+            "description": "The field of this elasticsearch_index_sort.",
+            "type": "string"
+          },
+          "order": {
+            "description": "The order of this elasticsearch_index_sort.",
+            "enum":[
+              "asc",
+              "desc"
+            ],
+            "type": "string"
+          },
+          "is_numeric": {
+            "description": "Defines this elasticsearch_index_sort is is_numeric or not.",
+            "type": "boolean"
+          }
+        }
+      },
+      "laplacian.arch.api.service.elasticsearch.query.ElasticsearchQueryPredicate": {
+        "description": "An entity describing a elasticsearch_query_predicate.",
         "type": "object",
         "required": [
           "type"
         ],
         "properties": {
+          "_class_": { "const": "elasticsearch_query_predicate" },
           "type": {
             "description": "The type of this elasticsearch_query_predicate.",
             "enum":[
@@ -3645,24 +3897,25 @@
           }
         },
         "allOf": [
-          { "$ref": "#/definitions/entities/bool_query_predicate" },
-          { "$ref": "#/definitions/entities/exists_query_predicate" },
-          { "$ref": "#/definitions/entities/match_all_query_predicate" },
-          { "$ref": "#/definitions/entities/match_query_predicate" },
-          { "$ref": "#/definitions/entities/multi_match_query_predicate" },
-          { "$ref": "#/definitions/entities/query_string_predicate" },
-          { "$ref": "#/definitions/entities/range_query_predicate" },
-          { "$ref": "#/definitions/entities/term_query_predicate" },
-          { "$ref": "#/definitions/entities/terms_query_predicate" }
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.BoolQueryPredicate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.ExistsQueryPredicate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.MatchAllQueryPredicate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.MatchQueryPredicate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.MultiMatchQueryPredicate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.QueryStringPredicate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.RangeQueryPredicate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.TermQueryPredicate" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.TermsQueryPredicate" }
         ]
       },
-      "elasticsearch_query_sort": {
-        "description": "elasticsearch_query_sort",
+      "laplacian.arch.api.service.elasticsearch.query.ElasticsearchQuerySort": {
+        "description": "An entity describing a elasticsearch_query_sort.",
         "type": "object",
         "required": [
           "type"
         ],
         "properties": {
+          "_class_": { "const": "elasticsearch_query_sort" },
           "type": {
             "description": "The type of this elasticsearch_query_sort.",
             "enum":[
@@ -3681,18 +3934,19 @@
           }
         },
         "allOf": [
-          { "$ref": "#/definitions/entities/elasticsearch_query_score_sort" },
-          { "$ref": "#/definitions/entities/elasticsearch_query_field_sort" }
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.ElasticsearchQueryScoreSort" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.ElasticsearchQueryFieldSort" }
         ]
       },
-      "elasticsearch_query_score_sort": {
-        "description": "elasticsearch_query_score_sort",
+      "laplacian.arch.api.service.elasticsearch.query.ElasticsearchQueryScoreSort": {
+        "description": "An entity describing a elasticsearch_query_score_sort.",
         "if": { "properties": {
           "type": { "const": "score" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "elasticsearch_query_score_sort" },
           "type": {
             "description": "The type of this elasticsearch_query_sort.",
             "enum":[
@@ -3712,14 +3966,15 @@
         }
         }
       },
-      "elasticsearch_query_field_sort": {
-        "description": "elasticsearch_query_field_sort",
+      "laplacian.arch.api.service.elasticsearch.query.ElasticsearchQueryFieldSort": {
+        "description": "An entity describing a elasticsearch_query_field_sort.",
         "if": { "properties": {
           "type": { "const": "field" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "elasticsearch_query_field_sort" },
           "type": {
             "description": "The type of this elasticsearch_query_sort.",
             "enum":[
@@ -3743,8 +3998,8 @@
         }
         }
       },
-      "elasticsearch_query": {
-        "description": "elasticsearch_query",
+      "laplacian.arch.api.service.elasticsearch.ElasticsearchQuery": {
+        "description": "An entity describing a elasticsearch_query.",
         "type": "object",
         "required": [
           "name",
@@ -3752,6 +4007,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "elasticsearch_query" },
           "name": {
             "description": "The name of this elasticsearch_query.",
             "type": "string"
@@ -3781,40 +4037,41 @@
             }]
           },
           "predicate": {
-            "description": "predicate",
-            "$ref": "#/definitions/entities/elasticsearch_query_predicate"
+            "description": "The predicate of this elasticsearch_query.",
+            "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.ElasticsearchQueryPredicate"
           },
           "sort": {
-            "description": "sort",
+            "description": "The sort of this elasticsearch_query.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_query_sort"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.ElasticsearchQuerySort"
             }
           },
           "aggregates": {
-            "description": "aggregates",
+            "description": "The aggregates of this elasticsearch_query.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_aggregate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate"
             }
           },
           "parameters": {
-            "description": "parameters",
+            "description": "The parameters of this elasticsearch_query.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/api_call_argument"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ApiCallArgument"
             }
           }
         }
       },
-      "bool_query_predicate": {
-        "description": "bool_query_predicate",
+      "laplacian.arch.api.service.elasticsearch.query.BoolQueryPredicate": {
+        "description": "An entity describing a bool_query_predicate.",
         "if": { "properties": {
           "type": { "const": "bool" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "bool_query_predicate" },
           "type": {
             "description": "The type of this elasticsearch_query_predicate.",
             "enum":[
@@ -3831,44 +4088,45 @@
             "type": "string"
           },
           "must": {
-            "description": "must",
+            "description": "The must of this bool_query_predicate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_query_predicate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.ElasticsearchQueryPredicate"
             }
           },
           "must_not": {
-            "description": "must_not",
+            "description": "The must_not of this bool_query_predicate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_query_predicate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.ElasticsearchQueryPredicate"
             }
           },
           "should": {
-            "description": "should",
+            "description": "The should of this bool_query_predicate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_query_predicate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.ElasticsearchQueryPredicate"
             }
           },
           "filter": {
-            "description": "filter",
+            "description": "The filter of this bool_query_predicate.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_query_predicate"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.ElasticsearchQueryPredicate"
             }
           }
         }
         }
       },
-      "exists_query_predicate": {
-        "description": "exists_query_predicate",
+      "laplacian.arch.api.service.elasticsearch.query.ExistsQueryPredicate": {
+        "description": "An entity describing a exists_query_predicate.",
         "if": { "properties": {
           "type": { "const": "exists" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "exists_query_predicate" },
           "type": {
             "description": "The type of this elasticsearch_query_predicate.",
             "enum":[
@@ -3891,14 +4149,15 @@
         }
         }
       },
-      "match_all_query_predicate": {
-        "description": "match_all_query_predicate",
+      "laplacian.arch.api.service.elasticsearch.query.MatchAllQueryPredicate": {
+        "description": "An entity describing a match_all_query_predicate.",
         "if": { "properties": {
           "type": { "const": "match_all" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "match_all_query_predicate" },
           "type": {
             "description": "The type of this elasticsearch_query_predicate.",
             "enum":[
@@ -3917,14 +4176,15 @@
         }
         }
       },
-      "match_query_predicate": {
-        "description": "match_query_predicate",
+      "laplacian.arch.api.service.elasticsearch.query.MatchQueryPredicate": {
+        "description": "An entity describing a match_query_predicate.",
         "if": { "properties": {
           "type": { "const": "match" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "match_query_predicate" },
           "type": {
             "description": "The type of this elasticsearch_query_predicate.",
             "enum":[
@@ -3951,14 +4211,15 @@
         }
         }
       },
-      "multi_match_query_predicate": {
-        "description": "multi_match_query_predicate",
+      "laplacian.arch.api.service.elasticsearch.query.MultiMatchQueryPredicate": {
+        "description": "An entity describing a multi_match_query_predicate.",
         "if": { "properties": {
           "type": { "const": "multi_match" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "multi_match_query_predicate" },
           "type": {
             "description": "The type of this elasticsearch_query_predicate.",
             "enum":[
@@ -3988,14 +4249,15 @@
         }
         }
       },
-      "query_string_predicate": {
-        "description": "query_string_predicate",
+      "laplacian.arch.api.service.elasticsearch.query.QueryStringPredicate": {
+        "description": "An entity describing a query_string_predicate.",
         "if": { "properties": {
           "type": { "const": "query_string" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "query_string_predicate" },
           "type": {
             "description": "The type of this elasticsearch_query_predicate.",
             "enum":[
@@ -4115,14 +4377,15 @@
         }
         }
       },
-      "range_query_predicate": {
-        "description": "range_query_predicate",
+      "laplacian.arch.api.service.elasticsearch.query.RangeQueryPredicate": {
+        "description": "An entity describing a range_query_predicate.",
         "if": { "properties": {
           "type": { "const": "range" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "range_query_predicate" },
           "type": {
             "description": "The type of this elasticsearch_query_predicate.",
             "enum":[
@@ -4165,14 +4428,15 @@
         }
         }
       },
-      "term_query_predicate": {
-        "description": "term_query_predicate",
+      "laplacian.arch.api.service.elasticsearch.query.TermQueryPredicate": {
+        "description": "An entity describing a term_query_predicate.",
         "if": { "properties": {
           "type": { "const": "term" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "term_query_predicate" },
           "type": {
             "description": "The type of this elasticsearch_query_predicate.",
             "enum":[
@@ -4203,14 +4467,15 @@
         }
         }
       },
-      "terms_query_predicate": {
-        "description": "terms_query_predicate",
+      "laplacian.arch.api.service.elasticsearch.query.TermsQueryPredicate": {
+        "description": "An entity describing a terms_query_predicate.",
         "if": { "properties": {
           "type": { "const": "terms" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "terms_query_predicate" },
           "type": {
             "description": "The type of this elasticsearch_query_predicate.",
             "enum":[
@@ -4241,58 +4506,15 @@
         }
         }
       },
-      "entity_on_database": {
-        "description": "entity_on_database",
-        "if": { "properties": {
-          "resolver_type": { "const": "entity_on_database" }
-        }},
-        "then": {
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this graphql_type.",
-            "type": "string"
-          },
-          "resolver_type": {
-            "description": "The resolver_type of this graphql_type.",
-            "enum":[
-              "entity_on_database",
-              "external_rest_resource",
-              "indexed_document",
-              "rdbms_table"
-            ],
-            "type": "string"
-          },
-          "description": {
-            "description": "The description of this graphql_type.",
-            "type": "string"
-          },
-          "entity_name": {
-            "description": "The entity_name of this entity_on_database.",
-            "type": "string"
-          },
-          "datasource_name": {
-            "description": "The datasource_name of this entity_on_database.",
-            "type": "string"
-          },
-          "relationships": {
-            "description": "relationships",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/graphql_type_relationship"
-            }
-          }
-        }
-        }
-      },
-      "external_rest_resource": {
-        "description": "external_rest_resource",
+      "laplacian.arch.api.service.graphql.ExternalRestResource": {
+        "description": "An entity describing a external_rest_resource.",
         "if": { "properties": {
           "resolver_type": { "const": "external_rest_resource" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "external_rest_resource" },
           "name": {
             "description": "The name of this graphql_type.",
             "type": "string"
@@ -4300,10 +4522,10 @@
           "resolver_type": {
             "description": "The resolver_type of this graphql_type.",
             "enum":[
-              "entity_on_database",
               "external_rest_resource",
               "indexed_document",
-              "rdbms_table"
+              "rdbms_table",
+              "static_data"
             ],
             "type": "string"
           },
@@ -4315,28 +4537,25 @@
             "description": "The rest_resource_name of this external_rest_resource.",
             "type": "string"
           },
-          "rest_client_name": {
-            "description": "The rest_client_name of this external_rest_resource.",
-            "type": "string"
-          },
           "relationships": {
-            "description": "relationships",
+            "description": "The relationships of this graphql_type.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/graphql_type_relationship"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationship"
             }
           }
         }
         }
       },
-      "indexed_document": {
-        "description": "indexed_document",
+      "laplacian.arch.api.service.graphql.IndexedDocument": {
+        "description": "An entity describing a indexed_document.",
         "if": { "properties": {
           "resolver_type": { "const": "indexed_document" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "indexed_document" },
           "name": {
             "description": "The name of this graphql_type.",
             "type": "string"
@@ -4344,10 +4563,10 @@
           "resolver_type": {
             "description": "The resolver_type of this graphql_type.",
             "enum":[
-              "entity_on_database",
               "external_rest_resource",
               "indexed_document",
-              "rdbms_table"
+              "rdbms_table",
+              "static_data"
             ],
             "type": "string"
           },
@@ -4368,23 +4587,24 @@
             "type": "string"
           },
           "relationships": {
-            "description": "relationships",
+            "description": "The relationships of this graphql_type.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/graphql_type_relationship"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationship"
             }
           }
         }
         }
       },
-      "rdbms_table": {
-        "description": "rdbms_table",
+      "laplacian.arch.api.service.graphql.RdbmsTable": {
+        "description": "An entity describing a rdbms_table.",
         "if": { "properties": {
           "resolver_type": { "const": "rdbms_table" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "rdbms_table" },
           "name": {
             "description": "The name of this graphql_type.",
             "type": "string"
@@ -4392,19 +4612,15 @@
           "resolver_type": {
             "description": "The resolver_type of this graphql_type.",
             "enum":[
-              "entity_on_database",
               "external_rest_resource",
               "indexed_document",
-              "rdbms_table"
+              "rdbms_table",
+              "static_data"
             ],
             "type": "string"
           },
           "description": {
             "description": "The description of this graphql_type.",
-            "type": "string"
-          },
-          "name": {
-            "description": "The name of this rdbms_table.",
             "type": "string"
           },
           "data_model_name": {
@@ -4420,24 +4636,108 @@
             "type": "string"
           },
           "relationships": {
-            "description": "relationships",
+            "description": "The relationships of this graphql_type.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/graphql_type_relationship"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationship"
             }
           },
           "mybatis_mapper_entries": {
-            "description": "mybatis_mapper_entries",
+            "description": "The mybatis_mapper_entries of this rdbms_table.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/mybatis_mapper_entry"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.rdb.mybatis.MybatisMapperEntry"
             }
           }
         }
         }
       },
-      "mybatis_mapper": {
-        "description": "mybatis_mapper",
+      "laplacian.arch.api.service.graphql.StaticData": {
+        "description": "An entity describing a static_data.",
+        "if": { "properties": {
+          "resolver_type": { "const": "static_data" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "static_data" },
+          "name": {
+            "description": "The name of this graphql_type.",
+            "type": "string"
+          },
+          "resolver_type": {
+            "description": "The resolver_type of this graphql_type.",
+            "enum":[
+              "external_rest_resource",
+              "indexed_document",
+              "rdbms_table",
+              "static_data"
+            ],
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this graphql_type.",
+            "type": "string"
+          },
+          "data_model_name": {
+            "description": "The data_model_name of this static_data.",
+            "type": "string"
+          },
+          "default_query_name": {
+            "description": "The default_query_name of this static_data.",
+            "type": "string"
+          },
+          "relationships": {
+            "description": "The relationships of this graphql_type.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationship"
+            }
+          },
+          "queries": {
+            "description": "The queries of this static_data.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.static_data.Query"
+            }
+          }
+        }
+        }
+      },
+      "laplacian.arch.api.service.graphql.static_data.Query": {
+        "description": "An entity describing a query.",
+        "type": "object",
+        "required": [
+          "name",
+          "snippet"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "query" },
+          "name": {
+            "description": "The name of this query.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this query.",
+            "type": "string"
+          },
+          "result_model_name": {
+            "description": "The result_model_name of this query.",
+            "type": "string"
+          },
+          "result_model_namespace": {
+            "description": "The result_model_namespace of this query.",
+            "type": "string"
+          },
+          "snippet": {
+            "description": "The snippet of this query.",
+            "type": "string"
+          }
+        }
+      },
+      "laplacian.arch.api.service.rdb.mybatis.MybatisMapper": {
+        "description": "An entity describing a mybatis_mapper.",
         "type": "object",
         "required": [
           "group_id",
@@ -4447,6 +4747,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "mybatis_mapper" },
           "group_id": {
             "allOf": [{
             "description": "The group_id of this mybatis_mapper.",
@@ -4483,16 +4784,16 @@
             "type": "string"
           },
           "parameters": {
-            "description": "parameters",
+            "description": "The parameters of this mybatis_mapper.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/api_call_argument"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ApiCallArgument"
             }
           }
         }
       },
-      "mybatis_mapper_entry": {
-        "description": "mybatis_mapper_entry",
+      "laplacian.arch.api.service.rdb.mybatis.MybatisMapperEntry": {
+        "description": "An entity describing a mybatis_mapper_entry.",
         "type": "object",
         "required": [
           "group_id",
@@ -4500,6 +4801,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "mybatis_mapper_entry" },
           "group_id": {
             "description": "The group_id of this mybatis_mapper_entry.",
             "type": "string"
@@ -4514,8 +4816,8 @@
           }
         }
       },
-      "rest_operation": {
-        "description": "rest_operation",
+      "laplacian.arch.api.service.rest.RestOperation": {
+        "description": "An entity describing a rest_operation.",
         "type": "object",
         "required": [
           "method",
@@ -4524,6 +4826,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "rest_operation" },
           "method": {
             "allOf": [{
             "description": "The method of this rest_operation.",
@@ -4553,37 +4856,37 @@
             "type": "string"
           },
           "arguments": {
-            "description": "arguments",
+            "description": "The arguments of this rest_operation.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/api_call_argument"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ApiCallArgument"
             }
           },
           "path_parameters": {
-            "description": "path_parameters",
+            "description": "The path_parameters of this rest_operation.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/rest_request_parameter"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestRequestParameter"
             }
           },
           "query_parameters": {
-            "description": "query_parameters",
+            "description": "The query_parameters of this rest_operation.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/rest_request_parameter"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestRequestParameter"
             }
           },
           "http_headers": {
-            "description": "http_headers",
+            "description": "The http_headers of this rest_operation.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/rest_request_parameter"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestRequestParameter"
             }
           }
         }
       },
-      "rest_request_parameter": {
-        "description": "rest_request_parameter",
+      "laplacian.arch.api.service.rest.RestRequestParameter": {
+        "description": "An entity describing a rest_request_parameter.",
         "type": "object",
         "required": [
           "name",
@@ -4592,6 +4895,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "rest_request_parameter" },
           "name": {
             "description": "The name of this rest_request_parameter.",
             "type": "string"
@@ -4616,8 +4920,8 @@
           }
         }
       },
-      "rest_resource": {
-        "description": "rest_resource",
+      "laplacian.arch.api.service.rest.RestResource": {
+        "description": "An entity describing a rest_resource.",
         "type": "object",
         "required": [
           "name",
@@ -4625,6 +4929,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "rest_resource" },
           "name": {
             "description": "The name of this rest_resource.",
             "type": "string"
@@ -4645,24 +4950,28 @@
             "description": "The cache_policy_name of this rest_resource.",
             "type": "string"
           },
+          "enable_automatic_cookie_handling": {
+            "description": "Defines this rest_resource is enable_automatic_cookie_handling or not.",
+            "type": "boolean"
+          },
           "operations": {
-            "description": "operations",
+            "description": "The operations of this rest_resource.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/rest_operation"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestOperation"
             }
           },
           "configurations": {
-            "description": "configurations",
+            "description": "The configurations of this rest_resource.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/configuration_binding"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ConfigurationBinding"
             }
           }
         }
       },
-      "service": {
-        "description": "service",
+      "laplacian.arch.api.service.Service": {
+        "description": "An entity describing a service.",
         "type": "object",
         "required": [
           "name",
@@ -4670,6 +4979,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "service" },
           "name": {
             "description": "The name of this service.",
             "type": "string"
@@ -4691,50 +5001,44 @@
             "type": "string"
           },
           "datasource_entries": {
-            "description": "datasource_entries",
+            "description": "The datasource_entries of this service.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/datasource_entry"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.datasource.DatasourceEntry"
             }
           },
           "graphql_type_entries": {
-            "description": "graphql_type_entries",
+            "description": "The graphql_type_entries of this service.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/graphql_type_entry"
-            }
-          },
-          "rest_clients": {
-            "description": "rest_clients",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/rest_client"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.GraphqlTypeEntry"
             }
           },
           "elastic_search_clients": {
-            "description": "elastic_search_clients",
+            "description": "The elastic_search_clients of this service.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elastic_search_client"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ElasticSearchClient"
             }
           },
           "configuration_categories": {
-            "description": "configuration_categories",
+            "description": "The configuration_categories of this service.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/service_configuration_category"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ServiceConfigurationCategory"
             }
           }
         }
       },
-      "elastic_search_client": {
-        "description": "elastic_search_client",
+      "laplacian.arch.api.service.ElasticSearchClient": {
+        "description": "An entity describing a elastic_search_client.",
         "type": "object",
         "required": [
           "name"
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "elastic_search_client" },
           "name": {
             "description": "The name of this elastic_search_client.",
             "type": "string"
@@ -4793,14 +5097,15 @@
           }
         }
       },
-      "graphql_type": {
-        "description": "graphql_type",
+      "laplacian.arch.api.service.graphql.GraphqlType": {
+        "description": "An entity describing a graphql_type.",
         "type": "object",
         "required": [
           "name",
           "resolver_type"
         ],
         "properties": {
+          "_class_": { "const": "graphql_type" },
           "name": {
             "description": "The name of this graphql_type.",
             "type": "string"
@@ -4808,10 +5113,10 @@
           "resolver_type": {
             "description": "The resolver_type of this graphql_type.",
             "enum":[
-              "entity_on_database",
               "external_rest_resource",
               "indexed_document",
-              "rdbms_table"
+              "rdbms_table",
+              "static_data"
             ],
             "type": "string"
           },
@@ -4820,36 +5125,37 @@
             "type": "string"
           },
           "relationships": {
-            "description": "relationships",
+            "description": "The relationships of this graphql_type.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/graphql_type_relationship"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationship"
             }
           }
         },
         "allOf": [
-          { "$ref": "#/definitions/entities/entity_on_database" },
-          { "$ref": "#/definitions/entities/external_rest_resource" },
-          { "$ref": "#/definitions/entities/indexed_document" },
-          { "$ref": "#/definitions/entities/rdbms_table" }
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.ExternalRestResource" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.IndexedDocument" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.RdbmsTable" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.StaticData" }
         ]
       },
-      "graphql_type_entry": {
-        "description": "graphql_type_entry",
+      "laplacian.arch.api.service.GraphqlTypeEntry": {
+        "description": "An entity describing a graphql_type_entry.",
         "type": "object",
         "required": [
           "name"
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "graphql_type_entry" },
           "name": {
             "description": "The name of this graphql_type_entry.",
             "type": "string"
           }
         }
       },
-      "graphql_type_relationship": {
-        "description": "graphql_type_relationship",
+      "laplacian.arch.api.service.graphql.GraphqlTypeRelationship": {
+        "description": "An entity describing a graphql_type_relationship.",
         "type": "object",
         "required": [
           "name",
@@ -4857,6 +5163,7 @@
           "referencing_graphql_type_name"
         ],
         "properties": {
+          "_class_": { "const": "graphql_type_relationship" },
           "name": {
             "description": "The name of this graphql_type_relationship.",
             "type": "string"
@@ -4886,17 +5193,18 @@
           }
         },
         "allOf": [
-          { "$ref": "#/definitions/entities/graphql_indexed_document_relationship" }
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlIndexedDocumentRelationship" }
         ]
       },
-      "graphql_indexed_document_relationship": {
-        "description": "graphql_indexed_document_relationship",
+      "laplacian.arch.api.service.graphql.GraphqlIndexedDocumentRelationship": {
+        "description": "An entity describing a graphql_indexed_document_relationship.",
         "if": { "properties": {
           "type": { "const": "indexed_document" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "graphql_indexed_document_relationship" },
           "name": {
             "description": "The name of this graphql_type_relationship.",
             "type": "string"
@@ -4925,17 +5233,17 @@
             "type": "boolean"
           },
           "field_mappings": {
-            "description": "field_mappings",
+            "description": "The field_mappings of this graphql_indexed_document_relationship.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/graphql_type_relationship_field_mapping"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationshipFieldMapping"
             }
           }
         }
         }
       },
-      "graphql_type_relationship_field_mapping": {
-        "description": "graphql_type_relationship_field_mapping",
+      "laplacian.arch.api.service.graphql.GraphqlTypeRelationshipFieldMapping": {
+        "description": "An entity describing a graphql_type_relationship_field_mapping.",
         "type": "object",
         "required": [
           "from",
@@ -4943,6 +5251,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "graphql_type_relationship_field_mapping" },
           "from": {
             "description": "The from of this graphql_type_relationship_field_mapping.",
             "type": "string"
@@ -4953,22 +5262,8 @@
           }
         }
       },
-      "rest_client": {
-        "description": "rest_client",
-        "type": "object",
-        "required": [
-          "name"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this rest_client.",
-            "type": "string"
-          }
-        }
-      },
-      "service_configuration": {
-        "description": "service_configuration",
+      "laplacian.arch.api.service.ServiceConfiguration": {
+        "description": "An entity describing a service_configuration.",
         "type": "object",
         "required": [
           "name",
@@ -4977,6 +5272,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "service_configuration" },
           "name": {
             "allOf": [{
             "description": "The name of this service_configuration.",
@@ -5013,22 +5309,23 @@
           }
         }
       },
-      "service_configuration_category": {
-        "description": "service_configuration_category",
+      "laplacian.arch.api.service.ServiceConfigurationCategory": {
+        "description": "An entity describing a service_configuration_category.",
         "type": "object",
         "required": [
           "name"
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "service_configuration_category" },
           "name": {
             "description": "The name of this service_configuration_category.",
             "type": "string"
           }
         }
       },
-      "configuration_binding": {
-        "description": "configuration_binding",
+      "laplacian.arch.api.service.ConfigurationBinding": {
+        "description": "An entity describing a configuration_binding.",
         "type": "object",
         "required": [
           "name",
@@ -5036,6 +5333,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "configuration_binding" },
           "name": {
             "description": "The name of this configuration_binding.",
             "pattern": "^[a-z][-a-z0-9]*$",
@@ -5053,8 +5351,8 @@
           }
         }
       },
-      "component": {
-        "description": "component",
+      "laplacian.arch.deployment.component.Component": {
+        "description": "An entity describing a component.",
         "type": "object",
         "required": [
           "name",
@@ -5062,6 +5360,7 @@
           "tags"
         ],
         "properties": {
+          "_class_": { "const": "component" },
           "name": {
             "description": "The name of this component.",
             "type": "string"
@@ -5069,10 +5368,10 @@
           "type": {
             "description": "The type of this component.",
             "enum":[
-              "redis_server",
-              "postgres_test_db",
-              "elasticsearch_server",
-              "springboot2_api_service"
+              "container_image",
+              "elasticsearch_container_image",
+              "postgres_container_image",
+              "springboot2_api_service_container_image"
             ],
             "type": "string"
           },
@@ -5082,27 +5381,23 @@
             "description": "The tags of this component.",
             "type": "string"
             }
-          },
-          "instance_name": {
-            "description": "The instance_name of this component.",
-            "type": "string"
           }
         },
         "allOf": [
-          { "$ref": "#/definitions/entities/redis_server" },
-          { "$ref": "#/definitions/entities/postgres_test_db" },
-          { "$ref": "#/definitions/entities/elasticsearch_server" },
-          { "$ref": "#/definitions/entities/springboot2_api_service" }
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.container.ContainerImage" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.elasticsearch.ElasticsearchContainerImage" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.PostgresContainerImage" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.springboot2_api_service.Springboot2ApiServiceContainerImage" }
         ]
       },
-      "redis_server": {
-        "description": "redis_server",
+      "laplacian.arch.deployment.component.container.ContainerImage": {
+        "description": "An entity describing a container_image.",
         "if": { "properties": {
-          "type": { "const": "redis_server" }
+          "type": { "const": "container_image" }
         }},
         "then": {
-        "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "container_image" },
           "name": {
             "description": "The name of this component.",
             "type": "string"
@@ -5110,10 +5405,10 @@
           "type": {
             "description": "The type of this component.",
             "enum":[
-              "redis_server",
-              "postgres_test_db",
-              "elasticsearch_server",
-              "springboot2_api_service"
+              "container_image",
+              "elasticsearch_container_image",
+              "postgres_container_image",
+              "springboot2_api_service_container_image"
             ],
             "type": "string"
           },
@@ -5124,29 +5419,132 @@
             "type": "string"
             }
           },
-          "instance_name": {
-            "description": "The instance_name of this component.",
+          "image_name": {
+            "description": "The image_name of this container_image.",
             "type": "string"
           },
-          "container_image": {
-            "description": "The container_image of this redis_server.",
+          "custom_built": {
+            "description": "Defines this container_image is custom_built or not.",
+            "type": "boolean"
+          },
+          "environment_variables": {
+            "description": "The environment_variables of this container_image.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.component.container.EnvironmentVariableDefinition"
+            }
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.elasticsearch.ElasticsearchContainerImage" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.PostgresContainerImage" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.springboot2_api_service.Springboot2ApiServiceContainerImage" }
+        ]
+        }
+      },
+      "laplacian.arch.deployment.component.container.EnvironmentVariableDefinition": {
+        "description": "An entity describing a environment_variable_definition.",
+        "type": "object",
+        "required": [
+          "name",
+          "default_value"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "environment_variable_definition" },
+          "name": {
+            "allOf": [{
+            "description": "The name of this environment_variable_definition.",
             "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/identifier"
+            }]
+          },
+          "description": {
+            "description": "The description of this environment_variable_definition.",
+            "type": "string"
+          },
+          "optional": {
+            "description": "Defines this environment_variable_definition is optional or not.",
+            "type": "boolean"
+          },
+          "default_value": {
+            "description": "The default_value of this environment_variable_definition.",
+            "type": "string"
+          },
+          "multiple": {
+            "description": "Defines this environment_variable_definition is multiple or not.",
+            "type": "boolean"
+          }
+        }
+      },
+      "laplacian.arch.deployment.component.elasticsearch.ElasticsearchContainerDeployment": {
+        "description": "An entity describing a elasticsearch_container_deployment.",
+        "if": { "properties": {
+          "type": { "const": "elasticsearch_container_deployment" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "elasticsearch_container_deployment" },
+          "name": {
+            "description": "The name of this deployment.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this deployment.",
+            "enum":[
+              "container_deployment",
+              "elasticsearch_container_deployment",
+              "postgres_container_deployment",
+              "springboot2_api_service_container_deployment",
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun"
+            ],
+            "type": "string"
+          },
+          "instance_name": {
+            "description": "The instance_name of this container_deployment.",
+            "type": "string"
+          },
+          "tag": {
+            "description": "The tag of this container_deployment.",
+            "type": "string"
+          },
+          "use_locally_built_image": {
+            "description": "Defines this container_deployment is use_locally_built_image or not.",
+            "type": "boolean"
           },
           "port": {
-            "description": "The port of this redis_server.",
+            "description": "The port of this elasticsearch_container_deployment.",
             "type": "number"
+          },
+          "environment_variables": {
+            "description": "The environment_variables of this container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.container.EnvironmentVariableAssignment"
+            }
+          },
+          "data_files": {
+            "description": "The data_files of this container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DataFile"
+            }
           }
         }
         }
       },
-      "postgres_test_db": {
-        "description": "postgres_test_db",
+      "laplacian.arch.deployment.component.elasticsearch.ElasticsearchContainerImage": {
+        "description": "An entity describing a elasticsearch_container_image.",
         "if": { "properties": {
-          "type": { "const": "postgres_test_db" }
+          "type": { "const": "elasticsearch_container_image" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "elasticsearch_container_image" },
           "name": {
             "description": "The name of this component.",
             "type": "string"
@@ -5154,10 +5552,10 @@
           "type": {
             "description": "The type of this component.",
             "enum":[
-              "redis_server",
-              "postgres_test_db",
-              "elasticsearch_server",
-              "springboot2_api_service"
+              "container_image",
+              "elasticsearch_container_image",
+              "postgres_container_image",
+              "springboot2_api_service_container_image"
             ],
             "type": "string"
           },
@@ -5168,152 +5566,67 @@
             "type": "string"
             }
           },
-          "instance_name": {
-            "description": "The instance_name of this component.",
+          "image_name": {
+            "description": "The image_name of this container_image.",
             "type": "string"
           },
-          "username": {
-            "description": "The username of this postgres_test_db.",
-            "type": "string"
-          },
-          "password": {
-            "description": "The password of this postgres_test_db.",
-            "type": "string"
+          "custom_built": {
+            "description": "Defines this container_image is custom_built or not.",
+            "type": "boolean"
           },
           "container_image": {
-            "description": "The container_image of this postgres_test_db.",
+            "description": "The container_image of this elasticsearch_container_image.",
             "type": "string"
-          },
-          "database_name": {
-            "description": "The database_name of this postgres_test_db.",
-            "type": "string"
-          },
-          "port": {
-            "description": "The port of this postgres_test_db.",
-            "type": "number"
-          }
-        }
-        }
-      },
-      "elasticsearch_server": {
-        "description": "elasticsearch_server",
-        "if": { "properties": {
-          "type": { "const": "elasticsearch_server" }
-        }},
-        "then": {
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this component.",
-            "type": "string"
-          },
-          "type": {
-            "description": "The type of this component.",
-            "enum":[
-              "redis_server",
-              "postgres_test_db",
-              "elasticsearch_server",
-              "springboot2_api_service"
-            ],
-            "type": "string"
-          },
-          "tags": {
-            "type": "array",
-            "items": {
-            "description": "The tags of this component.",
-            "type": "string"
-            }
-          },
-          "instance_name": {
-            "description": "The instance_name of this component.",
-            "type": "string"
-          },
-          "container_image": {
-            "description": "The container_image of this elasticsearch_server.",
-            "type": "string"
-          },
-          "port": {
-            "description": "The port of this elasticsearch_server.",
-            "type": "number"
           },
           "plugins": {
             "type": "array",
             "items": {
-            "description": "The plugins of this elasticsearch_server.",
+            "description": "The plugins of this elasticsearch_container_image.",
             "type": "string"
             }
           },
           "configuration_file_dir_path": {
-            "description": "The configuration_file_dir_path of this elasticsearch_server.",
+            "description": "The configuration_file_dir_path of this elasticsearch_container_image.",
             "type": "string"
           },
-          "configuration_files": {
-            "description": "configuration_files",
+          "environment_variables": {
+            "description": "The environment_variables of this container_image.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/elasticsearch_configuration_files"
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.component.container.EnvironmentVariableDefinition"
+            }
+          },
+          "configuration_files": {
+            "description": "The configuration_files of this elasticsearch_container_image.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.component.elasticsearch.ConfigurationFile"
             }
           }
         }
         }
       },
-      "elasticsearch_configuration_files": {
-        "description": "elasticsearch_configuration_files",
+      "laplacian.arch.deployment.component.elasticsearch.ConfigurationFile": {
+        "description": "An entity describing a configuration_file.",
         "type": "object",
         "required": [
           "path"
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "configuration_file" },
           "path": {
-            "description": "The path of this elasticsearch_configuration_files.",
+            "description": "The path of this configuration_file.",
             "type": "string"
           },
           "content": {
-            "description": "The content of this elasticsearch_configuration_files.",
+            "description": "The content of this configuration_file.",
             "type": "string"
           }
         }
       },
-      "datasource_mapping": {
-        "description": "datasource_mapping",
-        "type": "object",
-        "required": [
-          "component_name"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this datasource_mapping.",
-            "type": "string"
-          },
-          "component_name": {
-            "description": "The component_name of this datasource_mapping.",
-            "type": "string"
-          }
-        }
-      },
-      "external_rest_api_mapping": {
-        "description": "external_rest_api_mapping",
-        "type": "object",
-        "required": [
-          "name",
-          "external_rest_api_endpoint_name"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this external_rest_api_mapping.",
-            "type": "string"
-          },
-          "external_rest_api_endpoint_name": {
-            "description": "The external_rest_api_endpoint_name of this external_rest_api_mapping.",
-            "type": "string"
-          }
-        }
-      },
-      "maven_artifact": {
-        "description": "maven_artifact",
+      "laplacian.arch.deployment.component.MavenArtifact": {
+        "description": "An entity describing a maven_artifact.",
         "type": "object",
         "required": [
           "group",
@@ -5322,6 +5635,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "maven_artifact" },
           "group": {
             "description": "The group of this maven_artifact.",
             "type": "string"
@@ -5336,32 +5650,85 @@
           }
         }
       },
-      "search_engine_mapping": {
-        "description": "search_engine_mapping",
-        "type": "object",
-        "required": [
-          "component_name"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this search_engine_mapping.",
-            "type": "string"
-          },
-          "component_name": {
-            "description": "The component_name of this search_engine_mapping.",
-            "type": "string"
-          }
-        }
-      },
-      "springboot2_api_service": {
-        "description": "springboot2_api_service",
+      "laplacian.arch.deployment.component.postgres.PostgresContainerDeployment": {
+        "description": "An entity describing a postgres_container_deployment.",
         "if": { "properties": {
-          "type": { "const": "springboot2_api_service" }
+          "type": { "const": "postgres_container_deployment" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "postgres_container_deployment" },
+          "name": {
+            "description": "The name of this deployment.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this deployment.",
+            "enum":[
+              "container_deployment",
+              "elasticsearch_container_deployment",
+              "postgres_container_deployment",
+              "springboot2_api_service_container_deployment",
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun"
+            ],
+            "type": "string"
+          },
+          "instance_name": {
+            "description": "The instance_name of this container_deployment.",
+            "type": "string"
+          },
+          "tag": {
+            "description": "The tag of this container_deployment.",
+            "type": "string"
+          },
+          "use_locally_built_image": {
+            "description": "Defines this container_deployment is use_locally_built_image or not.",
+            "type": "boolean"
+          },
+          "username": {
+            "description": "The username of this postgres_container_deployment.",
+            "type": "string"
+          },
+          "password": {
+            "description": "The password of this postgres_container_deployment.",
+            "type": "string"
+          },
+          "database_name": {
+            "description": "The database_name of this postgres_container_deployment.",
+            "type": "string"
+          },
+          "port": {
+            "description": "The port of this postgres_container_deployment.",
+            "type": "number"
+          },
+          "environment_variables": {
+            "description": "The environment_variables of this container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.container.EnvironmentVariableAssignment"
+            }
+          },
+          "data_files": {
+            "description": "The data_files of this container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DataFile"
+            }
+          }
+        }
+        }
+      },
+      "laplacian.arch.deployment.component.postgres.PostgresContainerImage": {
+        "description": "An entity describing a postgres_container_image.",
+        "if": { "properties": {
+          "type": { "const": "postgres_container_image" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "postgres_container_image" },
           "name": {
             "description": "The name of this component.",
             "type": "string"
@@ -5369,10 +5736,10 @@
           "type": {
             "description": "The type of this component.",
             "enum":[
-              "redis_server",
-              "postgres_test_db",
-              "elasticsearch_server",
-              "springboot2_api_service"
+              "container_image",
+              "elasticsearch_container_image",
+              "postgres_container_image",
+              "springboot2_api_service_container_image"
             ],
             "type": "string"
           },
@@ -5383,36 +5750,108 @@
             "type": "string"
             }
           },
-          "instance_name": {
-            "description": "The instance_name of this component.",
+          "image_name": {
+            "description": "The image_name of this container_image.",
             "type": "string"
+          },
+          "custom_built": {
+            "description": "Defines this container_image is custom_built or not.",
+            "type": "boolean"
+          },
+          "image_name": {
+            "description": "The image_name of this postgres_container_image.",
+            "type": "string"
+          },
+          "environment_variables": {
+            "description": "The environment_variables of this container_image.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.component.container.EnvironmentVariableDefinition"
+            }
+          }
+        }
+        }
+      },
+      "laplacian.arch.deployment.component.redis.RedisContainerDeployment": {
+        "description": "An entity describing a redis_container_deployment.",
+        "type": "object",
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "redis_container_deployment" },
+          "port": {
+            "description": "The port of this redis_container_deployment.",
+            "type": "number"
+          }
+        }
+      },
+      "laplacian.arch.deployment.component.redis.RedisContainerImage": {
+        "description": "An entity describing a redis_container_image.",
+        "type": "object",
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "redis_container_image" },
+          "image_name": {
+            "description": "The image_name of this redis_container_image.",
+            "type": "string"
+          }
+        }
+      },
+      "laplacian.arch.deployment.component.springboot2_api_service.Springboot2ApiServiceContainerImage": {
+        "description": "An entity describing a springboot2_api_service_container_image.",
+        "if": { "properties": {
+          "type": { "const": "springboot2_api_service_container_image" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "springboot2_api_service_container_image" },
+          "name": {
+            "description": "The name of this component.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this component.",
+            "enum":[
+              "container_image",
+              "elasticsearch_container_image",
+              "postgres_container_image",
+              "springboot2_api_service_container_image"
+            ],
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+            "description": "The tags of this component.",
+            "type": "string"
+            }
+          },
+          "image_name": {
+            "description": "The image_name of this container_image.",
+            "type": "string"
+          },
+          "custom_built": {
+            "description": "Defines this container_image is custom_built or not.",
+            "type": "boolean"
           },
           "function_model_name": {
-            "description": "The function_model_name of this springboot2_api_service.",
+            "description": "The function_model_name of this springboot2_api_service_container_image.",
             "type": "string"
           },
-          "port": {
-            "description": "The port of this springboot2_api_service.",
-            "type": "number"
-          },
-          "enable_jmx": {
-            "description": "Defines this springboot2_api_service is enable_jmx or not.",
-            "type": "boolean"
-          },
-          "enable_debug": {
-            "description": "Defines this springboot2_api_service is enable_debug or not.",
-            "type": "boolean"
-          },
           "container_base_image": {
-            "description": "The container_base_image of this springboot2_api_service.",
+            "description": "The container_base_image of this springboot2_api_service_container_image.",
             "type": "string"
           },
           "gradle_version": {
-            "description": "The gradle_version of this springboot2_api_service.",
+            "description": "The gradle_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
           "jdk_major_version": {
-            "description": "The jdk_major_version of this springboot2_api_service.",
+            "description": "The jdk_major_version of this springboot2_api_service_container_image.",
             "enum":[
               "11",
               "14",
@@ -5421,87 +5860,183 @@
             "type": "string"
           },
           "kotlin_version": {
-            "description": "The kotlin_version of this springboot2_api_service.",
+            "description": "The kotlin_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
           "kotlin_coroutine_version": {
-            "description": "The kotlin_coroutine_version of this springboot2_api_service.",
+            "description": "The kotlin_coroutine_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
           "r2dbc_postgres_driver_version": {
-            "description": "The r2dbc_postgres_driver_version of this springboot2_api_service.",
+            "description": "The r2dbc_postgres_driver_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
           "oracle_jdbc_driver_version": {
-            "description": "The oracle_jdbc_driver_version of this springboot2_api_service.",
+            "description": "The oracle_jdbc_driver_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
           "springboot_version": {
-            "description": "The springboot_version of this springboot2_api_service.",
+            "description": "The springboot_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
           "springboot_graphql_webflux_version": {
-            "description": "The springboot_graphql_webflux_version of this springboot2_api_service.",
+            "description": "The springboot_graphql_webflux_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
           "spring_dependency_manager_version": {
-            "description": "The spring_dependency_manager_version of this springboot2_api_service.",
+            "description": "The spring_dependency_manager_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
           "graphql_extended_scalar_version": {
-            "description": "The graphql_extended_scalar_version of this springboot2_api_service.",
+            "description": "The graphql_extended_scalar_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
           "springboot_mybatis_version": {
-            "description": "The springboot_mybatis_version of this springboot2_api_service.",
+            "description": "The springboot_mybatis_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
           "repositories": {
             "type": "array",
             "items": {
-            "description": "The repositories of this springboot2_api_service.",
+            "description": "The repositories of this springboot2_api_service_container_image.",
             "type": "string"
             }
           },
-          "datasource_mappings": {
-            "description": "datasource_mappings",
+          "environment_variables": {
+            "description": "The environment_variables of this container_image.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/datasource_mapping"
-            }
-          },
-          "search_engine_mappings": {
-            "description": "search-engine-mappings",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/search_engine_mapping"
-            }
-          },
-          "external_rest_api_mappings": {
-            "description": "external_rest_api_mappings",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/external_rest_api_mapping"
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.component.container.EnvironmentVariableDefinition"
             }
           },
           "additional_libraries": {
-            "description": "additional_libraries",
+            "description": "The additional_libraries of this springboot2_api_service_container_image.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/maven_artifact"
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.component.MavenArtifact"
             }
           }
         }
         }
       },
-      "deployment": {
-        "description": "deployment",
+      "laplacian.arch.deployment.component.springboot2_api_service.Springboot2ApiServiceContainerDeployment": {
+        "description": "An entity describing a springboot2_api_service_container_deployment.",
+        "if": { "properties": {
+          "type": { "const": "springboot2_api_service_container_deployment" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "springboot2_api_service_container_deployment" },
+          "name": {
+            "description": "The name of this deployment.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this deployment.",
+            "enum":[
+              "container_deployment",
+              "elasticsearch_container_deployment",
+              "postgres_container_deployment",
+              "springboot2_api_service_container_deployment",
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun"
+            ],
+            "type": "string"
+          },
+          "instance_name": {
+            "description": "The instance_name of this container_deployment.",
+            "type": "string"
+          },
+          "tag": {
+            "description": "The tag of this container_deployment.",
+            "type": "string"
+          },
+          "use_locally_built_image": {
+            "description": "Defines this container_deployment is use_locally_built_image or not.",
+            "type": "boolean"
+          },
+          "http_port": {
+            "description": "The http_port of this springboot2_api_service_container_deployment.",
+            "type": "number"
+          },
+          "enable_jmx": {
+            "description": "Defines this springboot2_api_service_container_deployment is enable_jmx or not.",
+            "type": "boolean"
+          },
+          "jmx_port": {
+            "description": "The jmx_port of this springboot2_api_service_container_deployment.",
+            "type": "number"
+          },
+          "enable_debug": {
+            "description": "Defines this springboot2_api_service_container_deployment is enable_debug or not.",
+            "type": "boolean"
+          },
+          "debug_port": {
+            "description": "The debug_port of this springboot2_api_service_container_deployment.",
+            "type": "number"
+          },
+          "environment_variables": {
+            "description": "The environment_variables of this container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.container.EnvironmentVariableAssignment"
+            }
+          },
+          "data_files": {
+            "description": "The data_files of this container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DataFile"
+            }
+          }
+        }
+        }
+      },
+      "laplacian.arch.deployment.Dataset": {
+        "description": "An entity describing a dataset.",
+        "type": "object",
+        "required": [
+          "name",
+          "content"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "dataset" },
+          "name": {
+            "allOf": [{
+            "description": "The name of this dataset.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/identifier"
+            }]
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+            "description": "The tags of this dataset.",
+            "type": "string"
+            }
+          },
+          "content": {
+            "type": "array",
+            "items": {
+            "$ref": "#/definitions/entities/AnyEntity",
+            "description": "The content of this dataset.",
+            "type": "object"
+            }
+          }
+        }
+      },
+      "laplacian.arch.deployment.Deployment": {
+        "description": "An entity describing a deployment.",
         "type": "object",
         "required": [
           "name",
           "type"
         ],
         "properties": {
+          "_class_": { "const": "deployment" },
           "name": {
             "description": "The name of this deployment.",
             "type": "string"
@@ -5509,27 +6044,140 @@
           "type": {
             "description": "The type of this deployment.",
             "enum":[
+              "container_deployment",
+              "elasticsearch_container_deployment",
+              "postgres_container_deployment",
+              "springboot2_api_service_container_deployment",
               "container_on_gce_instance",
-              "container_on_gcp_cloudrun",
-              "container_on_local_machine"
+              "container_on_gcp_cloudrun"
             ],
             "type": "string"
           }
         },
         "allOf": [
-          { "$ref": "#/definitions/entities/container_on_gce_instance" },
-          { "$ref": "#/definitions/entities/container_on_gcp_cloudrun" },
-          { "$ref": "#/definitions/entities/container_on_local_machine" }
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.container.ContainerDeployment" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.elasticsearch.ElasticsearchContainerDeployment" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.PostgresContainerDeployment" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.springboot2_api_service.Springboot2ApiServiceContainerDeployment" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.ContainerOnGceInstance" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.ContainerOnGcpCloudrun" }
         ]
       },
-      "container_on_gce_instance": {
-        "description": "container_on_gce_instance",
+      "laplacian.arch.deployment.container.ContainerDeployment": {
+        "description": "An entity describing a container_deployment.",
+        "if": { "properties": {
+          "type": { "const": "container_deployment" }
+        }},
+        "then": {
+        "properties": {
+          "_class_": { "const": "container_deployment" },
+          "name": {
+            "description": "The name of this deployment.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this deployment.",
+            "enum":[
+              "container_deployment",
+              "elasticsearch_container_deployment",
+              "postgres_container_deployment",
+              "springboot2_api_service_container_deployment",
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun"
+            ],
+            "type": "string"
+          },
+          "instance_name": {
+            "description": "The instance_name of this container_deployment.",
+            "type": "string"
+          },
+          "tag": {
+            "description": "The tag of this container_deployment.",
+            "type": "string"
+          },
+          "use_locally_built_image": {
+            "description": "Defines this container_deployment is use_locally_built_image or not.",
+            "type": "boolean"
+          },
+          "environment_variables": {
+            "description": "The environment_variables of this container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.container.EnvironmentVariableAssignment"
+            }
+          },
+          "data_files": {
+            "description": "The data_files of this container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DataFile"
+            }
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.elasticsearch.ElasticsearchContainerDeployment" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.PostgresContainerDeployment" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.springboot2_api_service.Springboot2ApiServiceContainerDeployment" }
+        ]
+        }
+      },
+      "laplacian.arch.deployment.container.DataFile": {
+        "description": "An entity describing a data_file.",
+        "type": "object",
+        "required": [
+          "filename",
+          "dataset_name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "data_file" },
+          "filename": {
+            "description": "The filename of this data_file.",
+            "type": "string"
+          },
+          "dir": {
+            "description": "The dir of this data_file.",
+            "type": "string"
+          },
+          "dataset_name": {
+            "description": "The dataset_name of this data_file.",
+            "type": "string"
+          }
+        }
+      },
+      "laplacian.arch.deployment.container.EnvironmentVariableAssignment": {
+        "description": "An entity describing a environment_variable_assignment.",
+        "type": "object",
+        "required": [
+          "name",
+          "value"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "environment_variable_assignment" },
+          "name": {
+            "allOf": [{
+            "description": "The name of this environment_variable_assignment.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/identifier"
+            }]
+          },
+          "value": {
+            "description": "The value of this environment_variable_assignment.",
+            "type": "string"
+          }
+        }
+      },
+      "laplacian.arch.deployment.ContainerOnGceInstance": {
+        "description": "An entity describing a container_on_gce_instance.",
         "if": { "properties": {
           "type": { "const": "container_on_gce_instance" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "container_on_gce_instance" },
           "name": {
             "description": "The name of this deployment.",
             "type": "string"
@@ -5537,9 +6185,12 @@
           "type": {
             "description": "The type of this deployment.",
             "enum":[
+              "container_deployment",
+              "elasticsearch_container_deployment",
+              "postgres_container_deployment",
+              "springboot2_api_service_container_deployment",
               "container_on_gce_instance",
-              "container_on_gcp_cloudrun",
-              "container_on_local_machine"
+              "container_on_gcp_cloudrun"
             ],
             "type": "string"
           },
@@ -5554,14 +6205,15 @@
         }
         }
       },
-      "container_on_gcp_cloudrun": {
-        "description": "container_on_gcp_cloudrun",
+      "laplacian.arch.deployment.ContainerOnGcpCloudrun": {
+        "description": "An entity describing a container_on_gcp_cloudrun.",
         "if": { "properties": {
           "type": { "const": "container_on_gcp_cloudrun" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "container_on_gcp_cloudrun" },
           "name": {
             "description": "The name of this deployment.",
             "type": "string"
@@ -5569,41 +6221,20 @@
           "type": {
             "description": "The type of this deployment.",
             "enum":[
+              "container_deployment",
+              "elasticsearch_container_deployment",
+              "postgres_container_deployment",
+              "springboot2_api_service_container_deployment",
               "container_on_gce_instance",
-              "container_on_gcp_cloudrun",
-              "container_on_local_machine"
+              "container_on_gcp_cloudrun"
             ],
             "type": "string"
           }
         }
         }
       },
-      "container_on_local_machine": {
-        "description": "container_on_local_machine",
-        "if": { "properties": {
-          "type": { "const": "container_on_local_machine" }
-        }},
-        "then": {
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this deployment.",
-            "type": "string"
-          },
-          "type": {
-            "description": "The type of this deployment.",
-            "enum":[
-              "container_on_gce_instance",
-              "container_on_gcp_cloudrun",
-              "container_on_local_machine"
-            ],
-            "type": "string"
-          }
-        }
-        }
-      },
-      "environment": {
-        "description": "environment",
+      "laplacian.arch.deployment.Environment": {
+        "description": "An entity describing a environment.",
         "type": "object",
         "required": [
           "name",
@@ -5611,6 +6242,7 @@
         ],
         "additionalProperties": false,
         "properties": {
+          "_class_": { "const": "environment" },
           "name": {
             "description": "The name of this environment.",
             "type": "string"
@@ -5634,36 +6266,149 @@
             "type": "boolean"
           },
           "deployments": {
-            "description": "deployments",
+            "description": "The deployments of this environment.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/deployment"
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.Deployment"
             }
           }
         }
       },
-      "external_rest_api_endpoint": {
-        "description": "external_rest_api_endpoint",
+      "AnyEntity": {
         "type": "object",
-        "required": [
-          "name",
-          "base_url"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this external_rest_api_endpoint.",
-            "type": "string"
-          },
-          "base_url": {
-            "description": "The base_url of this external_rest_api_endpoint.",
-            "type": "string"
-          },
-          "api_key": {
-            "description": "The api_key of this external_rest_api_endpoint.",
-            "type": "string"
-          }
-        }
+        "allOf": [{
+        "if": { "properties": { "_class_": { "const": "section" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.project.document.Section" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "project" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.project.Project" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "project_type" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.project.ProjectType" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "script" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.project.Script" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "option" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.project.script.Option" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "multilingual_text" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.common.MultilingualText" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "entity" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.metamodel.Entity" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "value_domain_type" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.metamodel.ValueDomainType" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "api_call_argument" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.ApiCallArgument" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "cache_policy" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.cache.CachePolicy" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "datasource" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.datasource.Datasource" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "datasource_entry" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.datasource.DatasourceEntry" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "duration" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.Duration" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "bucket_script_path" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.BucketScriptPath" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "field_sort" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.FieldSort" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "date_histogram_extended_bounds" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.DateHistogramExtendedBounds" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "date_histogram_interval" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.DateHistogramInterval" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "aggregate_group_range" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.AggregateGroupRange" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "keyed_filter" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.KeyedFilter" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "elasticsearch_aggregate" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.aggregate.ElasticsearchAggregate" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "elasticsearch_index" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.ElasticsearchIndex" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "elasticsearch_index_sort" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.ElasticsearchIndexSort" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "elasticsearch_query_predicate" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.ElasticsearchQueryPredicate" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "elasticsearch_query_sort" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.query.ElasticsearchQuerySort" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "elasticsearch_query" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.ElasticsearchQuery" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "mybatis_mapper" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.rdb.mybatis.MybatisMapper" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "rest_request_parameter" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestRequestParameter" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "rest_resource" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestResource" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "service" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.Service" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "elastic_search_client" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.ElasticSearchClient" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "graphql_type" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlType" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "graphql_type_relationship_field_mapping" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationshipFieldMapping" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "service_configuration" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.ServiceConfiguration" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "service_configuration_category" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.ServiceConfigurationCategory" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "configuration_binding" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.ConfigurationBinding" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "component" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.Component" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "environment_variable_definition" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.container.EnvironmentVariableDefinition" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "configuration_file" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.elasticsearch.ConfigurationFile" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "maven_artifact" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.MavenArtifact" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "redis_container_deployment" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.redis.RedisContainerDeployment" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "redis_container_image" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.redis.RedisContainerImage" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "dataset" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.Dataset" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "data_file" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DataFile" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "environment" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.Environment" }
+        }]
       }
     }
   }

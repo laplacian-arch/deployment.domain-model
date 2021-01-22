@@ -1,7 +1,8 @@
 entities:
 - name: container_on_gce_instance
   namespace: laplacian.arch.deployment
-  subtype_of: deployment
+  supertype_name: deployment
+  supertype_namespace: laplacian.arch.deployment
 
   properties:
   - name: machine_type

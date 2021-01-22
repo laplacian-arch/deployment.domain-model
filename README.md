@@ -73,85 +73,48 @@ $ ./script/generate
 ### Entity list
 
 
-- [**BucketScriptAggregate**](<./doc/entities/BucketScriptAggregate.md>)
-bucket_script_aggregate
-- [**BucketScriptPath**](<./doc/entities/BucketScriptPath.md>)
-bucket_script_path
-- [**BucketSelectorAggregate**](<./doc/entities/BucketSelectorAggregate.md>)
-bucket_selector_aggregate
-- [**BucketSortAggregate**](<./doc/entities/BucketSortAggregate.md>)
-bucket_sort_aggregate
-- [**DateHistogramAggregate**](<./doc/entities/DateHistogramAggregate.md>)
-date_histogram_aggregate
-- [**DateHistogramInterval**](<./doc/entities/DateHistogramInterval.md>)
-date_histogram_interval
-- [**DateHistogramCalendarInterval**](<./doc/entities/DateHistogramCalendarInterval.md>)
-date_histogram_calendar_interval
-- [**DateHistogramFixedInterval**](<./doc/entities/DateHistogramFixedInterval.md>)
-date_histogram_fixed_interval
-- [**DateRangeAggregate**](<./doc/entities/DateRangeAggregate.md>)
-date_range_aggregate
-- [**AggregateGroupRange**](<./doc/entities/AggregateGroupRange.md>)
-aggregate_group_range
-- [**FilterAggregate**](<./doc/entities/FilterAggregate.md>)
-filter_aggregate
-- [**FiltersAggregate**](<./doc/entities/FiltersAggregate.md>)
-filters_aggregate
-- [**KeyedFilter**](<./doc/entities/KeyedFilter.md>)
-keyed_filter
-- [**SumAggregate**](<./doc/entities/SumAggregate.md>)
-sum_aggregate
-- [**AvgAggregate**](<./doc/entities/AvgAggregate.md>)
-avg_aggregate
-- [**MinAggregate**](<./doc/entities/MinAggregate.md>)
-min_aggregate
-- [**MaxAggregate**](<./doc/entities/MaxAggregate.md>)
-max_aggregate
-- [**ValueCountAggregate**](<./doc/entities/ValueCountAggregate.md>)
-value_count_aggregate
-- [**TermsAggregate**](<./doc/entities/TermsAggregate.md>)
-A multi-bucket value source based aggregation where buckets are dynamically built
-- one per unique value.
-- [**ElasticsearchAggregate**](<./doc/entities/ElasticsearchAggregate.md>)
-elasticsearch_aggregate
-- [**ElasticsearchQuerySort**](<./doc/entities/ElasticsearchQuerySort.md>)
-elasticsearch_query_sort
-- [**ElasticsearchQueryScoreSort**](<./doc/entities/ElasticsearchQueryScoreSort.md>)
-elasticsearch_query_score_sort
-- [**ElasticsearchQueryFieldSort**](<./doc/entities/ElasticsearchQueryFieldSort.md>)
-elasticsearch_query_field_sort
 - [**Component**](<./doc/entities/Component.md>)
-component
-- [**RedisServer**](<./doc/entities/RedisServer.md>)
-redis_server
-- [**PostgresTestDb**](<./doc/entities/PostgresTestDb.md>)
-postgres_test_db
-- [**ElasticsearchServer**](<./doc/entities/ElasticsearchServer.md>)
-elasticsearch_server
-- [**ElasticsearchConfigurationFiles**](<./doc/entities/ElasticsearchConfigurationFiles.md>)
-elasticsearch_configuration_files
-- [**DatasourceMapping**](<./doc/entities/DatasourceMapping.md>)
-datasource_mapping
-- [**ExternalRestApiMapping**](<./doc/entities/ExternalRestApiMapping.md>)
-external_rest_api_mapping
+An entity describing a component.
+- [**ContainerImage**](<./doc/entities/ContainerImage.md>)
+An entity describing a container_image.
+- [**EnvironmentVariableDefinition**](<./doc/entities/EnvironmentVariableDefinition.md>)
+An entity describing a environment_variable_definition.
+- [**ElasticsearchContainerDeployment**](<./doc/entities/ElasticsearchContainerDeployment.md>)
+An entity describing a elasticsearch_container_deployment.
+- [**ElasticsearchContainerImage**](<./doc/entities/ElasticsearchContainerImage.md>)
+An entity describing a elasticsearch_container_image.
+- [**ConfigurationFile**](<./doc/entities/ConfigurationFile.md>)
+An entity describing a configuration_file.
 - [**MavenArtifact**](<./doc/entities/MavenArtifact.md>)
-maven_artifact
-- [**SearchEngineMapping**](<./doc/entities/SearchEngineMapping.md>)
-search_engine_mapping
-- [**Springboot2ApiService**](<./doc/entities/Springboot2ApiService.md>)
-springboot2_api_service
+An entity describing a maven_artifact.
+- [**PostgresContainerDeployment**](<./doc/entities/PostgresContainerDeployment.md>)
+An entity describing a postgres_container_deployment.
+- [**PostgresContainerImage**](<./doc/entities/PostgresContainerImage.md>)
+An entity describing a postgres_container_image.
+- [**RedisContainerDeployment**](<./doc/entities/RedisContainerDeployment.md>)
+An entity describing a redis_container_deployment.
+- [**RedisContainerImage**](<./doc/entities/RedisContainerImage.md>)
+An entity describing a redis_container_image.
+- [**Springboot2ApiServiceContainerImage**](<./doc/entities/Springboot2ApiServiceContainerImage.md>)
+An entity describing a springboot2_api_service_container_image.
+- [**Springboot2ApiServiceContainerDeployment**](<./doc/entities/Springboot2ApiServiceContainerDeployment.md>)
+An entity describing a springboot2_api_service_container_deployment.
+- [**Dataset**](<./doc/entities/Dataset.md>)
+An entity describing a dataset.
 - [**Deployment**](<./doc/entities/Deployment.md>)
-deployment
+An entity describing a deployment.
+- [**ContainerDeployment**](<./doc/entities/ContainerDeployment.md>)
+An entity describing a container_deployment.
+- [**DataFile**](<./doc/entities/DataFile.md>)
+An entity describing a data_file.
+- [**EnvironmentVariableAssignment**](<./doc/entities/EnvironmentVariableAssignment.md>)
+An entity describing a environment_variable_assignment.
 - [**ContainerOnGceInstance**](<./doc/entities/ContainerOnGceInstance.md>)
-container_on_gce_instance
+An entity describing a container_on_gce_instance.
 - [**ContainerOnGcpCloudrun**](<./doc/entities/ContainerOnGcpCloudrun.md>)
-container_on_gcp_cloudrun
-- [**ContainerOnLocalMachine**](<./doc/entities/ContainerOnLocalMachine.md>)
-container_on_local_machine
+An entity describing a container_on_gcp_cloudrun.
 - [**Environment**](<./doc/entities/Environment.md>)
-environment
-- [**ExternalRestApiEndpoint**](<./doc/entities/ExternalRestApiEndpoint.md>)
-external_rest_api_endpoint
+An entity describing a environment.
 ### Script List
 
 
@@ -264,21 +227,23 @@ external_rest_api_endpoint
 
 
 - [model/project.yaml](<./model/project.yaml>)
-- [src/model/entities/component/cache_server/redis_server.yaml](<./src/model/entities/component/cache_server/redis_server.yaml>)
-- [src/model/entities/component/datastore/postgres_test_db.yaml](<./src/model/entities/component/datastore/postgres_test_db.yaml>)
-- [src/model/entities/component/search_engine/elasticsearch_server.yaml](<./src/model/entities/component/search_engine/elasticsearch_server.yaml>)
-- [src/model/entities/component/service/datasource-mapping.yaml](<./src/model/entities/component/service/datasource-mapping.yaml>)
-- [src/model/entities/component/service/external-rest-api-mapping.yaml](<./src/model/entities/component/service/external-rest-api-mapping.yaml>)
-- [src/model/entities/component/service/maven_artifiact.yaml](<./src/model/entities/component/service/maven_artifiact.yaml>)
-- [src/model/entities/component/service/search-engine-mappings.yaml](<./src/model/entities/component/service/search-engine-mappings.yaml>)
-- [src/model/entities/component/service/springboot2-api-service.yaml](<./src/model/entities/component/service/springboot2-api-service.yaml>)
-- [src/model/entities/component.yaml](<./src/model/entities/component.yaml>)
+- [src/model/entities/component/component.yaml](<./src/model/entities/component/component.yaml>)
+- [src/model/entities/component/container-image.yaml](<./src/model/entities/component/container-image.yaml>)
+- [src/model/entities/component/elasticsearch/elasticsearch-container-deployment.yaml](<./src/model/entities/component/elasticsearch/elasticsearch-container-deployment.yaml>)
+- [src/model/entities/component/elasticsearch/elasticsearch-container-image.yaml](<./src/model/entities/component/elasticsearch/elasticsearch-container-image.yaml>)
+- [src/model/entities/component/maven_artifiact.yaml](<./src/model/entities/component/maven_artifiact.yaml>)
+- [src/model/entities/component/postgres/postgres-container-deployment.yaml](<./src/model/entities/component/postgres/postgres-container-deployment.yaml>)
+- [src/model/entities/component/postgres/postgres-container-image.yaml](<./src/model/entities/component/postgres/postgres-container-image.yaml>)
+- [src/model/entities/component/redis/redis-container-deployment.yaml](<./src/model/entities/component/redis/redis-container-deployment.yaml>)
+- [src/model/entities/component/redis/redis-container-image.yaml](<./src/model/entities/component/redis/redis-container-image.yaml>)
+- [src/model/entities/component/springboot2-api-service/springboot2-api-service-conrainer-image.yaml](<./src/model/entities/component/springboot2-api-service/springboot2-api-service-conrainer-image.yaml>)
+- [src/model/entities/component/springboot2-api-service/springboot2-api-service-container-deployment.yaml](<./src/model/entities/component/springboot2-api-service/springboot2-api-service-container-deployment.yaml>)
+- [src/model/entities/dataset.yaml](<./src/model/entities/dataset.yaml>)
+- [src/model/entities/deployment/container/container-deployment.yaml](<./src/model/entities/deployment/container/container-deployment.yaml>)
 - [src/model/entities/deployment/container_on_gce_instance.yaml](<./src/model/entities/deployment/container_on_gce_instance.yaml>)
 - [src/model/entities/deployment/container_on_gcp_cloudrun.yaml](<./src/model/entities/deployment/container_on_gcp_cloudrun.yaml>)
-- [src/model/entities/deployment/container_on_local_machine.yaml](<./src/model/entities/deployment/container_on_local_machine.yaml>)
 - [src/model/entities/deployment.yaml](<./src/model/entities/deployment.yaml>)
 - [src/model/entities/environment.yaml](<./src/model/entities/environment.yaml>)
-- [src/model/entities/external-rest-api-endpoint.yaml](<./src/model/entities/external-rest-api-endpoint.yaml>)
 
 
 <!-- @main-content@ -->

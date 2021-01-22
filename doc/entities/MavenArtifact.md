@@ -1,7 +1,7 @@
 # **MavenArtifact**
-**namespace:** laplacian.arch.deployment
+**namespace:** laplacian.arch.deployment.component
 
-maven_artifact
+An entity describing a maven_artifact.
 
 
 
