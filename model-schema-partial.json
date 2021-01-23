@@ -5947,12 +5947,8 @@
         "properties": {
           "_class_": { "const": "dataset" },
           "name": {
-            "allOf": [{
             "description": "The name of this dataset.",
             "type": "string"
-            }, {
-            "$ref": "#/definitions/value_domain_types/identifier"
-            }]
           },
           "tags": {
             "type": "array",
