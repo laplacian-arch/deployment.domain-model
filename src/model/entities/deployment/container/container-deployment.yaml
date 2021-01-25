@@ -17,6 +17,18 @@ entities:
     default_value: |
       "latest"
 
+  - name: container_registry
+    type: string
+    optional: true
+    default_value: |
+      ""
+
+  - name: container_image_name
+    type: string
+    snippet: |
+      "${containerRegistry}${if (containerRegistry.isNotBlank()) "/" else ""}${containerImage.baseName}:${tag}"
+
+
   - name: use_locally_built_image
     type: boolean
     optional: true
@@ -71,6 +83,7 @@ entities:
 
 - name: environment_variable_assignment
   namespace: laplacian.arch.deployment.container
+
   properties:
   - name: name
     type: string

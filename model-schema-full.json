@@ -321,14 +321,6 @@
       }
     }
     ,
-    "mybatis_mappers": {
-      "description": "An entity describing a mybatis_mapper.",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/entities/laplacian.arch.api.service.rdb.mybatis.MybatisMapper"
-      }
-    }
-    ,
     "rest_request_parameters": {
       "description": "An entity describing a rest_request_parameter.",
       "type": "array",
@@ -433,6 +425,14 @@
       }
     }
     ,
+    "initial_table_datas": {
+      "description": "An entity describing a initial_table_data.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.InitialTableData"
+      }
+    }
+    ,
     "redis_container_deployments": {
       "description": "An entity describing a redis_container_deployment.",
       "type": "array",
@@ -462,6 +462,14 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DataFile"
+      }
+    }
+    ,
+    "datasource_configurations": {
+      "description": "An entity describing a datasource_configuration.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.DatasourceConfiguration"
       }
     }
     ,
@@ -2558,17 +2566,10 @@
         "description": "A *DataSource* represents an interface through which a client application access to a data store.\nThis includes the following models.\n- The entity that the datastore exposes to the client\n- Statement issued by the client to the datastore",
         "type": "object",
         "required": [
-          "type"
         ],
+        "additionalProperties": false,
         "properties": {
           "_class_": { "const": "datasource" },
-          "type": {
-            "description": "The type of this datasource.",
-            "enum":[
-              "oracle_jdbc"
-            ],
-            "type": "string"
-          },
           "name": {
             "description": "The name of this datasource.",
             "type": "string"
@@ -2576,18 +2577,8 @@
           "description": {
             "description": "The description of this datasource.",
             "type": "string"
-          },
-          "configurations": {
-            "description": "The configurations of this datasource.",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.api.service.ConfigurationBinding"
-            }
           }
-        },
-        "allOf": [
-          { "$ref": "#/definitions/entities/laplacian.arch.api.service.datasource.OracleDatasource" }
-        ]
+        }
       },
       "laplacian.arch.api.service.datasource.DatasourceEntry": {
         "description": "An entity describing a datasource_entry.",
@@ -2602,76 +2593,6 @@
             "description": "The name of this datasource_entry.",
             "type": "string"
           }
-        }
-      },
-      "laplacian.arch.api.service.datasource.OracleDatasource": {
-        "description": "An entity describing a oracle_datasource.",
-        "if": { "properties": {
-          "type": { "const": "oracle_jdbc" }
-        }},
-        "then": {
-        "additionalProperties": false,
-        "properties": {
-          "_class_": { "const": "oracle_datasource" },
-          "type": {
-            "description": "The type of this datasource.",
-            "enum":[
-              "oracle_jdbc"
-            ],
-            "type": "string"
-          },
-          "name": {
-            "description": "The name of this datasource.",
-            "type": "string"
-          },
-          "description": {
-            "description": "The description of this datasource.",
-            "type": "string"
-          },
-          "url": {
-            "description": "The url of this oracle_datasource.",
-            "type": "string"
-          },
-          "username": {
-            "description": "The username of this oracle_datasource.",
-            "type": "string"
-          },
-          "password": {
-            "description": "The password of this oracle_datasource.",
-            "type": "string"
-          },
-          "driver_class_name": {
-            "description": "The driver_class_name of this oracle_datasource.",
-            "type": "string"
-          },
-          "minimum_idle_connections": {
-            "description": "The minimum_idle_connections of this oracle_datasource.",
-            "type": "number"
-          },
-          "maximum_connections": {
-            "description": "The maximum_connections of this oracle_datasource.",
-            "type": "number"
-          },
-          "idle_connection_timeout": {
-            "description": "The idle_connection_timeout of this oracle_datasource.",
-            "type": "number"
-          },
-          "maximum_connection_lifetime": {
-            "description": "The maximum_connection_lifetime of this oracle_datasource.",
-            "type": "number"
-          },
-          "connection_timeout": {
-            "description": "The connection_timeout of this oracle_datasource.",
-            "type": "number"
-          },
-          "configurations": {
-            "description": "The configurations of this datasource.",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.api.service.ConfigurationBinding"
-            }
-          }
-        }
         }
       },
       "laplacian.arch.api.service.Duration": {
@@ -4642,11 +4563,11 @@
               "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationship"
             }
           },
-          "mybatis_mapper_entries": {
-            "description": "The mybatis_mapper_entries of this rdbms_table.",
+          "mybatis_mappers": {
+            "description": "The mybatis_mappers of this rdbms_table.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.api.service.rdb.mybatis.MybatisMapperEntry"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.rdb.mybatis.MybatisMapper"
             }
           }
         }
@@ -4740,29 +4661,24 @@
         "description": "An entity describing a mybatis_mapper.",
         "type": "object",
         "required": [
-          "group_id",
-          "id",
+          "name",
           "type",
           "statement"
         ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "mybatis_mapper" },
-          "group_id": {
+          "name": {
             "allOf": [{
-            "description": "The group_id of this mybatis_mapper.",
-            "type": "string"
-            }, {
-            "$ref": "#/definitions/value_domain_types/namespace"
-            }]
-          },
-          "id": {
-            "allOf": [{
-            "description": "The id of this mybatis_mapper.",
+            "description": "The name of this mybatis_mapper.",
             "type": "string"
             }, {
             "$ref": "#/definitions/value_domain_types/identifier"
             }]
+          },
+          "description": {
+            "description": "The description of this mybatis_mapper.",
+            "type": "string"
           },
           "result_model_name": {
             "description": "The result_model_name of this mybatis_mapper.",
@@ -4789,30 +4705,6 @@
             "items": {
               "$ref": "#/definitions/entities/laplacian.arch.api.service.ApiCallArgument"
             }
-          }
-        }
-      },
-      "laplacian.arch.api.service.rdb.mybatis.MybatisMapperEntry": {
-        "description": "An entity describing a mybatis_mapper_entry.",
-        "type": "object",
-        "required": [
-          "group_id",
-          "id"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "_class_": { "const": "mybatis_mapper_entry" },
-          "group_id": {
-            "description": "The group_id of this mybatis_mapper_entry.",
-            "type": "string"
-          },
-          "id": {
-            "description": "The id of this mybatis_mapper_entry.",
-            "type": "string"
-          },
-          "context_entity_name": {
-            "description": "The context_entity_name of this mybatis_mapper_entry.",
-            "type": "string"
           }
         }
       },
@@ -5419,8 +5311,8 @@
             "type": "string"
             }
           },
-          "image_name": {
-            "description": "The image_name of this container_image.",
+          "base_name": {
+            "description": "The base_name of this container_image.",
             "type": "string"
           },
           "custom_built": {
@@ -5511,6 +5403,10 @@
             "description": "The tag of this container_deployment.",
             "type": "string"
           },
+          "container_registry": {
+            "description": "The container_registry of this container_deployment.",
+            "type": "string"
+          },
           "use_locally_built_image": {
             "description": "Defines this container_deployment is use_locally_built_image or not.",
             "type": "boolean"
@@ -5566,8 +5462,8 @@
             "type": "string"
             }
           },
-          "image_name": {
-            "description": "The image_name of this container_image.",
+          "base_name": {
+            "description": "The base_name of this container_image.",
             "type": "string"
           },
           "custom_built": {
@@ -5683,6 +5579,10 @@
             "description": "The tag of this container_deployment.",
             "type": "string"
           },
+          "container_registry": {
+            "description": "The container_registry of this container_deployment.",
+            "type": "string"
+          },
           "use_locally_built_image": {
             "description": "Defines this container_deployment is use_locally_built_image or not.",
             "type": "boolean"
@@ -5716,8 +5616,39 @@
             "items": {
               "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DataFile"
             }
+          },
+          "initial_data": {
+            "description": "The initial_data of this postgres_container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.InitialTableData"
+            }
           }
         }
+        }
+      },
+      "laplacian.arch.deployment.component.postgres.InitialTableData": {
+        "description": "An entity describing a initial_table_data.",
+        "type": "object",
+        "required": [
+          "table_name",
+          "dataset_name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "initial_table_data" },
+          "table_name": {
+            "description": "The table_name of this initial_table_data.",
+            "type": "string"
+          },
+          "schema_name": {
+            "description": "The schema_name of this initial_table_data.",
+            "type": "string"
+          },
+          "dataset_name": {
+            "description": "The dataset_name of this initial_table_data.",
+            "type": "string"
+          }
         }
       },
       "laplacian.arch.deployment.component.postgres.PostgresContainerImage": {
@@ -5750,16 +5681,16 @@
             "type": "string"
             }
           },
-          "image_name": {
-            "description": "The image_name of this container_image.",
+          "base_name": {
+            "description": "The base_name of this container_image.",
             "type": "string"
           },
           "custom_built": {
             "description": "Defines this container_image is custom_built or not.",
             "type": "boolean"
           },
-          "image_name": {
-            "description": "The image_name of this postgres_container_image.",
+          "base_name": {
+            "description": "The base_name of this postgres_container_image.",
             "type": "string"
           },
           "environment_variables": {
@@ -5794,8 +5725,8 @@
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "redis_container_image" },
-          "image_name": {
-            "description": "The image_name of this redis_container_image.",
+          "base_name": {
+            "description": "The base_name of this redis_container_image.",
             "type": "string"
           }
         }
@@ -5830,8 +5761,8 @@
             "type": "string"
             }
           },
-          "image_name": {
-            "description": "The image_name of this container_image.",
+          "base_name": {
+            "description": "The base_name of this container_image.",
             "type": "string"
           },
           "custom_built": {
@@ -5952,6 +5883,10 @@
             "description": "The tag of this container_deployment.",
             "type": "string"
           },
+          "container_registry": {
+            "description": "The container_registry of this container_deployment.",
+            "type": "string"
+          },
           "use_locally_built_image": {
             "description": "Defines this container_deployment is use_locally_built_image or not.",
             "type": "boolean"
@@ -5988,6 +5923,13 @@
             "type": "array",
             "items": {
               "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DataFile"
+            }
+          },
+          "datasources": {
+            "description": "The datasources of this springboot2_api_service_container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.DatasourceConfiguration"
             }
           }
         }
@@ -6089,6 +6031,10 @@
           },
           "tag": {
             "description": "The tag of this container_deployment.",
+            "type": "string"
+          },
+          "container_registry": {
+            "description": "The container_registry of this container_deployment.",
             "type": "string"
           },
           "use_locally_built_image": {
@@ -6229,6 +6175,253 @@
         }
         }
       },
+      "laplacian.arch.deployment.datasource.DatasourceConfiguration": {
+        "description": "An entity describing a datasource_configuration.",
+        "type": "object",
+        "required": [
+          "name",
+          "type"
+        ],
+        "properties": {
+          "_class_": { "const": "datasource_configuration" },
+          "name": {
+            "description": "The name of this datasource_configuration.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this datasource_configuration.",
+            "enum":[
+              "jdbc_datasource_configuration",
+              "oracle_jdbc",
+              "postgres_jdbc"
+            ],
+            "type": "string"
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.JdbcDatasourceConfiguration" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.OracleJdbcDatasourceConfiguration" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.PostgresJdbcDatasourceConfiguration" }
+        ]
+      },
+      "laplacian.arch.deployment.datasource.JdbcDatasourceConfiguration": {
+        "description": "jdbc datasource setting with Hikari connection pool.",
+        "if": { "properties": {
+          "type": { "const": "jdbc_datasource_configuration" }
+        }},
+        "then": {
+        "properties": {
+          "_class_": { "const": "jdbc_datasource_configuration" },
+          "name": {
+            "description": "The name of this datasource_configuration.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this datasource_configuration.",
+            "enum":[
+              "jdbc_datasource_configuration",
+              "oracle_jdbc",
+              "postgres_jdbc"
+            ],
+            "type": "string"
+          },
+          "jdbc_connection_string": {
+            "description": "The jdbc_connection_string of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "url": {
+            "description": "The url of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "username": {
+            "description": "The username of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "password": {
+            "description": "The password of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "database_name": {
+            "description": "name.lowerHyphenize()",
+            "type": "string"
+          },
+          "driver_class_name": {
+            "description": "The driver_class_name of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "minimum_idle_connections": {
+            "description": "The minimum_idle_connections of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "maximum_connections": {
+            "description": "The maximum_connections of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "idle_connection_timeout": {
+            "description": "The idle_connection_timeout of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "maximum_connection_lifetime": {
+            "description": "The maximum_connection_lifetime of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "connection_timeout": {
+            "description": "The connection_timeout of this jdbc_datasource_configuration.",
+            "type": "number"
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.OracleJdbcDatasourceConfiguration" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.PostgresJdbcDatasourceConfiguration" }
+        ]
+        }
+      },
+      "laplacian.arch.deployment.datasource.OracleJdbcDatasourceConfiguration": {
+        "description": "An entity describing a oracle_jdbc_datasource_configuration.",
+        "if": { "properties": {
+          "type": { "const": "oracle_jdbc" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "oracle_jdbc_datasource_configuration" },
+          "name": {
+            "description": "The name of this datasource_configuration.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this datasource_configuration.",
+            "enum":[
+              "jdbc_datasource_configuration",
+              "oracle_jdbc",
+              "postgres_jdbc"
+            ],
+            "type": "string"
+          },
+          "jdbc_connection_string": {
+            "description": "The jdbc_connection_string of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "url": {
+            "description": "The url of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "username": {
+            "description": "The username of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "password": {
+            "description": "The password of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "database_name": {
+            "description": "name.lowerHyphenize()",
+            "type": "string"
+          },
+          "driver_class_name": {
+            "description": "The driver_class_name of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "minimum_idle_connections": {
+            "description": "The minimum_idle_connections of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "maximum_connections": {
+            "description": "The maximum_connections of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "idle_connection_timeout": {
+            "description": "The idle_connection_timeout of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "maximum_connection_lifetime": {
+            "description": "The maximum_connection_lifetime of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "connection_timeout": {
+            "description": "The connection_timeout of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "driver_class_name": {
+            "description": "The driver_class_name of this oracle_jdbc_datasource_configuration.",
+            "type": "string"
+          }
+        }
+        }
+      },
+      "laplacian.arch.deployment.datasource.PostgresJdbcDatasourceConfiguration": {
+        "description": "An entity describing a postgres_jdbc_datasource_configuration.",
+        "if": { "properties": {
+          "type": { "const": "postgres_jdbc" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "postgres_jdbc_datasource_configuration" },
+          "name": {
+            "description": "The name of this datasource_configuration.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this datasource_configuration.",
+            "enum":[
+              "jdbc_datasource_configuration",
+              "oracle_jdbc",
+              "postgres_jdbc"
+            ],
+            "type": "string"
+          },
+          "jdbc_connection_string": {
+            "description": "The jdbc_connection_string of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "url": {
+            "description": "The url of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "username": {
+            "description": "The username of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "password": {
+            "description": "The password of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "database_name": {
+            "description": "name.lowerHyphenize()",
+            "type": "string"
+          },
+          "driver_class_name": {
+            "description": "The driver_class_name of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "minimum_idle_connections": {
+            "description": "The minimum_idle_connections of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "maximum_connections": {
+            "description": "The maximum_connections of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "idle_connection_timeout": {
+            "description": "The idle_connection_timeout of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "maximum_connection_lifetime": {
+            "description": "The maximum_connection_lifetime of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "connection_timeout": {
+            "description": "The connection_timeout of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "driver_class_name": {
+            "description": "The driver_class_name of this postgres_jdbc_datasource_configuration.",
+            "type": "string"
+          }
+        }
+        }
+      },
       "laplacian.arch.deployment.Environment": {
         "description": "An entity describing a environment.",
         "type": "object",
@@ -6348,9 +6541,6 @@
         "if": { "properties": { "_class_": { "const": "elasticsearch_query" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.ElasticsearchQuery" }
         }, {
-        "if": { "properties": { "_class_": { "const": "mybatis_mapper" } }},
-          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.rdb.mybatis.MybatisMapper" }
-        }, {
         "if": { "properties": { "_class_": { "const": "rest_request_parameter" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestRequestParameter" }
         }, {
@@ -6390,6 +6580,9 @@
         "if": { "properties": { "_class_": { "const": "maven_artifact" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.MavenArtifact" }
         }, {
+        "if": { "properties": { "_class_": { "const": "initial_table_data" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.InitialTableData" }
+        }, {
         "if": { "properties": { "_class_": { "const": "redis_container_deployment" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.redis.RedisContainerDeployment" }
         }, {
@@ -6401,6 +6594,9 @@
         }, {
         "if": { "properties": { "_class_": { "const": "data_file" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DataFile" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "datasource_configuration" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.DatasourceConfiguration" }
         }, {
         "if": { "properties": { "_class_": { "const": "environment" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.Environment" }

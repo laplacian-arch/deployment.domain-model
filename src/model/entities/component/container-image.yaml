@@ -5,7 +5,7 @@ entities:
   supertype_namespace: laplacian.arch.deployment.component
 
   properties:
-  - name: image_name
+  - name: base_name
     type: string
     optional: true
     default_value: |

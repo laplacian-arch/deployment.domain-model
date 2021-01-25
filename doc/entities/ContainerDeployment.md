@@ -23,6 +23,20 @@ The tag of this container_deployment.
   "latest"
   ```
 
+### container_registry: `String`
+The container_registry of this container_deployment.
+- **Default Value:**
+  ```kotlin
+  ""
+  ```
+
+### container_image_name: `String`
+The container_image_name of this container_deployment.
+- **Code:**
+  ```kotlin
+  "${containerRegistry}${if (containerRegistry.isNotBlank()) "/" else ""}${containerImage.baseName}:${tag}"
+  ```
+
 ### use_locally_built_image: `Boolean`
 Defines this container_deployment is use_locally_built_image or not.
 - **Default Value:**

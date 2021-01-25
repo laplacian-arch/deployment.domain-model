@@ -29,12 +29,34 @@ entities:
     default_value: |
       5432
 
-  - name: jdbc_connection_string
-    type: string
-    snippet: |
-      "jdbc:postgresql://${instanceName}:${port}/${databaseName}"
+  relationships:
+  - name: initial_data
+    reference_entity_name: initial_table_data
+    reference_entity_namespace: laplacian.arch.deployment.component.postgres
+    cardinality: '*'
+    aggregate: true
 
-  - name: r2dbc_connection_string
+- name: initial_table_data
+  namespace: laplacian.arch.deployment.component.postgres
+
+  properties:
+  - name: table_name
     type: string
-    snippet: |
-      "r2dbc:pool:postgresql://${instanceName}:${port}/${databaseName}"
+    primary_key: true
+
+  - name: schema_name
+    type: string
+    optional: true
+
+  - name: dataset_name
+    type: string
+
+  relationships:
+  - name: dataset
+    cardinality: '1'
+    reference_entity_name: dataset
+    reference_entity_namespace: laplacian.arch.deployment
+    mappings:
+    - from: dataset_name
+      to: name
+

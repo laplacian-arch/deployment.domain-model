@@ -45,3 +45,7 @@ The debug_port of this springboot2_api_service_container_deployment.
   ```
 
 ## Relationships
+
+### datasources: `List<DatasourceConfiguration>`
+The datasources of this springboot2_api_service_container_deployment.
+- **Cardinality:** `*`

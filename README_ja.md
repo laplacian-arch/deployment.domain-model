@@ -90,6 +90,8 @@ An entity describing a configuration_file.
 An entity describing a maven_artifact.
 - [**PostgresContainerDeployment**](<./doc/entities/PostgresContainerDeployment.md>)
 An entity describing a postgres_container_deployment.
+- [**InitialTableData**](<./doc/entities/InitialTableData.md>)
+An entity describing a initial_table_data.
 - [**PostgresContainerImage**](<./doc/entities/PostgresContainerImage.md>)
 An entity describing a postgres_container_image.
 - [**RedisContainerDeployment**](<./doc/entities/RedisContainerDeployment.md>)
@@ -114,6 +116,14 @@ An entity describing a environment_variable_assignment.
 An entity describing a container_on_gce_instance.
 - [**ContainerOnGcpCloudrun**](<./doc/entities/ContainerOnGcpCloudrun.md>)
 An entity describing a container_on_gcp_cloudrun.
+- [**DatasourceConfiguration**](<./doc/entities/DatasourceConfiguration.md>)
+An entity describing a datasource_configuration.
+- [**JdbcDatasourceConfiguration**](<./doc/entities/JdbcDatasourceConfiguration.md>)
+jdbc datasource setting with Hikari connection pool.
+- [**OracleJdbcDatasourceConfiguration**](<./doc/entities/OracleJdbcDatasourceConfiguration.md>)
+An entity describing a oracle_jdbc_datasource_configuration.
+- [**PostgresJdbcDatasourceConfiguration**](<./doc/entities/PostgresJdbcDatasourceConfiguration.md>)
+An entity describing a postgres_jdbc_datasource_configuration.
 - [**Environment**](<./doc/entities/Environment.md>)
 An entity describing a environment.
 ### スクリプト一覧
@@ -235,6 +245,10 @@ An entity describing a environment.
 - [src/model/entities/deployment/container/container-deployment.yaml](<./src/model/entities/deployment/container/container-deployment.yaml>)
 - [src/model/entities/deployment/container_on_gce_instance.yaml](<./src/model/entities/deployment/container_on_gce_instance.yaml>)
 - [src/model/entities/deployment/container_on_gcp_cloudrun.yaml](<./src/model/entities/deployment/container_on_gcp_cloudrun.yaml>)
+- [src/model/entities/deployment/datasource_configuration/datasource-configuration.yaml](<./src/model/entities/deployment/datasource_configuration/datasource-configuration.yaml>)
+- [src/model/entities/deployment/datasource_configuration/jdbc-datasource-configuration.yaml](<./src/model/entities/deployment/datasource_configuration/jdbc-datasource-configuration.yaml>)
+- [src/model/entities/deployment/datasource_configuration/oracle-jdbc-datasource-configuratoin.yaml](<./src/model/entities/deployment/datasource_configuration/oracle-jdbc-datasource-configuratoin.yaml>)
+- [src/model/entities/deployment/datasource_configuration/postgres-jdbc-datasource-configuratoin.yaml](<./src/model/entities/deployment/datasource_configuration/postgres-jdbc-datasource-configuratoin.yaml>)
 - [src/model/entities/deployment.yaml](<./src/model/entities/deployment.yaml>)
 - [src/model/entities/environment.yaml](<./src/model/entities/environment.yaml>)
 

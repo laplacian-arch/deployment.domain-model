@@ -9,8 +9,8 @@ An entity describing a container_image.
 
 ## Properties
 
-### image_name: `String`
-The image_name of this container_image.
+### base_name: `String`
+The base_name of this container_image.
 - **Default Value:**
   ```kotlin
   name.lowerHyphenize()

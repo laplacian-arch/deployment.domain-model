@@ -34,3 +34,10 @@ entities:
     optional: true
     default_value: |
       5005
+
+  relationships:
+  - name: datasources
+    reference_entity_name: datasource_configuration
+    reference_entity_namespace: laplacian.arch.deployment.datasource
+    cardinality: '*'
+    aggregate: true

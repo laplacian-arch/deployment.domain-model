@@ -37,18 +37,8 @@ The port of this postgres_container_deployment.
   5432
   ```
 
-### jdbc_connection_string: `String`
-The jdbc_connection_string of this postgres_container_deployment.
-- **Code:**
-  ```kotlin
-  "jdbc:postgresql://${instanceName}:${port}/${databaseName}"
-  ```
-
-### r2dbc_connection_string: `String`
-The r2dbc_connection_string of this postgres_container_deployment.
-- **Code:**
-  ```kotlin
-  "r2dbc:pool:postgresql://${instanceName}:${port}/${databaseName}"
-  ```
-
 ## Relationships
+
+### initial_data: `List<InitialTableData>`
+The initial_data of this postgres_container_deployment.
+- **Cardinality:** `*`
