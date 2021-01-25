@@ -461,7 +461,7 @@
       "description": "An entity describing a initial_table_data.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.InitialTableData"
+        "$ref": "#/definitions/entities/laplacian.arch.deployment.container.InitialTableData"
       }
     }
     ,
@@ -5606,7 +5606,7 @@
             "description": "The initial_data of this db_container_deployment.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.InitialTableData"
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.container.InitialTableData"
             }
           }
         }
@@ -6147,7 +6147,7 @@
             "description": "The initial_data of this db_container_deployment.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.InitialTableData"
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.container.InitialTableData"
             }
           }
         },
@@ -6156,7 +6156,7 @@
         ]
         }
       },
-      "laplacian.arch.deployment.component.postgres.InitialTableData": {
+      "laplacian.arch.deployment.container.InitialTableData": {
         "description": "An entity describing a initial_table_data.",
         "type": "object",
         "required": [
@@ -6663,7 +6663,7 @@
           "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DataFile" }
         }, {
         "if": { "properties": { "_class_": { "const": "initial_table_data" } }},
-          "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.InitialTableData" }
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.container.InitialTableData" }
         }, {
         "if": { "properties": { "_class_": { "const": "datasource_configuration" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.DatasourceConfiguration" }

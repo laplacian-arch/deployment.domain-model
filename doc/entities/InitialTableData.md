@@ -1,5 +1,5 @@
 # **InitialTableData**
-**namespace:** laplacian.arch.deployment.component.postgres
+**namespace:** laplacian.arch.deployment.container
 
 An entity describing a initial_table_data.
 
