@@ -15,6 +15,10 @@ The jdbc_connection_string of this jdbc_datasource_configuration.
 
 ### url: `String`
 The url of this jdbc_datasource_configuration.
+- **Default Value:**
+  ```kotlin
+  name.lowerHyphenize()
+  ```
 
 ### username: `String`
 The username of this jdbc_datasource_configuration.
@@ -23,8 +27,11 @@ The username of this jdbc_datasource_configuration.
 The password of this jdbc_datasource_configuration.
 
 ### database_name: `String`
-name.lowerHyphenize()
-
+The database_name of this jdbc_datasource_configuration.
+- **Default Value:**
+  ```kotlin
+  name.lowerHyphenize()
+  ```
 
 ### driver_class_name: `String`
 The driver_class_name of this jdbc_datasource_configuration.

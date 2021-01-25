@@ -13,6 +13,9 @@ entities:
 
   - name: url
     type: string
+    optional: true
+    default_value: |
+      name.lowerHyphenize()
 
   - name: username
     type: string
@@ -23,7 +26,7 @@ entities:
   - name: database_name
     type: string
     optional: true
-    description: |
+    default_value: |
       name.lowerHyphenize()
 
   - name: driver_class_name

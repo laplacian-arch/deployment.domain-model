@@ -6221,7 +6221,7 @@
             "type": "string"
           },
           "database_name": {
-            "description": "name.lowerHyphenize()",
+            "description": "The database_name of this jdbc_datasource_configuration.",
             "type": "string"
           },
           "driver_class_name": {
@@ -6294,7 +6294,7 @@
             "type": "string"
           },
           "database_name": {
-            "description": "name.lowerHyphenize()",
+            "description": "The database_name of this jdbc_datasource_configuration.",
             "type": "string"
           },
           "driver_class_name": {
@@ -6367,7 +6367,7 @@
             "type": "string"
           },
           "database_name": {
-            "description": "name.lowerHyphenize()",
+            "description": "The database_name of this jdbc_datasource_configuration.",
             "type": "string"
           },
           "driver_class_name": {
