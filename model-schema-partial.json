@@ -425,14 +425,6 @@
       }
     }
     ,
-    "initial_table_datas": {
-      "description": "An entity describing a initial_table_data.",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.InitialTableData"
-      }
-    }
-    ,
     "redis_container_deployments": {
       "description": "An entity describing a redis_container_deployment.",
       "type": "array",
@@ -462,6 +454,14 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DataFile"
+      }
+    }
+    ,
+    "initial_table_datas": {
+      "description": "An entity describing a initial_table_data.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.InitialTableData"
       }
     }
     ,
@@ -5370,8 +5370,8 @@
             "enum":[
               "container_deployment",
               "elasticsearch_container_deployment",
-              "postgres_container_deployment",
               "springboot2_api_service_container_deployment",
+              "db_container_deployment",
               "container_on_gce_instance",
               "container_on_gcp_cloudrun"
             ],
@@ -5545,8 +5545,8 @@
             "enum":[
               "container_deployment",
               "elasticsearch_container_deployment",
-              "postgres_container_deployment",
               "springboot2_api_service_container_deployment",
+              "db_container_deployment",
               "container_on_gce_instance",
               "container_on_gcp_cloudrun"
             ],
@@ -5569,16 +5569,20 @@
             "type": "boolean"
           },
           "username": {
-            "description": "The username of this postgres_container_deployment.",
+            "description": "The username of this db_container_deployment.",
             "type": "string"
           },
           "password": {
-            "description": "The password of this postgres_container_deployment.",
+            "description": "The password of this db_container_deployment.",
             "type": "string"
           },
           "database_name": {
-            "description": "The database_name of this postgres_container_deployment.",
+            "description": "The database_name of this db_container_deployment.",
             "type": "string"
+          },
+          "port": {
+            "description": "The port of this db_container_deployment.",
+            "type": "number"
           },
           "port": {
             "description": "The port of this postgres_container_deployment.",
@@ -5599,36 +5603,13 @@
             }
           },
           "initial_data": {
-            "description": "The initial_data of this postgres_container_deployment.",
+            "description": "The initial_data of this db_container_deployment.",
             "type": "array",
             "items": {
               "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.InitialTableData"
             }
           }
         }
-        }
-      },
-      "laplacian.arch.deployment.component.postgres.InitialTableData": {
-        "description": "An entity describing a initial_table_data.",
-        "type": "object",
-        "required": [
-          "table_name"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "_class_": { "const": "initial_table_data" },
-          "table_name": {
-            "description": "The table_name of this initial_table_data.",
-            "type": "string"
-          },
-          "schema_name": {
-            "description": "The schema_name of this initial_table_data.",
-            "type": "string"
-          },
-          "dataset_name": {
-            "description": "The dataset_name of this initial_table_data.",
-            "type": "string"
-          }
         }
       },
       "laplacian.arch.deployment.component.postgres.PostgresContainerImage": {
@@ -5852,8 +5833,8 @@
             "enum":[
               "container_deployment",
               "elasticsearch_container_deployment",
-              "postgres_container_deployment",
               "springboot2_api_service_container_deployment",
+              "db_container_deployment",
               "container_on_gce_instance",
               "container_on_gcp_cloudrun"
             ],
@@ -5966,8 +5947,8 @@
             "enum":[
               "container_deployment",
               "elasticsearch_container_deployment",
-              "postgres_container_deployment",
               "springboot2_api_service_container_deployment",
+              "db_container_deployment",
               "container_on_gce_instance",
               "container_on_gcp_cloudrun"
             ],
@@ -5977,8 +5958,8 @@
         "allOf": [
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.container.ContainerDeployment" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.elasticsearch.ElasticsearchContainerDeployment" },
-          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.PostgresContainerDeployment" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.springboot2_api_service.Springboot2ApiServiceContainerDeployment" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DbContainerDeployment" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.ContainerOnGceInstance" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.ContainerOnGcpCloudrun" }
         ]
@@ -6000,8 +5981,8 @@
             "enum":[
               "container_deployment",
               "elasticsearch_container_deployment",
-              "postgres_container_deployment",
               "springboot2_api_service_container_deployment",
+              "db_container_deployment",
               "container_on_gce_instance",
               "container_on_gcp_cloudrun"
             ],
@@ -6040,8 +6021,9 @@
         },
         "allOf": [
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.elasticsearch.ElasticsearchContainerDeployment" },
-          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.PostgresContainerDeployment" },
-          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.springboot2_api_service.Springboot2ApiServiceContainerDeployment" }
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.springboot2_api_service.Springboot2ApiServiceContainerDeployment" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DbContainerDeployment" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.PostgresContainerDeployment" }
         ]
         }
       },
@@ -6091,6 +6073,116 @@
           }
         }
       },
+      "laplacian.arch.deployment.container.DbContainerDeployment": {
+        "description": "An entity describing a db_container_deployment.",
+        "if": { "properties": {
+          "type": { "const": "db_container_deployment" }
+        }},
+        "then": {
+        "properties": {
+          "_class_": { "const": "db_container_deployment" },
+          "name": {
+            "description": "The name of this deployment.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this deployment.",
+            "enum":[
+              "container_deployment",
+              "elasticsearch_container_deployment",
+              "springboot2_api_service_container_deployment",
+              "db_container_deployment",
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun"
+            ],
+            "type": "string"
+          },
+          "instance_name": {
+            "description": "The instance_name of this container_deployment.",
+            "type": "string"
+          },
+          "tag": {
+            "description": "The tag of this container_deployment.",
+            "type": "string"
+          },
+          "container_registry": {
+            "description": "The container_registry of this container_deployment.",
+            "type": "string"
+          },
+          "use_locally_built_image": {
+            "description": "Defines this container_deployment is use_locally_built_image or not.",
+            "type": "boolean"
+          },
+          "username": {
+            "description": "The username of this db_container_deployment.",
+            "type": "string"
+          },
+          "password": {
+            "description": "The password of this db_container_deployment.",
+            "type": "string"
+          },
+          "database_name": {
+            "description": "The database_name of this db_container_deployment.",
+            "type": "string"
+          },
+          "port": {
+            "description": "The port of this db_container_deployment.",
+            "type": "number"
+          },
+          "environment_variables": {
+            "description": "The environment_variables of this container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.container.EnvironmentVariableAssignment"
+            }
+          },
+          "data_files": {
+            "description": "The data_files of this container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DataFile"
+            }
+          },
+          "initial_data": {
+            "description": "The initial_data of this db_container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.InitialTableData"
+            }
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.PostgresContainerDeployment" }
+        ]
+        }
+      },
+      "laplacian.arch.deployment.component.postgres.InitialTableData": {
+        "description": "An entity describing a initial_table_data.",
+        "type": "object",
+        "required": [
+          "table_name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "initial_table_data" },
+          "table_name": {
+            "description": "The table_name of this initial_table_data.",
+            "type": "string"
+          },
+          "table_model_name": {
+            "description": "The table_model_name of this initial_table_data.",
+            "type": "string"
+          },
+          "schema_name": {
+            "description": "The schema_name of this initial_table_data.",
+            "type": "string"
+          },
+          "dataset_name": {
+            "description": "The dataset_name of this initial_table_data.",
+            "type": "string"
+          }
+        }
+      },
       "laplacian.arch.deployment.ContainerOnGceInstance": {
         "description": "An entity describing a container_on_gce_instance.",
         "if": { "properties": {
@@ -6109,8 +6201,8 @@
             "enum":[
               "container_deployment",
               "elasticsearch_container_deployment",
-              "postgres_container_deployment",
               "springboot2_api_service_container_deployment",
+              "db_container_deployment",
               "container_on_gce_instance",
               "container_on_gcp_cloudrun"
             ],
@@ -6145,8 +6237,8 @@
             "enum":[
               "container_deployment",
               "elasticsearch_container_deployment",
-              "postgres_container_deployment",
               "springboot2_api_service_container_deployment",
+              "db_container_deployment",
               "container_on_gce_instance",
               "container_on_gcp_cloudrun"
             ],
@@ -6558,9 +6650,6 @@
         "if": { "properties": { "_class_": { "const": "maven_artifact" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.MavenArtifact" }
         }, {
-        "if": { "properties": { "_class_": { "const": "initial_table_data" } }},
-          "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.InitialTableData" }
-        }, {
         "if": { "properties": { "_class_": { "const": "redis_container_deployment" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.redis.RedisContainerDeployment" }
         }, {
@@ -6572,6 +6661,9 @@
         }, {
         "if": { "properties": { "_class_": { "const": "data_file" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DataFile" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "initial_table_data" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.InitialTableData" }
         }, {
         "if": { "properties": { "_class_": { "const": "datasource_configuration" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.DatasourceConfiguration" }

@@ -89,8 +89,6 @@ An entity describing a configuration_file.
 An entity describing a maven_artifact.
 - [**PostgresContainerDeployment**](<./doc/entities/PostgresContainerDeployment.md>)
 An entity describing a postgres_container_deployment.
-- [**InitialTableData**](<./doc/entities/InitialTableData.md>)
-An entity describing a initial_table_data.
 - [**PostgresContainerImage**](<./doc/entities/PostgresContainerImage.md>)
 An entity describing a postgres_container_image.
 - [**RedisContainerDeployment**](<./doc/entities/RedisContainerDeployment.md>)
@@ -111,6 +109,10 @@ An entity describing a container_deployment.
 An entity describing a data_file.
 - [**EnvironmentVariableAssignment**](<./doc/entities/EnvironmentVariableAssignment.md>)
 An entity describing a environment_variable_assignment.
+- [**DbContainerDeployment**](<./doc/entities/DbContainerDeployment.md>)
+An entity describing a db_container_deployment.
+- [**InitialTableData**](<./doc/entities/InitialTableData.md>)
+An entity describing a initial_table_data.
 - [**ContainerOnGceInstance**](<./doc/entities/ContainerOnGceInstance.md>)
 An entity describing a container_on_gce_instance.
 - [**ContainerOnGcpCloudrun**](<./doc/entities/ContainerOnGcpCloudrun.md>)
@@ -250,6 +252,7 @@ An entity describing a environment.
 - [src/model/entities/component/springboot2-api-service/springboot2-api-service-container-deployment.yaml](<./src/model/entities/component/springboot2-api-service/springboot2-api-service-container-deployment.yaml>)
 - [src/model/entities/dataset.yaml](<./src/model/entities/dataset.yaml>)
 - [src/model/entities/deployment/container/container-deployment.yaml](<./src/model/entities/deployment/container/container-deployment.yaml>)
+- [src/model/entities/deployment/container/db-container-deployment.yaml](<./src/model/entities/deployment/container/db-container-deployment.yaml>)
 - [src/model/entities/deployment/container_on_gce_instance.yaml](<./src/model/entities/deployment/container_on_gce_instance.yaml>)
 - [src/model/entities/deployment/container_on_gcp_cloudrun.yaml](<./src/model/entities/deployment/container_on_gcp_cloudrun.yaml>)
 - [src/model/entities/deployment/datasource_configuration/datasource-configuration.yaml](<./src/model/entities/deployment/datasource_configuration/datasource-configuration.yaml>)
