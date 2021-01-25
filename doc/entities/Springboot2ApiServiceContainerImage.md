@@ -68,6 +68,13 @@ The oracle_jdbc_driver_version of this springboot2_api_service_container_image.
   "19.8.0.0"
   ```
 
+### postgres_jdbc_driver_version: `String`
+The postgres_jdbc_driver_version of this springboot2_api_service_container_image.
+- **Default Value:**
+  ```kotlin
+  "42.2.18"
+  ```
+
 ### springboot_version: `String`
 The springboot_version of this springboot2_api_service_container_image.
 - **Default Value:**

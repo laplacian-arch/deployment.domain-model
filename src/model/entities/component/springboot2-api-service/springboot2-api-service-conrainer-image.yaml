@@ -60,6 +60,12 @@ entities:
     default_value: |
       "19.8.0.0"
 
+  - name: postgres_jdbc_driver_version
+    type: string
+    optional: true
+    default_value: |
+      "42.2.18"
+
   - name: springboot_version
     type: string
     optional: true

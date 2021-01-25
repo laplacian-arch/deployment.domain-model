@@ -2566,8 +2566,8 @@
         "description": "A *DataSource* represents an interface through which a client application access to a data store.\nThis includes the following models.\n- The entity that the datastore exposes to the client\n- Statement issued by the client to the datastore",
         "type": "object",
         "required": [
+          "type"
         ],
-        "additionalProperties": false,
         "properties": {
           "_class_": { "const": "datasource" },
           "name": {
@@ -2577,8 +2577,18 @@
           "description": {
             "description": "The description of this datasource.",
             "type": "string"
+          },
+          "type": {
+            "description": "The type of this datasource.",
+            "enum":[
+              "postgres_jdbc"
+            ],
+            "type": "string"
           }
-        }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.datasource.PostgresJdbcDatasource" }
+        ]
       },
       "laplacian.arch.api.service.datasource.DatasourceEntry": {
         "description": "An entity describing a datasource_entry.",
@@ -2593,6 +2603,33 @@
             "description": "The name of this datasource_entry.",
             "type": "string"
           }
+        }
+      },
+      "laplacian.arch.api.service.datasource.PostgresJdbcDatasource": {
+        "description": "An entity describing a postgres_jdbc_datasource.",
+        "if": { "properties": {
+          "type": { "const": "postgres_jdbc" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "postgres_jdbc_datasource" },
+          "name": {
+            "description": "The name of this datasource.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this datasource.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this datasource.",
+            "enum":[
+              "postgres_jdbc"
+            ],
+            "type": "string"
+          }
+        }
         }
       },
       "laplacian.arch.api.service.Duration": {
@@ -5804,6 +5841,10 @@
           },
           "oracle_jdbc_driver_version": {
             "description": "The oracle_jdbc_driver_version of this springboot2_api_service_container_image.",
+            "type": "string"
+          },
+          "postgres_jdbc_driver_version": {
+            "description": "The postgres_jdbc_driver_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
           "springboot_version": {
