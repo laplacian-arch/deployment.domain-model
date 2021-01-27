@@ -5369,11 +5369,12 @@
             "description": "The type of this deployment.",
             "enum":[
               "container_deployment",
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun",
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
-              "container_on_gce_instance",
-              "container_on_gcp_cloudrun"
+              "postgres_container_deployment"
             ],
             "type": "string"
           },
@@ -5544,11 +5545,12 @@
             "description": "The type of this deployment.",
             "enum":[
               "container_deployment",
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun",
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
-              "container_on_gce_instance",
-              "container_on_gcp_cloudrun"
+              "postgres_container_deployment"
             ],
             "type": "string"
           },
@@ -5584,9 +5586,41 @@
             "description": "The port of this db_container_deployment.",
             "type": "number"
           },
+          "gradle_version": {
+            "description": "The gradle_version of this db_container_deployment.",
+            "type": "string"
+          },
+          "flyway_container_base_image": {
+            "description": "The flyway_container_base_image of this db_container_deployment.",
+            "type": "string"
+          },
+          "flyway_version": {
+            "description": "The flyway_version of this db_container_deployment.",
+            "type": "string"
+          },
+          "jdbc_driver_jar": {
+            "description": "The jdbc_driver_jar of this db_container_deployment.",
+            "type": "string"
+          },
+          "jdbc_driver_class_name": {
+            "description": "The jdbc_driver_class_name of this db_container_deployment.",
+            "type": "string"
+          },
+          "jdbc_connection_string": {
+            "description": "The jdbc_connection_string of this db_container_deployment.",
+            "type": "string"
+          },
           "port": {
             "description": "The port of this postgres_container_deployment.",
             "type": "number"
+          },
+          "jdbc_driver_jar": {
+            "description": "The jdbc_driver_jar of this postgres_container_deployment.",
+            "type": "string"
+          },
+          "jdbc_driver_class_name": {
+            "description": "The jdbc_driver_class_name of this postgres_container_deployment.",
+            "type": "string"
           },
           "environment_variables": {
             "description": "The environment_variables of this container_deployment.",
@@ -5832,11 +5866,12 @@
             "description": "The type of this deployment.",
             "enum":[
               "container_deployment",
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun",
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
-              "container_on_gce_instance",
-              "container_on_gcp_cloudrun"
+              "postgres_container_deployment"
             ],
             "type": "string"
           },
@@ -5946,22 +5981,24 @@
             "description": "The type of this deployment.",
             "enum":[
               "container_deployment",
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun",
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
-              "container_on_gce_instance",
-              "container_on_gcp_cloudrun"
+              "postgres_container_deployment"
             ],
             "type": "string"
           }
         },
         "allOf": [
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.container.ContainerDeployment" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.ContainerOnGceInstance" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.ContainerOnGcpCloudrun" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.elasticsearch.ElasticsearchContainerDeployment" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.springboot2_api_service.Springboot2ApiServiceContainerDeployment" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DbContainerDeployment" },
-          { "$ref": "#/definitions/entities/laplacian.arch.deployment.ContainerOnGceInstance" },
-          { "$ref": "#/definitions/entities/laplacian.arch.deployment.ContainerOnGcpCloudrun" }
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.PostgresContainerDeployment" }
         ]
       },
       "laplacian.arch.deployment.container.ContainerDeployment": {
@@ -5980,11 +6017,12 @@
             "description": "The type of this deployment.",
             "enum":[
               "container_deployment",
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun",
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
-              "container_on_gce_instance",
-              "container_on_gcp_cloudrun"
+              "postgres_container_deployment"
             ],
             "type": "string"
           },
@@ -6089,11 +6127,12 @@
             "description": "The type of this deployment.",
             "enum":[
               "container_deployment",
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun",
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
-              "container_on_gce_instance",
-              "container_on_gcp_cloudrun"
+              "postgres_container_deployment"
             ],
             "type": "string"
           },
@@ -6128,6 +6167,30 @@
           "port": {
             "description": "The port of this db_container_deployment.",
             "type": "number"
+          },
+          "gradle_version": {
+            "description": "The gradle_version of this db_container_deployment.",
+            "type": "string"
+          },
+          "flyway_container_base_image": {
+            "description": "The flyway_container_base_image of this db_container_deployment.",
+            "type": "string"
+          },
+          "flyway_version": {
+            "description": "The flyway_version of this db_container_deployment.",
+            "type": "string"
+          },
+          "jdbc_driver_jar": {
+            "description": "The jdbc_driver_jar of this db_container_deployment.",
+            "type": "string"
+          },
+          "jdbc_driver_class_name": {
+            "description": "The jdbc_driver_class_name of this db_container_deployment.",
+            "type": "string"
+          },
+          "jdbc_connection_string": {
+            "description": "The jdbc_connection_string of this db_container_deployment.",
+            "type": "string"
           },
           "environment_variables": {
             "description": "The environment_variables of this container_deployment.",
@@ -6200,11 +6263,12 @@
             "description": "The type of this deployment.",
             "enum":[
               "container_deployment",
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun",
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
-              "container_on_gce_instance",
-              "container_on_gcp_cloudrun"
+              "postgres_container_deployment"
             ],
             "type": "string"
           },
@@ -6236,11 +6300,12 @@
             "description": "The type of this deployment.",
             "enum":[
               "container_deployment",
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun",
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
-              "container_on_gce_instance",
-              "container_on_gcp_cloudrun"
+              "postgres_container_deployment"
             ],
             "type": "string"
           }
