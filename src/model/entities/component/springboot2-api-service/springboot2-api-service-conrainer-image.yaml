@@ -48,6 +48,12 @@ entities:
     default_value: |
       "1.3.9"
 
+  - name: reactor_kotlin_extension_version
+    type: string
+    optional: true
+    default_value: |
+      "1.1.2"
+
   - name: r2dbc_postgres_driver_version
     type: string
     optional: true

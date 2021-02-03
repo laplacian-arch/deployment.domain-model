@@ -321,6 +321,14 @@
       }
     }
     ,
+    "graphql_types": {
+      "description": "An entity describing a graphql_type.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlType"
+      }
+    }
+    ,
     "rest_request_parameters": {
       "description": "An entity describing a rest_request_parameter.",
       "type": "array",
@@ -350,22 +358,6 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/laplacian.arch.api.service.ElasticSearchClient"
-      }
-    }
-    ,
-    "graphql_types": {
-      "description": "An entity describing a graphql_type.",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlType"
-      }
-    }
-    ,
-    "graphql_type_relationship_field_mappings": {
-      "description": "An entity describing a graphql_type_relationship_field_mapping.",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationshipFieldMapping"
       }
     }
     ,
@@ -4464,117 +4456,408 @@
         }
         }
       },
-      "laplacian.arch.api.service.graphql.ExternalRestResource": {
-        "description": "An entity describing a external_rest_resource.",
+      "laplacian.arch.api.service.graphql.GraphqlFieldFetcher": {
+        "description": "An entity describing a graphql_field_fetcher.",
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "_class_": { "const": "graphql_field_fetcher" },
+          "type": {
+            "description": "The type of this graphql_field_fetcher.",
+            "enum":[
+              "graphql_field_link",
+              "static_data",
+              "mybatis",
+              "rest_api"
+            ],
+            "type": "string"
+          },
+          "result_filter": {
+            "description": "The result_filter of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "cache_policy_name": {
+            "description": "The cache_policy_name of this graphql_field_fetcher.",
+            "type": "string"
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlFieldLink" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.StaticDataFetcher" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.mybatis.MybatisFetcher" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestApiFetcher" }
+        ]
+      },
+      "laplacian.arch.api.service.graphql.GraphqlFieldLink": {
+        "description": "An entity describing a graphql_field_link.",
         "if": { "properties": {
-          "resolver_type": { "const": "external_rest_resource" }
+          "type": { "const": "graphql_field_link" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
-          "_class_": { "const": "external_rest_resource" },
-          "name": {
-            "description": "The name of this graphql_type.",
-            "type": "string"
-          },
-          "resolver_type": {
-            "description": "The resolver_type of this graphql_type.",
+          "_class_": { "const": "graphql_field_link" },
+          "type": {
+            "description": "The type of this graphql_field_fetcher.",
             "enum":[
-              "external_rest_resource",
-              "indexed_document",
-              "rdbms_table",
-              "static_data"
+              "graphql_field_link",
+              "static_data",
+              "mybatis",
+              "rest_api"
             ],
             "type": "string"
           },
+          "result_filter": {
+            "description": "The result_filter of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "cache_policy_name": {
+            "description": "The cache_policy_name of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "type_name": {
+            "allOf": [{
+            "description": "The type_name of this graphql_field_link.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/identifier"
+            }]
+          },
+          "group": {
+            "description": "The group of this graphql_field_link.",
+            "type": "string"
+          },
+          "field_name": {
+            "allOf": [{
+            "description": "The field_name of this graphql_field_link.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/identifier"
+            }]
+          }
+        }
+        }
+      },
+      "laplacian.arch.api.service.graphql.StaticDataFetcher": {
+        "description": "An entity describing a static_data_fetcher.",
+        "if": { "properties": {
+          "type": { "const": "static_data" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "static_data_fetcher" },
+          "type": {
+            "description": "The type of this graphql_field_fetcher.",
+            "enum":[
+              "graphql_field_link",
+              "static_data",
+              "mybatis",
+              "rest_api"
+            ],
+            "type": "string"
+          },
+          "result_filter": {
+            "description": "The result_filter of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "cache_policy_name": {
+            "description": "The cache_policy_name of this graphql_field_fetcher.",
+            "type": "string"
+          }
+        }
+        }
+      },
+      "laplacian.arch.api.service.graphql.GraphqlCompositeField": {
+        "description": "An entity describing a graphql_composite_field.",
+        "if": { "properties": {
+          "field_type": { "const": "composite" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "graphql_composite_field" },
+          "name": {
+            "description": "The name of this graphql_field.",
+            "type": "string"
+          },
           "description": {
-            "description": "The description of this graphql_type.",
+            "description": "The description of this graphql_field.",
             "type": "string"
           },
-          "rest_resource_name": {
-            "description": "The rest_resource_name of this external_rest_resource.",
+          "field_type": {
+            "description": "The field_type of this graphql_field.",
+            "enum":[
+              "composite",
+              "scalar",
+              "graphql_type"
+            ],
             "type": "string"
           },
-          "relationships": {
-            "description": "The relationships of this graphql_type.",
+          "multiple": {
+            "description": "Defines this graphql_field is multiple or not.",
+            "type": "boolean"
+          },
+          "optional": {
+            "description": "Defines this graphql_field is optional or not.",
+            "type": "boolean"
+          },
+          "operation_type": {
+            "description": "The operation_type of this graphql_field.",
+            "enum":[
+              "query",
+              "mutation",
+              "subscription"
+            ],
+            "type": "string"
+          },
+          "root_field": {
+            "description": "Specifies whether this field is shown in the root query object.",
+            "type": "boolean"
+          },
+          "data_model_name": {
+            "description": "The data_model_name of this graphql_composite_field.",
+            "type": "string"
+          },
+          "data_model_namespace": {
+            "description": "The data_model_namespace of this graphql_composite_field.",
+            "type": "string"
+          },
+          "fetcher": {
+            "description": "The fetcher of this graphql_field.",
+            "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlFieldFetcher"
+          },
+          "arguments": {
+            "description": "The arguments of this graphql_field.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationship"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ApiCallArgument"
             }
           }
         }
         }
       },
-      "laplacian.arch.api.service.graphql.IndexedDocument": {
-        "description": "An entity describing a indexed_document.",
+      "laplacian.arch.api.service.graphql.GraphqlField": {
+        "description": "An entity describing a graphql_field.",
+        "type": "object",
+        "required": [
+          "name",
+          "field_type"
+        ],
+        "properties": {
+          "_class_": { "const": "graphql_field" },
+          "name": {
+            "description": "The name of this graphql_field.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this graphql_field.",
+            "type": "string"
+          },
+          "field_type": {
+            "description": "The field_type of this graphql_field.",
+            "enum":[
+              "composite",
+              "scalar",
+              "graphql_type"
+            ],
+            "type": "string"
+          },
+          "multiple": {
+            "description": "Defines this graphql_field is multiple or not.",
+            "type": "boolean"
+          },
+          "optional": {
+            "description": "Defines this graphql_field is optional or not.",
+            "type": "boolean"
+          },
+          "operation_type": {
+            "description": "The operation_type of this graphql_field.",
+            "enum":[
+              "query",
+              "mutation",
+              "subscription"
+            ],
+            "type": "string"
+          },
+          "root_field": {
+            "description": "Specifies whether this field is shown in the root query object.",
+            "type": "boolean"
+          },
+          "fetcher": {
+            "description": "The fetcher of this graphql_field.",
+            "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlFieldFetcher"
+          },
+          "arguments": {
+            "description": "The arguments of this graphql_field.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ApiCallArgument"
+            }
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlCompositeField" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlScalarField" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeReference" }
+        ]
+      },
+      "laplacian.arch.api.service.graphql.GraphqlScalarField": {
+        "description": "An entity describing a graphql_scalar_field.",
         "if": { "properties": {
-          "resolver_type": { "const": "indexed_document" }
+          "field_type": { "const": "scalar" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
-          "_class_": { "const": "indexed_document" },
+          "_class_": { "const": "graphql_scalar_field" },
           "name": {
-            "description": "The name of this graphql_type.",
-            "type": "string"
-          },
-          "resolver_type": {
-            "description": "The resolver_type of this graphql_type.",
-            "enum":[
-              "external_rest_resource",
-              "indexed_document",
-              "rdbms_table",
-              "static_data"
-            ],
+            "description": "The name of this graphql_field.",
             "type": "string"
           },
           "description": {
-            "description": "The description of this graphql_type.",
+            "description": "The description of this graphql_field.",
             "type": "string"
           },
-          "index_name": {
-            "description": "The index_name of this indexed_document.",
+          "field_type": {
+            "description": "The field_type of this graphql_field.",
+            "enum":[
+              "composite",
+              "scalar",
+              "graphql_type"
+            ],
             "type": "string"
           },
-          "search_engine_client_name": {
-            "description": "The search_engine_client_name of this indexed_document.",
+          "multiple": {
+            "description": "Defines this graphql_field is multiple or not.",
+            "type": "boolean"
+          },
+          "optional": {
+            "description": "Defines this graphql_field is optional or not.",
+            "type": "boolean"
+          },
+          "operation_type": {
+            "description": "The operation_type of this graphql_field.",
+            "enum":[
+              "query",
+              "mutation",
+              "subscription"
+            ],
             "type": "string"
           },
-          "default_searcher_name": {
-            "description": "The default_searcher_name of this indexed_document.",
+          "root_field": {
+            "description": "Specifies whether this field is shown in the root query object.",
+            "type": "boolean"
+          },
+          "value_type": {
+            "description": "The value_type of this graphql_scalar_field.",
+            "enum":[
+              "string",
+              "int",
+              "float"
+            ],
             "type": "string"
           },
-          "relationships": {
-            "description": "The relationships of this graphql_type.",
+          "fetcher": {
+            "description": "The fetcher of this graphql_field.",
+            "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlFieldFetcher"
+          },
+          "arguments": {
+            "description": "The arguments of this graphql_field.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationship"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ApiCallArgument"
             }
           }
         }
         }
       },
-      "laplacian.arch.api.service.graphql.RdbmsTable": {
-        "description": "An entity describing a rdbms_table.",
+      "laplacian.arch.api.service.graphql.GraphqlTypeReference": {
+        "description": "An entity describing a graphql_type_reference.",
         "if": { "properties": {
-          "resolver_type": { "const": "rdbms_table" }
+          "field_type": { "const": "graphql_type" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
-          "_class_": { "const": "rdbms_table" },
+          "_class_": { "const": "graphql_type_reference" },
+          "name": {
+            "description": "The name of this graphql_field.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this graphql_field.",
+            "type": "string"
+          },
+          "field_type": {
+            "description": "The field_type of this graphql_field.",
+            "enum":[
+              "composite",
+              "scalar",
+              "graphql_type"
+            ],
+            "type": "string"
+          },
+          "multiple": {
+            "description": "Defines this graphql_field is multiple or not.",
+            "type": "boolean"
+          },
+          "optional": {
+            "description": "Defines this graphql_field is optional or not.",
+            "type": "boolean"
+          },
+          "operation_type": {
+            "description": "The operation_type of this graphql_field.",
+            "enum":[
+              "query",
+              "mutation",
+              "subscription"
+            ],
+            "type": "string"
+          },
+          "root_field": {
+            "description": "Specifies whether this field is shown in the root query object.",
+            "type": "boolean"
+          },
+          "graphql_type_name": {
+            "description": "The graphql_type_name of this graphql_type_reference.",
+            "type": "string"
+          },
+          "graphql_type_group": {
+            "description": "The graphql_type_group of this graphql_type_reference.",
+            "type": "string"
+          },
+          "fetcher": {
+            "description": "The fetcher of this graphql_field.",
+            "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlFieldFetcher"
+          },
+          "arguments": {
+            "description": "The arguments of this graphql_field.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ApiCallArgument"
+            }
+          }
+        }
+        }
+      },
+      "laplacian.arch.api.service.graphql.GraphqlType": {
+        "description": "An entity describing a graphql_type.",
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "graphql_type" },
           "name": {
             "description": "The name of this graphql_type.",
             "type": "string"
           },
-          "resolver_type": {
-            "description": "The resolver_type of this graphql_type.",
-            "enum":[
-              "external_rest_resource",
-              "indexed_document",
-              "rdbms_table",
-              "static_data"
-            ],
+          "group": {
+            "description": "The group of this graphql_type.",
             "type": "string"
           },
           "description": {
@@ -4582,147 +4865,63 @@
             "type": "string"
           },
           "data_model_name": {
-            "description": "The data_model_name of this rdbms_table.",
+            "description": "The data_model_name of this graphql_type.",
             "type": "string"
           },
-          "table_name": {
-            "description": "The table_name of this rdbms_table.",
+          "data_model_namespace": {
+            "description": "The data_model_namespace of this graphql_type.",
             "type": "string"
           },
-          "datasource_name": {
-            "description": "The datasource_name of this rdbms_table.",
-            "type": "string"
-          },
-          "relationships": {
-            "description": "The relationships of this graphql_type.",
+          "fields": {
+            "description": "The fields of this graphql_type.",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationship"
-            }
-          },
-          "mybatis_mappers": {
-            "description": "The mybatis_mappers of this rdbms_table.",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.api.service.rdb.mybatis.MybatisMapper"
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlField"
             }
           }
         }
-        }
       },
-      "laplacian.arch.api.service.graphql.StaticData": {
-        "description": "An entity describing a static_data.",
+      "laplacian.arch.api.service.mybatis.MybatisFetcher": {
+        "description": "An entity describing a mybatis_fetcher.",
         "if": { "properties": {
-          "resolver_type": { "const": "static_data" }
+          "type": { "const": "mybatis" }
         }},
         "then": {
         "additionalProperties": false,
         "properties": {
-          "_class_": { "const": "static_data" },
-          "name": {
-            "description": "The name of this graphql_type.",
-            "type": "string"
-          },
-          "resolver_type": {
-            "description": "The resolver_type of this graphql_type.",
+          "_class_": { "const": "mybatis_fetcher" },
+          "type": {
+            "description": "The type of this graphql_field_fetcher.",
             "enum":[
-              "external_rest_resource",
-              "indexed_document",
-              "rdbms_table",
-              "static_data"
+              "graphql_field_link",
+              "static_data",
+              "mybatis",
+              "rest_api"
             ],
             "type": "string"
           },
-          "description": {
-            "description": "The description of this graphql_type.",
+          "result_filter": {
+            "description": "The result_filter of this graphql_field_fetcher.",
             "type": "string"
           },
-          "data_model_name": {
-            "description": "The data_model_name of this static_data.",
+          "cache_policy_name": {
+            "description": "The cache_policy_name of this graphql_field_fetcher.",
             "type": "string"
           },
-          "default_query_name": {
-            "description": "The default_query_name of this static_data.",
-            "type": "string"
-          },
-          "relationships": {
-            "description": "The relationships of this graphql_type.",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationship"
-            }
-          },
-          "queries": {
-            "description": "The queries of this static_data.",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.static_data.Query"
-            }
-          }
-        }
-        }
-      },
-      "laplacian.arch.api.service.graphql.static_data.Query": {
-        "description": "An entity describing a query.",
-        "type": "object",
-        "required": [
-          "name",
-          "snippet"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "_class_": { "const": "query" },
-          "name": {
-            "description": "The name of this query.",
-            "type": "string"
-          },
-          "description": {
-            "description": "The description of this query.",
-            "type": "string"
-          },
-          "result_model_name": {
-            "description": "The result_model_name of this query.",
-            "type": "string"
-          },
-          "result_model_namespace": {
-            "description": "The result_model_namespace of this query.",
-            "type": "string"
-          },
-          "snippet": {
-            "description": "The snippet of this query.",
-            "type": "string"
-          }
-        }
-      },
-      "laplacian.arch.api.service.rdb.mybatis.MybatisMapper": {
-        "description": "An entity describing a mybatis_mapper.",
-        "type": "object",
-        "required": [
-          "name",
-          "type",
-          "statement"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "_class_": { "const": "mybatis_mapper" },
           "name": {
             "allOf": [{
-            "description": "The name of this mybatis_mapper.",
+            "description": "The name of this mybatis_fetcher.",
             "type": "string"
             }, {
             "$ref": "#/definitions/value_domain_types/identifier"
             }]
           },
           "description": {
-            "description": "The description of this mybatis_mapper.",
+            "description": "The description of this mybatis_fetcher.",
             "type": "string"
           },
-          "result_model_name": {
-            "description": "The result_model_name of this mybatis_mapper.",
-            "type": "string"
-          },
-          "type": {
-            "description": "The type of this mybatis_mapper.",
+          "statement_type": {
+            "description": "The statement_type of this mybatis_fetcher.",
             "enum":[
               "select",
               "insert",
@@ -4733,16 +4932,48 @@
             "type": "string"
           },
           "statement": {
-            "description": "The statement of this mybatis_mapper.",
+            "description": "The statement of this mybatis_fetcher.",
+            "type": "string"
+          }
+        }
+        }
+      },
+      "laplacian.arch.api.service.rest.RestApiFetcher": {
+        "description": "An entity describing a rest_api_fetcher.",
+        "if": { "properties": {
+          "type": { "const": "rest_api" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "rest_api_fetcher" },
+          "type": {
+            "description": "The type of this graphql_field_fetcher.",
+            "enum":[
+              "graphql_field_link",
+              "static_data",
+              "mybatis",
+              "rest_api"
+            ],
             "type": "string"
           },
-          "parameters": {
-            "description": "The parameters of this mybatis_mapper.",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.api.service.ApiCallArgument"
-            }
+          "result_filter": {
+            "description": "The result_filter of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "cache_policy_name": {
+            "description": "The cache_policy_name of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "rest_resource_name": {
+            "description": "The rest_resource_name of this rest_api_fetcher.",
+            "type": "string"
+          },
+          "rest_operation_name": {
+            "description": "The rest_operation_name of this rest_api_fetcher.",
+            "type": "string"
           }
+        }
         }
       },
       "laplacian.arch.api.service.rest.RestOperation": {
@@ -4778,10 +5009,6 @@
           },
           "response_model_name": {
             "description": "The response_model_name of this rest_operation.",
-            "type": "string"
-          },
-          "cache_policy_name": {
-            "description": "The cache_policy_name of this rest_operation.",
             "type": "string"
           },
           "arguments": {
@@ -4875,10 +5102,6 @@
             "description": "The base_url of this rest_resource.",
             "type": "string"
           },
-          "cache_policy_name": {
-            "description": "The cache_policy_name of this rest_resource.",
-            "type": "string"
-          },
           "enable_automatic_cookie_handling": {
             "description": "Defines this rest_resource is enable_automatic_cookie_handling or not.",
             "type": "boolean"
@@ -4941,13 +5164,6 @@
             "type": "array",
             "items": {
               "$ref": "#/definitions/entities/laplacian.arch.api.service.GraphqlTypeEntry"
-            }
-          },
-          "elastic_search_clients": {
-            "description": "The elastic_search_clients of this service.",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.api.service.ElasticSearchClient"
             }
           },
           "configuration_categories": {
@@ -5026,48 +5242,6 @@
           }
         }
       },
-      "laplacian.arch.api.service.graphql.GraphqlType": {
-        "description": "An entity describing a graphql_type.",
-        "type": "object",
-        "required": [
-          "name",
-          "resolver_type"
-        ],
-        "properties": {
-          "_class_": { "const": "graphql_type" },
-          "name": {
-            "description": "The name of this graphql_type.",
-            "type": "string"
-          },
-          "resolver_type": {
-            "description": "The resolver_type of this graphql_type.",
-            "enum":[
-              "external_rest_resource",
-              "indexed_document",
-              "rdbms_table",
-              "static_data"
-            ],
-            "type": "string"
-          },
-          "description": {
-            "description": "The description of this graphql_type.",
-            "type": "string"
-          },
-          "relationships": {
-            "description": "The relationships of this graphql_type.",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationship"
-            }
-          }
-        },
-        "allOf": [
-          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.ExternalRestResource" },
-          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.IndexedDocument" },
-          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.RdbmsTable" },
-          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.StaticData" }
-        ]
-      },
       "laplacian.arch.api.service.GraphqlTypeEntry": {
         "description": "An entity describing a graphql_type_entry.",
         "type": "object",
@@ -5080,113 +5254,9 @@
           "name": {
             "description": "The name of this graphql_type_entry.",
             "type": "string"
-          }
-        }
-      },
-      "laplacian.arch.api.service.graphql.GraphqlTypeRelationship": {
-        "description": "An entity describing a graphql_type_relationship.",
-        "type": "object",
-        "required": [
-          "name",
-          "type",
-          "referencing_graphql_type_name"
-        ],
-        "properties": {
-          "_class_": { "const": "graphql_type_relationship" },
-          "name": {
-            "description": "The name of this graphql_type_relationship.",
-            "type": "string"
           },
-          "description": {
-            "description": "The description of this graphql_type_relationship.",
-            "type": "string"
-          },
-          "type": {
-            "description": "The type of this graphql_type_relationship.",
-            "enum":[
-              "indexed_document"
-            ],
-            "type": "string"
-          },
-          "referencing_graphql_type_name": {
-            "description": "The referencing_graphql_type_name of this graphql_type_relationship.",
-            "type": "string"
-          },
-          "multiple": {
-            "description": "Defines this graphql_type_relationship is multiple or not.",
-            "type": "boolean"
-          },
-          "nullable": {
-            "description": "Defines this graphql_type_relationship is nullable or not.",
-            "type": "boolean"
-          }
-        },
-        "allOf": [
-          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlIndexedDocumentRelationship" }
-        ]
-      },
-      "laplacian.arch.api.service.graphql.GraphqlIndexedDocumentRelationship": {
-        "description": "An entity describing a graphql_indexed_document_relationship.",
-        "if": { "properties": {
-          "type": { "const": "indexed_document" }
-        }},
-        "then": {
-        "additionalProperties": false,
-        "properties": {
-          "_class_": { "const": "graphql_indexed_document_relationship" },
-          "name": {
-            "description": "The name of this graphql_type_relationship.",
-            "type": "string"
-          },
-          "description": {
-            "description": "The description of this graphql_type_relationship.",
-            "type": "string"
-          },
-          "type": {
-            "description": "The type of this graphql_type_relationship.",
-            "enum":[
-              "indexed_document"
-            ],
-            "type": "string"
-          },
-          "referencing_graphql_type_name": {
-            "description": "The referencing_graphql_type_name of this graphql_type_relationship.",
-            "type": "string"
-          },
-          "multiple": {
-            "description": "Defines this graphql_type_relationship is multiple or not.",
-            "type": "boolean"
-          },
-          "nullable": {
-            "description": "Defines this graphql_type_relationship is nullable or not.",
-            "type": "boolean"
-          },
-          "field_mappings": {
-            "description": "The field_mappings of this graphql_indexed_document_relationship.",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationshipFieldMapping"
-            }
-          }
-        }
-        }
-      },
-      "laplacian.arch.api.service.graphql.GraphqlTypeRelationshipFieldMapping": {
-        "description": "An entity describing a graphql_type_relationship_field_mapping.",
-        "type": "object",
-        "required": [
-          "from",
-          "to"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "_class_": { "const": "graphql_type_relationship_field_mapping" },
-          "from": {
-            "description": "The from of this graphql_type_relationship_field_mapping.",
-            "type": "string"
-          },
-          "to": {
-            "description": "The to of this graphql_type_relationship_field_mapping.",
+          "group": {
+            "description": "The group of this graphql_type_entry.",
             "type": "string"
           }
         }
@@ -5847,6 +5917,10 @@
           },
           "kotlin_coroutine_version": {
             "description": "The kotlin_coroutine_version of this springboot2_api_service_container_image.",
+            "type": "string"
+          },
+          "reactor_kotlin_extension_version": {
+            "description": "The reactor_kotlin_extension_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
           "r2dbc_postgres_driver_version": {
@@ -6739,6 +6813,9 @@
         "if": { "properties": { "_class_": { "const": "elasticsearch_query" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.elasticsearch.ElasticsearchQuery" }
         }, {
+        "if": { "properties": { "_class_": { "const": "graphql_type" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlType" }
+        }, {
         "if": { "properties": { "_class_": { "const": "rest_request_parameter" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestRequestParameter" }
         }, {
@@ -6750,12 +6827,6 @@
         }, {
         "if": { "properties": { "_class_": { "const": "elastic_search_client" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.ElasticSearchClient" }
-        }, {
-        "if": { "properties": { "_class_": { "const": "graphql_type" } }},
-          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlType" }
-        }, {
-        "if": { "properties": { "_class_": { "const": "graphql_type_relationship_field_mapping" } }},
-          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlTypeRelationshipFieldMapping" }
         }, {
         "if": { "properties": { "_class_": { "const": "service_configuration" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.ServiceConfiguration" }

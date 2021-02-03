@@ -54,6 +54,13 @@ The kotlin_coroutine_version of this springboot2_api_service_container_image.
   "1.3.9"
   ```
 
+### reactor_kotlin_extension_version: `String`
+The reactor_kotlin_extension_version of this springboot2_api_service_container_image.
+- **Default Value:**
+  ```kotlin
+  "1.1.2"
+  ```
+
 ### r2dbc_postgres_driver_version: `String`
 The r2dbc_postgres_driver_version of this springboot2_api_service_container_image.
 - **Default Value:**
