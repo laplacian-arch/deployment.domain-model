@@ -18,5 +18,9 @@ The type of this component.
 
 ### tags: `List<String>`
 The tags of this component.
+- **Default Value:**
+  ```kotlin
+  emptyList<String>()
+  ```
 
 ## Relationships

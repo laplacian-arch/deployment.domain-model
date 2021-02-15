@@ -24,5 +24,6 @@ entities:
 
   - name: jdbc_driver_class_name
     type: string
+    optional: true
     default_value: |
       "org.postgresql.Driver"

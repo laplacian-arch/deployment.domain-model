@@ -14,4 +14,6 @@ entities:
   - name: tags
     type: string
     multiple: true
-
+    optional: true
+    default_value: |
+      emptyList<String>()

@@ -201,6 +201,14 @@
       }
     }
     ,
+    "data_files": {
+      "description": "An entity describing a data_file.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.data_file.DataFile"
+      }
+    }
+    ,
     "datasources": {
       "description": "A *DataSource* represents an interface through which a client application access to a data store.\nThis includes the following models.\n- The entity that the datastore exposes to the client\n- Statement issued by the client to the datastore",
       "type": "array",
@@ -329,6 +337,30 @@
       }
     }
     ,
+    "argument_assignments": {
+      "description": "An entity describing a argument_assignment.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.ArgumentAssignment"
+      }
+    }
+    ,
+    "argument_assignment_values": {
+      "description": "An entity describing a argument_assignment_value.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.ArgumentAssignmentValue"
+      }
+    }
+    ,
+    "rest_operation_responses": {
+      "description": "An entity describing a rest_operation_response.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestOperationResponse"
+      }
+    }
+    ,
     "rest_request_parameters": {
       "description": "An entity describing a rest_request_parameter.",
       "type": "array",
@@ -366,14 +398,6 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/laplacian.arch.api.service.ServiceConfiguration"
-      }
-    }
-    ,
-    "service_configuration_categories": {
-      "description": "An entity describing a service_configuration_category.",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/entities/laplacian.arch.api.service.ServiceConfigurationCategory"
       }
     }
     ,
@@ -698,6 +722,11 @@
         "pattern": "^[_a-zA-Z][_$a-zA-Z0-9]*(\\.[_a-zA-Z][_$a-zA-Z0-9]*)*$",
         "type": "string"
       },
+      "file_path": {
+        "description": "file_path",
+        "pattern": "^^(.+)\\/([^\\/]+)$$",
+        "type": "string"
+      },
       "http_method_for_rest": {
         "description": "http_method_for_rest",
         "enum":[
@@ -740,6 +769,7 @@
         "description": "An entity describing a document.",
         "type": "object",
         "required": [
+          "languages"
         ],
         "additionalProperties": false,
         "properties": {
@@ -780,6 +810,8 @@
         "description": "An entity describing a document_language.",
         "type": "object",
         "required": [
+          "name",
+          "code"
         ],
         "additionalProperties": false,
         "properties": {
@@ -802,7 +834,8 @@
         "description": "An entity describing a section.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "title"
         ],
         "additionalProperties": false,
         "properties": {
@@ -836,6 +869,9 @@
         "description": "An entity describing a module.",
         "type": "object",
         "required": [
+          "name",
+          "group",
+          "version"
         ],
         "additionalProperties": false,
         "properties": {
@@ -880,7 +916,9 @@
         "type": "object",
         "required": [
           "group",
-          "name"
+          "name",
+          "version",
+          "sources"
         ],
         "additionalProperties": false,
         "properties": {
@@ -1132,6 +1170,7 @@
         "description": "An entity describing a source_repository.",
         "type": "object",
         "required": [
+          "url"
         ],
         "additionalProperties": false,
         "properties": {
@@ -1150,6 +1189,8 @@
         "description": "An entity describing a localized_text.",
         "type": "object",
         "required": [
+          "language",
+          "content"
         ],
         "additionalProperties": false,
         "properties": {
@@ -1926,6 +1967,8 @@
         "description": "An entity describing a named_param.",
         "type": "object",
         "required": [
+          "name",
+          "type"
         ],
         "additionalProperties": false,
         "properties": {
@@ -1948,6 +1991,8 @@
         "description": "An entity describing a named_value.",
         "type": "object",
         "required": [
+          "name",
+          "expression"
         ],
         "additionalProperties": false,
         "properties": {
@@ -2054,7 +2099,8 @@
         "description": "An entity describing a property.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "type"
         ],
         "additionalProperties": false,
         "properties": {
@@ -2140,6 +2186,8 @@
         "description": "An entity describing a property_mapping.",
         "type": "object",
         "required": [
+          "from",
+          "to"
         ],
         "additionalProperties": false,
         "properties": {
@@ -2162,6 +2210,8 @@
         "description": "The queries from which all navigation originates.",
         "type": "object",
         "required": [
+          "name",
+          "snippet"
         ],
         "additionalProperties": false,
         "properties": {
@@ -2208,7 +2258,9 @@
         "description": "An entity describing a relationship.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "cardinality",
+          "reference_entity_name"
         ],
         "additionalProperties": false,
         "properties": {
@@ -2309,7 +2361,9 @@
         "type": "object",
         "required": [
           "name",
-          "namespace"
+          "namespace",
+          "type",
+          "domain"
         ],
         "additionalProperties": false,
         "properties": {
@@ -2348,6 +2402,7 @@
         "description": "An entity describing a value_item.",
         "type": "object",
         "required": [
+          "value"
         ],
         "additionalProperties": false,
         "properties": {
@@ -2370,7 +2425,8 @@
         "description": "An entity describing a api_call_argument.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "type"
         ],
         "additionalProperties": false,
         "properties": {
@@ -2414,7 +2470,8 @@
         "description": "An entity describing a cache_policy.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "store_type"
         ],
         "properties": {
           "_class_": { "const": "cache_policy" },
@@ -2457,6 +2514,8 @@
           "store_type": { "const": "heap" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "heap_memory_cache_policy" },
@@ -2496,6 +2555,8 @@
           "store_type": { "const": "redis" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "redis_cache_policy" },
@@ -2529,10 +2590,96 @@
         }
         }
       },
+      "laplacian.arch.api.service.data_file.DataFileFetcher": {
+        "description": "A graphql field fetcher retrieving the value from a file located in the container.",
+        "if": { "properties": {
+          "type": { "const": "data_file" }
+        }},
+        "then": {
+        "required": [
+          "data_file"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "data_file_fetcher" },
+          "type": {
+            "description": "The type of this graphql_field_fetcher.",
+            "enum":[
+              "data_file",
+              "graphql_field_link",
+              "mybatis",
+              "rest_api"
+            ],
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "result_filter": {
+            "description": "The result_filter of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "result_mapper": {
+            "description": "The result_mapper of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "cache_policy_name": {
+            "description": "The cache_policy_name of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "data_file": {
+            "description": "The data_file of this data_file_fetcher.",
+            "$ref": "#/definitions/entities/laplacian.arch.api.service.data_file.DataFile"
+          }
+        }
+        }
+      },
+      "laplacian.arch.api.service.data_file.DataFile": {
+        "description": "An entity describing a data_file.",
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "data_file" },
+          "name": {
+            "allOf": [{
+            "description": "The name of this data_file.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/identifier"
+            }]
+          },
+          "description": {
+            "description": "The description of this data_file.",
+            "type": "string"
+          },
+          "format": {
+            "description": "The format of this data_file.",
+            "enum":[
+              "json",
+              "yaml",
+              "csv"
+            ],
+            "type": "string"
+          },
+          "default_path": {
+            "allOf": [{
+            "description": "The default_path of this data_file.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/file_path"
+            }]
+          }
+        }
+      },
       "laplacian.arch.api.service.datasource.Datasource": {
         "description": "A *DataSource* represents an interface through which a client application access to a data store.\nThis includes the following models.\n- The entity that the datastore exposes to the client\n- Statement issued by the client to the datastore",
         "type": "object",
         "required": [
+          "type"
         ],
         "properties": {
           "_class_": { "const": "datasource" },
@@ -2560,6 +2707,7 @@
         "description": "An entity describing a datasource_entry.",
         "type": "object",
         "required": [
+          "name"
         ],
         "additionalProperties": false,
         "properties": {
@@ -2576,6 +2724,8 @@
           "type": { "const": "postgres_jdbc" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "postgres_jdbc_datasource" },
@@ -2601,6 +2751,8 @@
         "description": "An entity describing a duration.",
         "type": "object",
         "required": [
+          "amount",
+          "unit"
         ],
         "additionalProperties": false,
         "properties": {
@@ -2631,6 +2783,9 @@
           "aggregation_type": { "const": "avg_bucket" }
         }},
         "then": {
+        "required": [
+          "buckets_path"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "avg_bucket_aggregate" },
@@ -2686,6 +2841,10 @@
           "aggregation_type": { "const": "bucket_script" }
         }},
         "then": {
+        "required": [
+          "script",
+          "buckets_path"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "bucket_script_aggregate" },
@@ -2746,6 +2905,8 @@
         "description": "An entity describing a bucket_script_path.",
         "type": "object",
         "required": [
+          "name",
+          "path"
         ],
         "additionalProperties": false,
         "properties": {
@@ -2766,6 +2927,10 @@
           "aggregation_type": { "const": "bucket_selector" }
         }},
         "then": {
+        "required": [
+          "script",
+          "buckets_path"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "bucket_selector_aggregate" },
@@ -2828,6 +2993,9 @@
           "aggregation_type": { "const": "bucket_sort" }
         }},
         "then": {
+        "required": [
+          "sorts"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "bucket_sort_aggregate" },
@@ -2922,6 +3090,9 @@
           "aggregation_type": { "const": "date_histogram" }
         }},
         "then": {
+        "required": [
+          "interval"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "date_histogram_aggregate" },
@@ -3013,6 +3184,9 @@
         "description": "An entity describing a date_histogram_interval.",
         "type": "object",
         "required": [
+          "type",
+          "unit",
+          "value"
         ],
         "properties": {
           "_class_": { "const": "date_histogram_interval" },
@@ -3044,6 +3218,9 @@
           "type": { "const": "calendar" }
         }},
         "then": {
+        "required": [
+          "unit"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "date_histogram_calendar_interval" },
@@ -3077,6 +3254,10 @@
           "type": { "const": "fixed" }
         }},
         "then": {
+        "required": [
+          "unit",
+          "value"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "date_histogram_fixed_interval" },
@@ -3115,6 +3296,9 @@
           "aggregation_type": { "const": "date_range" }
         }},
         "then": {
+        "required": [
+          "ranges"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "date_range_aggregate" },
@@ -3200,6 +3384,9 @@
           "aggregation_type": { "const": "filter" }
         }},
         "then": {
+        "required": [
+          "predicate"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "filter_aggregate" },
@@ -3255,6 +3442,9 @@
           "aggregation_type": { "const": "filters" }
         }},
         "then": {
+        "required": [
+          "filters"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "filters_aggregate" },
@@ -3311,7 +3501,8 @@
         "description": "An entity describing a keyed_filter.",
         "type": "object",
         "required": [
-          "key"
+          "key",
+          "predicate"
         ],
         "additionalProperties": false,
         "properties": {
@@ -3332,6 +3523,8 @@
           "aggregation_type": { "const": "sum" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "sum_aggregate" },
@@ -3383,6 +3576,8 @@
           "aggregation_type": { "const": "avg" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "avg_aggregate" },
@@ -3434,6 +3629,8 @@
           "aggregation_type": { "const": "min" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "min_aggregate" },
@@ -3485,6 +3682,8 @@
           "aggregation_type": { "const": "max" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "max_aggregate" },
@@ -3536,6 +3735,8 @@
           "aggregation_type": { "const": "count" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "value_count_aggregate" },
@@ -3587,6 +3788,8 @@
           "aggregation_type": { "const": "terms" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "terms_aggregate" },
@@ -3668,7 +3871,8 @@
         "description": "An entity describing a elasticsearch_aggregate.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "aggregation_type"
         ],
         "properties": {
           "_class_": { "const": "elasticsearch_aggregate" },
@@ -3733,7 +3937,8 @@
         "description": "An entity describing a elasticsearch_index.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "document_model_name"
         ],
         "additionalProperties": false,
         "properties": {
@@ -3858,6 +4063,8 @@
           "type": { "const": "score" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "elasticsearch_query_score_sort" },
@@ -3886,6 +4093,9 @@
           "type": { "const": "field" }
         }},
         "then": {
+        "required": [
+          "name"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "elasticsearch_query_field_sort" },
@@ -3983,6 +4193,8 @@
           "type": { "const": "bool" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "bool_query_predicate" },
@@ -4038,6 +4250,9 @@
           "type": { "const": "exists" }
         }},
         "then": {
+        "required": [
+          "field"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "exists_query_predicate" },
@@ -4069,6 +4284,8 @@
           "type": { "const": "match_all" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "match_all_query_predicate" },
@@ -4096,6 +4313,10 @@
           "type": { "const": "match" }
         }},
         "then": {
+        "required": [
+          "field",
+          "value"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "match_query_predicate" },
@@ -4131,6 +4352,10 @@
           "type": { "const": "multi_match" }
         }},
         "then": {
+        "required": [
+          "value",
+          "fields"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "multi_match_query_predicate" },
@@ -4169,6 +4394,9 @@
           "type": { "const": "query_string" }
         }},
         "then": {
+        "required": [
+          "query"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "query_string_predicate" },
@@ -4297,6 +4525,11 @@
           "type": { "const": "range" }
         }},
         "then": {
+        "required": [
+          "field",
+          "from",
+          "to"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "range_query_predicate" },
@@ -4348,6 +4581,11 @@
           "type": { "const": "term" }
         }},
         "then": {
+        "required": [
+          "field",
+          "value",
+          "boost"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "term_query_predicate" },
@@ -4387,6 +4625,11 @@
           "type": { "const": "terms" }
         }},
         "then": {
+        "required": [
+          "field",
+          "value",
+          "boost"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "terms_query_predicate" },
@@ -4424,21 +4667,30 @@
         "description": "An entity describing a graphql_field_fetcher.",
         "type": "object",
         "required": [
+          "type"
         ],
         "properties": {
           "_class_": { "const": "graphql_field_fetcher" },
           "type": {
             "description": "The type of this graphql_field_fetcher.",
             "enum":[
+              "data_file",
               "graphql_field_link",
-              "static_data",
               "mybatis",
               "rest_api"
             ],
             "type": "string"
           },
+          "description": {
+            "description": "The description of this graphql_field_fetcher.",
+            "type": "string"
+          },
           "result_filter": {
             "description": "The result_filter of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "result_mapper": {
+            "description": "The result_mapper of this graphql_field_fetcher.",
             "type": "string"
           },
           "cache_policy_name": {
@@ -4447,8 +4699,8 @@
           }
         },
         "allOf": [
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.data_file.DataFileFetcher" },
           { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlFieldLink" },
-          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.StaticDataFetcher" },
           { "$ref": "#/definitions/entities/laplacian.arch.api.service.mybatis.MybatisFetcher" },
           { "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestApiFetcher" }
         ]
@@ -4459,21 +4711,33 @@
           "type": { "const": "graphql_field_link" }
         }},
         "then": {
+        "required": [
+          "type_name",
+          "field_name"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "graphql_field_link" },
           "type": {
             "description": "The type of this graphql_field_fetcher.",
             "enum":[
+              "data_file",
               "graphql_field_link",
-              "static_data",
               "mybatis",
               "rest_api"
             ],
             "type": "string"
           },
+          "description": {
+            "description": "The description of this graphql_field_fetcher.",
+            "type": "string"
+          },
           "result_filter": {
             "description": "The result_filter of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "result_mapper": {
+            "description": "The result_mapper of this graphql_field_fetcher.",
             "type": "string"
           },
           "cache_policy_name": {
@@ -4503,42 +4767,16 @@
         }
         }
       },
-      "laplacian.arch.api.service.graphql.StaticDataFetcher": {
-        "description": "An entity describing a static_data_fetcher.",
-        "if": { "properties": {
-          "type": { "const": "static_data" }
-        }},
-        "then": {
-        "additionalProperties": false,
-        "properties": {
-          "_class_": { "const": "static_data_fetcher" },
-          "type": {
-            "description": "The type of this graphql_field_fetcher.",
-            "enum":[
-              "graphql_field_link",
-              "static_data",
-              "mybatis",
-              "rest_api"
-            ],
-            "type": "string"
-          },
-          "result_filter": {
-            "description": "The result_filter of this graphql_field_fetcher.",
-            "type": "string"
-          },
-          "cache_policy_name": {
-            "description": "The cache_policy_name of this graphql_field_fetcher.",
-            "type": "string"
-          }
-        }
-        }
-      },
       "laplacian.arch.api.service.graphql.GraphqlCompositeField": {
         "description": "An entity describing a graphql_composite_field.",
         "if": { "properties": {
           "field_type": { "const": "composite" }
         }},
         "then": {
+        "required": [
+          "data_model_name",
+          "data_model_namespace"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "graphql_composite_field" },
@@ -4576,6 +4814,10 @@
             ],
             "type": "string"
           },
+          "context_data_model_name": {
+            "description": "The context_data_model_name of this graphql_field.",
+            "type": "string"
+          },
           "root_field": {
             "description": "Specifies whether this field is shown in the root query object.",
             "type": "boolean"
@@ -4606,7 +4848,8 @@
         "description": "An entity describing a graphql_field.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "field_type"
         ],
         "properties": {
           "_class_": { "const": "graphql_field" },
@@ -4644,6 +4887,10 @@
             ],
             "type": "string"
           },
+          "context_data_model_name": {
+            "description": "The context_data_model_name of this graphql_field.",
+            "type": "string"
+          },
           "root_field": {
             "description": "Specifies whether this field is shown in the root query object.",
             "type": "boolean"
@@ -4672,6 +4919,9 @@
           "field_type": { "const": "scalar" }
         }},
         "then": {
+        "required": [
+          "value_type"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "graphql_scalar_field" },
@@ -4709,6 +4959,10 @@
             ],
             "type": "string"
           },
+          "context_data_model_name": {
+            "description": "The context_data_model_name of this graphql_field.",
+            "type": "string"
+          },
           "root_field": {
             "description": "Specifies whether this field is shown in the root query object.",
             "type": "boolean"
@@ -4742,6 +4996,9 @@
           "field_type": { "const": "graphql_type" }
         }},
         "then": {
+        "required": [
+          "graphql_type_name"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "graphql_type_reference" },
@@ -4777,6 +5034,10 @@
               "mutation",
               "subscription"
             ],
+            "type": "string"
+          },
+          "context_data_model_name": {
+            "description": "The context_data_model_name of this graphql_field.",
             "type": "string"
           },
           "root_field": {
@@ -4840,6 +5101,13 @@
             "items": {
               "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlField"
             }
+          },
+          "configurations": {
+            "description": "The configurations of this graphql_type.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.ConfigurationBinding"
+            }
           }
         }
       },
@@ -4849,37 +5117,37 @@
           "type": { "const": "mybatis" }
         }},
         "then": {
+        "required": [
+          "statement_type",
+          "statement"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "mybatis_fetcher" },
           "type": {
             "description": "The type of this graphql_field_fetcher.",
             "enum":[
+              "data_file",
               "graphql_field_link",
-              "static_data",
               "mybatis",
               "rest_api"
             ],
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this graphql_field_fetcher.",
             "type": "string"
           },
           "result_filter": {
             "description": "The result_filter of this graphql_field_fetcher.",
             "type": "string"
           },
+          "result_mapper": {
+            "description": "The result_mapper of this graphql_field_fetcher.",
+            "type": "string"
+          },
           "cache_policy_name": {
             "description": "The cache_policy_name of this graphql_field_fetcher.",
-            "type": "string"
-          },
-          "name": {
-            "allOf": [{
-            "description": "The name of this mybatis_fetcher.",
-            "type": "string"
-            }, {
-            "$ref": "#/definitions/value_domain_types/identifier"
-            }]
-          },
-          "description": {
-            "description": "The description of this mybatis_fetcher.",
             "type": "string"
           },
           "statement_type": {
@@ -4906,21 +5174,33 @@
           "type": { "const": "rest_api" }
         }},
         "then": {
+        "required": [
+          "rest_resource_name",
+          "rest_operation_name"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "rest_api_fetcher" },
           "type": {
             "description": "The type of this graphql_field_fetcher.",
             "enum":[
+              "data_file",
               "graphql_field_link",
-              "static_data",
               "mybatis",
               "rest_api"
             ],
             "type": "string"
           },
+          "description": {
+            "description": "The description of this graphql_field_fetcher.",
+            "type": "string"
+          },
           "result_filter": {
             "description": "The result_filter of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "result_mapper": {
+            "description": "The result_mapper of this graphql_field_fetcher.",
             "type": "string"
           },
           "cache_policy_name": {
@@ -4934,6 +5214,153 @@
           "rest_operation_name": {
             "description": "The rest_operation_name of this rest_api_fetcher.",
             "type": "string"
+          },
+          "argument_assignments": {
+            "description": "The argument_assignments of this rest_api_fetcher.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.ArgumentAssignment"
+            }
+          }
+        }
+        }
+      },
+      "laplacian.arch.api.service.rest.ArgumentAssignment": {
+        "description": "An entity describing a argument_assignment.",
+        "type": "object",
+        "required": [
+          "key",
+          "value"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "argument_assignment" },
+          "key": {
+            "allOf": [{
+            "description": "The key of this argument_assignment.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/identifier"
+            }]
+          },
+          "value": {
+            "description": "The value of this argument_assignment.",
+            "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.ArgumentAssignmentValue"
+          }
+        }
+      },
+      "laplacian.arch.api.service.rest.ArgumentAssignmentValue": {
+        "description": "An entity describing a argument_assignment_value.",
+        "type": "object",
+        "required": [
+          "from"
+        ],
+        "properties": {
+          "_class_": { "const": "argument_assignment_value" },
+          "from": {
+            "description": "The from of this argument_assignment_value.",
+            "enum":[
+              "fetcher_argument",
+              "graphql_type_config",
+              "expression"
+            ],
+            "type": "string"
+          }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.ArgumentAssignmentValueFetcherArgument" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.ArgumentAssignmentValueGraphqlTypeConfig" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.ArgumentAssignmentValueExpression" }
+        ]
+      },
+      "laplacian.arch.api.service.rest.ArgumentAssignmentValueFetcherArgument": {
+        "description": "An entity describing a argument_assignment_value_fetcher_argument.",
+        "if": { "properties": {
+          "from": { "const": "fetcher_argument" }
+        }},
+        "then": {
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "argument_assignment_value_fetcher_argument" },
+          "from": {
+            "description": "The from of this argument_assignment_value.",
+            "enum":[
+              "fetcher_argument",
+              "graphql_type_config",
+              "expression"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "allOf": [{
+            "description": "The name of this argument_assignment_value_fetcher_argument.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/identifier"
+            }]
+          }
+        }
+        }
+      },
+      "laplacian.arch.api.service.rest.ArgumentAssignmentValueGraphqlTypeConfig": {
+        "description": "An entity describing a argument_assignment_value_graphql_type_config.",
+        "if": { "properties": {
+          "from": { "const": "graphql_type_config" }
+        }},
+        "then": {
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "argument_assignment_value_graphql_type_config" },
+          "from": {
+            "description": "The from of this argument_assignment_value.",
+            "enum":[
+              "fetcher_argument",
+              "graphql_type_config",
+              "expression"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "allOf": [{
+            "description": "The name of this argument_assignment_value_graphql_type_config.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/service_configuration_name"
+            }]
+          }
+        }
+        }
+      },
+      "laplacian.arch.api.service.rest.ArgumentAssignmentValueExpression": {
+        "description": "An entity describing a argument_assignment_value_expression.",
+        "if": { "properties": {
+          "from": { "const": "expression" }
+        }},
+        "then": {
+        "required": [
+          "expression"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "argument_assignment_value_expression" },
+          "from": {
+            "description": "The from of this argument_assignment_value.",
+            "enum":[
+              "fetcher_argument",
+              "graphql_type_config",
+              "expression"
+            ],
+            "type": "string"
+          },
+          "expression": {
+            "description": "The expression of this argument_assignment_value_expression.",
+            "type": "string"
           }
         }
         }
@@ -4942,7 +5369,10 @@
         "description": "An entity describing a rest_operation.",
         "type": "object",
         "required": [
-          "name"
+          "method",
+          "path",
+          "name",
+          "response"
         ],
         "additionalProperties": false,
         "properties": {
@@ -4965,10 +5395,6 @@
           },
           "description": {
             "description": "The description of this rest_operation.",
-            "type": "string"
-          },
-          "response_model_name": {
-            "description": "The response_model_name of this rest_operation.",
             "type": "string"
           },
           "arguments": {
@@ -4998,6 +5424,40 @@
             "items": {
               "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestRequestParameter"
             }
+          },
+          "response": {
+            "description": "The response of this rest_operation.",
+            "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestOperationResponse"
+          }
+        }
+      },
+      "laplacian.arch.api.service.rest.RestOperationResponse": {
+        "description": "An entity describing a rest_operation_response.",
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "rest_operation_response" },
+          "type": {
+            "description": "The type of this rest_operation_response.",
+            "enum":[
+              "string",
+              "number",
+              "boolean",
+              "array",
+              "object"
+            ],
+            "type": "string"
+          },
+          "optional": {
+            "description": "Defines this rest_operation_response is optional or not.",
+            "type": "boolean"
+          },
+          "multiple": {
+            "description": "Defines this rest_operation_response is multiple or not.",
+            "type": "boolean"
           }
         }
       },
@@ -5005,7 +5465,9 @@
         "description": "An entity describing a rest_request_parameter.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "type",
+          "value"
         ],
         "additionalProperties": false,
         "properties": {
@@ -5038,7 +5500,9 @@
         "description": "An entity describing a rest_resource.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "base_url",
+          "operations"
         ],
         "additionalProperties": false,
         "properties": {
@@ -5083,7 +5547,8 @@
         "description": "An entity describing a service.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "version"
         ],
         "additionalProperties": false,
         "properties": {
@@ -5121,13 +5586,6 @@
             "items": {
               "$ref": "#/definitions/entities/laplacian.arch.api.service.GraphqlTypeEntry"
             }
-          },
-          "configuration_categories": {
-            "description": "The configuration_categories of this service.",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/entities/laplacian.arch.api.service.ServiceConfigurationCategory"
-            }
           }
         }
       },
@@ -5135,6 +5593,7 @@
         "description": "An entity describing a elastic_search_client.",
         "type": "object",
         "required": [
+          "name"
         ],
         "additionalProperties": false,
         "properties": {
@@ -5201,6 +5660,7 @@
         "description": "An entity describing a graphql_type_entry.",
         "type": "object",
         "required": [
+          "name"
         ],
         "additionalProperties": false,
         "properties": {
@@ -5220,7 +5680,8 @@
         "type": "object",
         "required": [
           "name",
-          "category"
+          "category",
+          "type"
         ],
         "additionalProperties": false,
         "properties": {
@@ -5261,21 +5722,6 @@
           }
         }
       },
-      "laplacian.arch.api.service.ServiceConfigurationCategory": {
-        "description": "An entity describing a service_configuration_category.",
-        "type": "object",
-        "required": [
-          "name"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "_class_": { "const": "service_configuration_category" },
-          "name": {
-            "description": "The name of this service_configuration_category.",
-            "type": "string"
-          }
-        }
-      },
       "laplacian.arch.api.service.ConfigurationBinding": {
         "description": "An entity describing a configuration_binding.",
         "type": "object",
@@ -5307,7 +5753,8 @@
         "description": "An entity describing a component.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "type"
         ],
         "properties": {
           "_class_": { "const": "component" },
@@ -5346,6 +5793,8 @@
           "type": { "const": "container_image" }
         }},
         "then": {
+        "required": [
+        ],
         "properties": {
           "_class_": { "const": "container_image" },
           "name": {
@@ -5396,7 +5845,8 @@
         "description": "An entity describing a environment_variable_definition.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "default_value"
         ],
         "additionalProperties": false,
         "properties": {
@@ -5433,6 +5883,8 @@
           "type": { "const": "elasticsearch_container_deployment" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "elasticsearch_container_deployment" },
@@ -5496,6 +5948,8 @@
           "type": { "const": "elasticsearch_container_image" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "elasticsearch_container_image" },
@@ -5584,7 +6038,8 @@
         "type": "object",
         "required": [
           "group",
-          "name"
+          "name",
+          "version"
         ],
         "additionalProperties": false,
         "properties": {
@@ -5609,6 +6064,8 @@
           "type": { "const": "postgres_container_deployment" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "postgres_container_deployment" },
@@ -5727,6 +6184,8 @@
           "type": { "const": "postgres_container_image" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "postgres_container_image" },
@@ -5807,6 +6266,9 @@
           "type": { "const": "springboot2_api_service_container_image" }
         }},
         "then": {
+        "required": [
+          "function_model_name"
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "springboot2_api_service_container_image" },
@@ -5934,6 +6396,8 @@
           "type": { "const": "springboot2_api_service_container_deployment" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "springboot2_api_service_container_deployment" },
@@ -6018,7 +6482,8 @@
         "description": "An entity describing a dataset.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "content"
         ],
         "additionalProperties": false,
         "properties": {
@@ -6048,7 +6513,8 @@
         "description": "An entity describing a deployment.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "type"
         ],
         "properties": {
           "_class_": { "const": "deployment" },
@@ -6086,6 +6552,8 @@
           "type": { "const": "container_deployment" }
         }},
         "then": {
+        "required": [
+        ],
         "properties": {
           "_class_": { "const": "container_deployment" },
           "name": {
@@ -6148,7 +6616,8 @@
         "description": "An entity describing a data_file.",
         "type": "object",
         "required": [
-          "filename"
+          "filename",
+          "dataset_name"
         ],
         "additionalProperties": false,
         "properties": {
@@ -6171,7 +6640,8 @@
         "description": "An entity describing a environment_variable_assignment.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "value"
         ],
         "additionalProperties": false,
         "properties": {
@@ -6196,6 +6666,12 @@
           "type": { "const": "db_container_deployment" }
         }},
         "then": {
+        "required": [
+          "username",
+          "jdbc_driver_jar",
+          "jdbc_driver_class_name",
+          "jdbc_connection_string"
+        ],
         "properties": {
           "_class_": { "const": "db_container_deployment" },
           "name": {
@@ -6302,7 +6778,8 @@
         "description": "An entity describing a initial_table_data.",
         "type": "object",
         "required": [
-          "table_name"
+          "table_name",
+          "dataset_name"
         ],
         "additionalProperties": false,
         "properties": {
@@ -6331,6 +6808,8 @@
           "type": { "const": "container_on_gce_instance" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "container_on_gce_instance" },
@@ -6368,6 +6847,8 @@
           "type": { "const": "container_on_gcp_cloudrun" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "container_on_gcp_cloudrun" },
@@ -6395,7 +6876,8 @@
         "description": "An entity describing a datasource_configuration.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "type"
         ],
         "properties": {
           "_class_": { "const": "datasource_configuration" },
@@ -6425,6 +6907,12 @@
           "type": { "const": "jdbc_datasource_configuration" }
         }},
         "then": {
+        "required": [
+          "jdbc_connection_string",
+          "username",
+          "password",
+          "driver_class_name"
+        ],
         "properties": {
           "_class_": { "const": "jdbc_datasource_configuration" },
           "name": {
@@ -6497,6 +6985,8 @@
           "type": { "const": "oracle_jdbc" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "oracle_jdbc_datasource_configuration" },
@@ -6570,6 +7060,8 @@
           "type": { "const": "postgres_jdbc" }
         }},
         "then": {
+        "required": [
+        ],
         "additionalProperties": false,
         "properties": {
           "_class_": { "const": "postgres_jdbc_datasource_configuration" },
@@ -6641,7 +7133,8 @@
         "description": "An entity describing a environment.",
         "type": "object",
         "required": [
-          "name"
+          "name",
+          "tier"
         ],
         "additionalProperties": false,
         "properties": {
@@ -6710,6 +7203,9 @@
         "if": { "properties": { "_class_": { "const": "cache_policy" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.cache.CachePolicy" }
         }, {
+        "if": { "properties": { "_class_": { "const": "data_file" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.data_file.DataFile" }
+        }, {
         "if": { "properties": { "_class_": { "const": "datasource" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.datasource.Datasource" }
         }, {
@@ -6758,6 +7254,15 @@
         "if": { "properties": { "_class_": { "const": "graphql_type" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlType" }
         }, {
+        "if": { "properties": { "_class_": { "const": "argument_assignment" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.ArgumentAssignment" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "argument_assignment_value" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.ArgumentAssignmentValue" }
+        }, {
+        "if": { "properties": { "_class_": { "const": "rest_operation_response" } }},
+          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestOperationResponse" }
+        }, {
         "if": { "properties": { "_class_": { "const": "rest_request_parameter" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestRequestParameter" }
         }, {
@@ -6772,9 +7277,6 @@
         }, {
         "if": { "properties": { "_class_": { "const": "service_configuration" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.ServiceConfiguration" }
-        }, {
-        "if": { "properties": { "_class_": { "const": "service_configuration_category" } }},
-          "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.ServiceConfigurationCategory" }
         }, {
         "if": { "properties": { "_class_": { "const": "configuration_binding" } }},
           "then": { "$ref": "#/definitions/entities/laplacian.arch.api.service.ConfigurationBinding" }
