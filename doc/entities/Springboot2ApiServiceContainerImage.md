@@ -44,14 +44,14 @@ The jdk_major_version of this springboot2_api_service_container_image.
 The kotlin_version of this springboot2_api_service_container_image.
 - **Default Value:**
   ```kotlin
-  "1.4.10"
+  "1.4.30"
   ```
 
 ### kotlin_coroutine_version: `String`
 The kotlin_coroutine_version of this springboot2_api_service_container_image.
 - **Default Value:**
   ```kotlin
-  "1.3.9"
+  "1.4.2"
   ```
 
 ### reactor_kotlin_extension_version: `String`
