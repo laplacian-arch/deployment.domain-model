@@ -72,6 +72,12 @@ entities:
     default_value: |
       "42.2.18"
 
+  - name: mysql_jdbc_driver_version
+    type: string
+    optional: true
+    default_value: |
+      "8.0.23"
+
   - name: springboot_version
     type: string
     optional: true

@@ -82,6 +82,13 @@ The postgres_jdbc_driver_version of this springboot2_api_service_container_image
   "42.2.18"
   ```
 
+### mysql_jdbc_driver_version: `String`
+The mysql_jdbc_driver_version of this springboot2_api_service_container_image.
+- **Default Value:**
+  ```kotlin
+  "8.0.23"
+  ```
+
 ### springboot_version: `String`
 The springboot_version of this springboot2_api_service_container_image.
 - **Default Value:**

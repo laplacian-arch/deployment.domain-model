@@ -2684,8 +2684,12 @@
         "properties": {
           "_class_": { "const": "datasource" },
           "name": {
+            "allOf": [{
             "description": "The name of this datasource.",
             "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/identifier"
+            }]
           },
           "description": {
             "description": "The description of this datasource.",
@@ -2694,12 +2698,14 @@
           "type": {
             "description": "The type of this datasource.",
             "enum":[
+              "mysql_jdbc",
               "postgres_jdbc"
             ],
             "type": "string"
           }
         },
         "allOf": [
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.datasource.MysqlJdbcDatasource" },
           { "$ref": "#/definitions/entities/laplacian.arch.api.service.datasource.PostgresJdbcDatasource" }
         ]
       },
@@ -2718,6 +2724,40 @@
           }
         }
       },
+      "laplacian.arch.api.service.datasource.MysqlJdbcDatasource": {
+        "description": "An entity describing a mysql_jdbc_datasource.",
+        "if": { "properties": {
+          "type": { "const": "mysql_jdbc" }
+        }},
+        "then": {
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "mysql_jdbc_datasource" },
+          "name": {
+            "allOf": [{
+            "description": "The name of this datasource.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/identifier"
+            }]
+          },
+          "description": {
+            "description": "The description of this datasource.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this datasource.",
+            "enum":[
+              "mysql_jdbc",
+              "postgres_jdbc"
+            ],
+            "type": "string"
+          }
+        }
+        }
+      },
       "laplacian.arch.api.service.datasource.PostgresJdbcDatasource": {
         "description": "An entity describing a postgres_jdbc_datasource.",
         "if": { "properties": {
@@ -2730,8 +2770,12 @@
         "properties": {
           "_class_": { "const": "postgres_jdbc_datasource" },
           "name": {
+            "allOf": [{
             "description": "The name of this datasource.",
             "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/identifier"
+            }]
           },
           "description": {
             "description": "The description of this datasource.",
@@ -2740,6 +2784,7 @@
           "type": {
             "description": "The type of this datasource.",
             "enum":[
+              "mysql_jdbc",
               "postgres_jdbc"
             ],
             "type": "string"
@@ -5118,6 +5163,7 @@
         }},
         "then": {
         "required": [
+          "datasource_name",
           "statement_type",
           "statement"
         ],
@@ -5149,6 +5195,14 @@
           "cache_policy_name": {
             "description": "The cache_policy_name of this graphql_field_fetcher.",
             "type": "string"
+          },
+          "datasource_name": {
+            "allOf": [{
+            "description": "The datasource_name of this mybatis_fetcher.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/identifier"
+            }]
           },
           "statement_type": {
             "description": "The statement_type of this mybatis_fetcher.",
@@ -5767,6 +5821,7 @@
             "enum":[
               "container_image",
               "elasticsearch_container_image",
+              "mysql_container_image",
               "postgres_container_image",
               "springboot2_api_service_container_image"
             ],
@@ -5783,6 +5838,7 @@
         "allOf": [
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.container.ContainerImage" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.elasticsearch.ElasticsearchContainerImage" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.mysql.MysqlContainerImage" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.PostgresContainerImage" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.springboot2_api_service.Springboot2ApiServiceContainerImage" }
         ]
@@ -5806,6 +5862,7 @@
             "enum":[
               "container_image",
               "elasticsearch_container_image",
+              "mysql_container_image",
               "postgres_container_image",
               "springboot2_api_service_container_image"
             ],
@@ -5836,6 +5893,7 @@
         },
         "allOf": [
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.elasticsearch.ElasticsearchContainerImage" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.mysql.MysqlContainerImage" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.PostgresContainerImage" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.springboot2_api_service.Springboot2ApiServiceContainerImage" }
         ]
@@ -5901,6 +5959,7 @@
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
+              "mysql_container_deployment",
               "postgres_container_deployment"
             ],
             "type": "string"
@@ -5962,6 +6021,7 @@
             "enum":[
               "container_image",
               "elasticsearch_container_image",
+              "mysql_container_image",
               "postgres_container_image",
               "springboot2_api_service_container_image"
             ],
@@ -6058,6 +6118,182 @@
           }
         }
       },
+      "laplacian.arch.deployment.component.mysql.MysqlContainerDeployment": {
+        "description": "An entity describing a mysql_container_deployment.",
+        "if": { "properties": {
+          "type": { "const": "mysql_container_deployment" }
+        }},
+        "then": {
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "mysql_container_deployment" },
+          "name": {
+            "description": "The name of this deployment.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this deployment.",
+            "enum":[
+              "container_deployment",
+              "container_on_gce_instance",
+              "container_on_gcp_cloudrun",
+              "elasticsearch_container_deployment",
+              "springboot2_api_service_container_deployment",
+              "db_container_deployment",
+              "mysql_container_deployment",
+              "postgres_container_deployment"
+            ],
+            "type": "string"
+          },
+          "instance_name": {
+            "description": "The instance_name of this container_deployment.",
+            "type": "string"
+          },
+          "tag": {
+            "description": "The tag of this container_deployment.",
+            "type": "string"
+          },
+          "container_registry": {
+            "description": "The container_registry of this container_deployment.",
+            "type": "string"
+          },
+          "use_locally_built_image": {
+            "description": "Defines this container_deployment is use_locally_built_image or not.",
+            "type": "boolean"
+          },
+          "username": {
+            "description": "The username of this db_container_deployment.",
+            "type": "string"
+          },
+          "password": {
+            "description": "The password of this db_container_deployment.",
+            "type": "string"
+          },
+          "database_name": {
+            "description": "The database_name of this db_container_deployment.",
+            "type": "string"
+          },
+          "port": {
+            "description": "The port of this db_container_deployment.",
+            "type": "number"
+          },
+          "gradle_version": {
+            "description": "The gradle_version of this db_container_deployment.",
+            "type": "string"
+          },
+          "flyway_container_base_image": {
+            "description": "The flyway_container_base_image of this db_container_deployment.",
+            "type": "string"
+          },
+          "flyway_version": {
+            "description": "The flyway_version of this db_container_deployment.",
+            "type": "string"
+          },
+          "jdbc_driver_jar": {
+            "description": "The jdbc_driver_jar of this db_container_deployment.",
+            "type": "string"
+          },
+          "jdbc_driver_class_name": {
+            "description": "The jdbc_driver_class_name of this db_container_deployment.",
+            "type": "string"
+          },
+          "jdbc_connection_string": {
+            "description": "The jdbc_connection_string of this db_container_deployment.",
+            "type": "string"
+          },
+          "port": {
+            "description": "The port of this mysql_container_deployment.",
+            "type": "number"
+          },
+          "jdbc_driver_jar": {
+            "description": "The jdbc_driver_jar of this mysql_container_deployment.",
+            "type": "string"
+          },
+          "jdbc_driver_class_name": {
+            "description": "The jdbc_driver_class_name of this mysql_container_deployment.",
+            "type": "string"
+          },
+          "environment_variables": {
+            "description": "The environment_variables of this container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.container.EnvironmentVariableAssignment"
+            }
+          },
+          "data_files": {
+            "description": "The data_files of this container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DataFile"
+            }
+          },
+          "initial_data": {
+            "description": "The initial_data of this db_container_deployment.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.container.InitialTableData"
+            }
+          }
+        }
+        }
+      },
+      "laplacian.arch.deployment.component.mysql.MysqlContainerImage": {
+        "description": "An entity describing a mysql_container_image.",
+        "if": { "properties": {
+          "type": { "const": "mysql_container_image" }
+        }},
+        "then": {
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "mysql_container_image" },
+          "name": {
+            "description": "The name of this component.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this component.",
+            "enum":[
+              "container_image",
+              "elasticsearch_container_image",
+              "mysql_container_image",
+              "postgres_container_image",
+              "springboot2_api_service_container_image"
+            ],
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+            "description": "The tags of this component.",
+            "type": "string"
+            }
+          },
+          "base_name": {
+            "description": "The base_name of this container_image.",
+            "type": "string"
+          },
+          "custom_built": {
+            "description": "Defines this container_image is custom_built or not.",
+            "type": "boolean"
+          },
+          "base_name": {
+            "description": "The base_name of this mysql_container_image.",
+            "type": "string"
+          },
+          "environment_variables": {
+            "description": "The environment_variables of this container_image.",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/laplacian.arch.deployment.component.container.EnvironmentVariableDefinition"
+            }
+          }
+        }
+        }
+      },
       "laplacian.arch.deployment.component.postgres.PostgresContainerDeployment": {
         "description": "An entity describing a postgres_container_deployment.",
         "if": { "properties": {
@@ -6082,6 +6318,7 @@
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
+              "mysql_container_deployment",
               "postgres_container_deployment"
             ],
             "type": "string"
@@ -6198,6 +6435,7 @@
             "enum":[
               "container_image",
               "elasticsearch_container_image",
+              "mysql_container_image",
               "postgres_container_image",
               "springboot2_api_service_container_image"
             ],
@@ -6281,6 +6519,7 @@
             "enum":[
               "container_image",
               "elasticsearch_container_image",
+              "mysql_container_image",
               "postgres_container_image",
               "springboot2_api_service_container_image"
             ],
@@ -6344,6 +6583,10 @@
           },
           "postgres_jdbc_driver_version": {
             "description": "The postgres_jdbc_driver_version of this springboot2_api_service_container_image.",
+            "type": "string"
+          },
+          "mysql_jdbc_driver_version": {
+            "description": "The mysql_jdbc_driver_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
           "springboot_version": {
@@ -6414,6 +6657,7 @@
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
+              "mysql_container_deployment",
               "postgres_container_deployment"
             ],
             "type": "string"
@@ -6531,6 +6775,7 @@
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
+              "mysql_container_deployment",
               "postgres_container_deployment"
             ],
             "type": "string"
@@ -6543,6 +6788,7 @@
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.elasticsearch.ElasticsearchContainerDeployment" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.springboot2_api_service.Springboot2ApiServiceContainerDeployment" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DbContainerDeployment" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.mysql.MysqlContainerDeployment" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.PostgresContainerDeployment" }
         ]
       },
@@ -6569,6 +6815,7 @@
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
+              "mysql_container_deployment",
               "postgres_container_deployment"
             ],
             "type": "string"
@@ -6608,6 +6855,7 @@
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.elasticsearch.ElasticsearchContainerDeployment" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.springboot2_api_service.Springboot2ApiServiceContainerDeployment" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.container.DbContainerDeployment" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.mysql.MysqlContainerDeployment" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.PostgresContainerDeployment" }
         ]
         }
@@ -6687,6 +6935,7 @@
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
+              "mysql_container_deployment",
               "postgres_container_deployment"
             ],
             "type": "string"
@@ -6770,6 +7019,7 @@
           }
         },
         "allOf": [
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.mysql.MysqlContainerDeployment" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.component.postgres.PostgresContainerDeployment" }
         ]
         }
@@ -6826,6 +7076,7 @@
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
+              "mysql_container_deployment",
               "postgres_container_deployment"
             ],
             "type": "string"
@@ -6865,6 +7116,7 @@
               "elasticsearch_container_deployment",
               "springboot2_api_service_container_deployment",
               "db_container_deployment",
+              "mysql_container_deployment",
               "postgres_container_deployment"
             ],
             "type": "string"
@@ -6889,6 +7141,7 @@
             "description": "The type of this datasource_configuration.",
             "enum":[
               "jdbc_datasource_configuration",
+              "mysql_jdbc",
               "oracle_jdbc",
               "postgres_jdbc"
             ],
@@ -6897,6 +7150,7 @@
         },
         "allOf": [
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.JdbcDatasourceConfiguration" },
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.MysqlJdbcDatasourceConfiguration" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.OracleJdbcDatasourceConfiguration" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.PostgresJdbcDatasourceConfiguration" }
         ]
@@ -6923,6 +7177,7 @@
             "description": "The type of this datasource_configuration.",
             "enum":[
               "jdbc_datasource_configuration",
+              "mysql_jdbc",
               "oracle_jdbc",
               "postgres_jdbc"
             ],
@@ -6974,9 +7229,86 @@
           }
         },
         "allOf": [
+          { "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.MysqlJdbcDatasourceConfiguration" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.OracleJdbcDatasourceConfiguration" },
           { "$ref": "#/definitions/entities/laplacian.arch.deployment.datasource.PostgresJdbcDatasourceConfiguration" }
         ]
+        }
+      },
+      "laplacian.arch.deployment.datasource.MysqlJdbcDatasourceConfiguration": {
+        "description": "An entity describing a mysql_jdbc_datasource_configuration.",
+        "if": { "properties": {
+          "type": { "const": "mysql_jdbc" }
+        }},
+        "then": {
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "mysql_jdbc_datasource_configuration" },
+          "name": {
+            "description": "The name of this datasource_configuration.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this datasource_configuration.",
+            "enum":[
+              "jdbc_datasource_configuration",
+              "mysql_jdbc",
+              "oracle_jdbc",
+              "postgres_jdbc"
+            ],
+            "type": "string"
+          },
+          "jdbc_connection_string": {
+            "description": "The jdbc_connection_string of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "url": {
+            "description": "The url of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "username": {
+            "description": "The username of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "password": {
+            "description": "The password of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "database_name": {
+            "description": "The database_name of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "driver_class_name": {
+            "description": "The driver_class_name of this jdbc_datasource_configuration.",
+            "type": "string"
+          },
+          "minimum_idle_connections": {
+            "description": "The minimum_idle_connections of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "maximum_connections": {
+            "description": "The maximum_connections of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "idle_connection_timeout": {
+            "description": "The idle_connection_timeout of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "maximum_connection_lifetime": {
+            "description": "The maximum_connection_lifetime of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "connection_timeout": {
+            "description": "The connection_timeout of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "driver_class_name": {
+            "description": "The driver_class_name of this mysql_jdbc_datasource_configuration.",
+            "type": "string"
+          }
+        }
         }
       },
       "laplacian.arch.deployment.datasource.OracleJdbcDatasourceConfiguration": {
@@ -6998,6 +7330,7 @@
             "description": "The type of this datasource_configuration.",
             "enum":[
               "jdbc_datasource_configuration",
+              "mysql_jdbc",
               "oracle_jdbc",
               "postgres_jdbc"
             ],
@@ -7073,6 +7406,7 @@
             "description": "The type of this datasource_configuration.",
             "enum":[
               "jdbc_datasource_configuration",
+              "mysql_jdbc",
               "oracle_jdbc",
               "postgres_jdbc"
             ],

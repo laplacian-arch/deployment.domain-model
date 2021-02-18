@@ -87,6 +87,10 @@ An entity describing a elasticsearch_container_image.
 An entity describing a configuration_file.
 - [**MavenArtifact**](<./doc/entities/MavenArtifact.md>)
 An entity describing a maven_artifact.
+- [**MysqlContainerDeployment**](<./doc/entities/MysqlContainerDeployment.md>)
+An entity describing a mysql_container_deployment.
+- [**MysqlContainerImage**](<./doc/entities/MysqlContainerImage.md>)
+An entity describing a mysql_container_image.
 - [**PostgresContainerDeployment**](<./doc/entities/PostgresContainerDeployment.md>)
 An entity describing a postgres_container_deployment.
 - [**PostgresContainerImage**](<./doc/entities/PostgresContainerImage.md>)
@@ -121,6 +125,8 @@ An entity describing a container_on_gcp_cloudrun.
 An entity describing a datasource_configuration.
 - [**JdbcDatasourceConfiguration**](<./doc/entities/JdbcDatasourceConfiguration.md>)
 jdbc datasource setting with Hikari connection pool.
+- [**MysqlJdbcDatasourceConfiguration**](<./doc/entities/MysqlJdbcDatasourceConfiguration.md>)
+An entity describing a mysql_jdbc_datasource_configuration.
 - [**OracleJdbcDatasourceConfiguration**](<./doc/entities/OracleJdbcDatasourceConfiguration.md>)
 An entity describing a oracle_jdbc_datasource_configuration.
 - [**PostgresJdbcDatasourceConfiguration**](<./doc/entities/PostgresJdbcDatasourceConfiguration.md>)
@@ -244,6 +250,8 @@ An entity describing a environment.
 - [src/model/entities/component/elasticsearch/elasticsearch-container-deployment.yaml](<./src/model/entities/component/elasticsearch/elasticsearch-container-deployment.yaml>)
 - [src/model/entities/component/elasticsearch/elasticsearch-container-image.yaml](<./src/model/entities/component/elasticsearch/elasticsearch-container-image.yaml>)
 - [src/model/entities/component/maven_artifiact.yaml](<./src/model/entities/component/maven_artifiact.yaml>)
+- [src/model/entities/component/mysql/mysql-container-deployment.yaml](<./src/model/entities/component/mysql/mysql-container-deployment.yaml>)
+- [src/model/entities/component/mysql/mysql-container-image.yaml](<./src/model/entities/component/mysql/mysql-container-image.yaml>)
 - [src/model/entities/component/postgres/postgres-container-deployment.yaml](<./src/model/entities/component/postgres/postgres-container-deployment.yaml>)
 - [src/model/entities/component/postgres/postgres-container-image.yaml](<./src/model/entities/component/postgres/postgres-container-image.yaml>)
 - [src/model/entities/component/redis/redis-container-deployment.yaml](<./src/model/entities/component/redis/redis-container-deployment.yaml>)
@@ -257,6 +265,7 @@ An entity describing a environment.
 - [src/model/entities/deployment/container_on_gcp_cloudrun.yaml](<./src/model/entities/deployment/container_on_gcp_cloudrun.yaml>)
 - [src/model/entities/deployment/datasource_configuration/datasource-configuration.yaml](<./src/model/entities/deployment/datasource_configuration/datasource-configuration.yaml>)
 - [src/model/entities/deployment/datasource_configuration/jdbc-datasource-configuration.yaml](<./src/model/entities/deployment/datasource_configuration/jdbc-datasource-configuration.yaml>)
+- [src/model/entities/deployment/datasource_configuration/mybatis-jdbc-datasource-configuratoin.yaml](<./src/model/entities/deployment/datasource_configuration/mybatis-jdbc-datasource-configuratoin.yaml>)
 - [src/model/entities/deployment/datasource_configuration/oracle-jdbc-datasource-configuratoin.yaml](<./src/model/entities/deployment/datasource_configuration/oracle-jdbc-datasource-configuratoin.yaml>)
 - [src/model/entities/deployment/datasource_configuration/postgres-jdbc-datasource-configuratoin.yaml](<./src/model/entities/deployment/datasource_configuration/postgres-jdbc-datasource-configuratoin.yaml>)
 - [src/model/entities/deployment.yaml](<./src/model/entities/deployment.yaml>)
