@@ -32,19 +32,23 @@ entities:
   - name: driver_class_name
     type: string
 
-  - name: minimum_idle_connections
+  - name: slow_query_threshold_mills
     type: number
     optional: true
 
-  - name: maximum_connections
+  - name: minimum_idle
     type: number
     optional: true
 
-  - name: idle_connection_timeout
+  - name: maximum_pool_size
     type: number
     optional: true
 
-  - name: maximum_connection_lifetime
+  - name: idle_timeout
+    type: number
+    optional: true
+
+  - name: max-lifetime
     type: number
     optional: true
 

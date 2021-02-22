@@ -36,17 +36,20 @@ The database_name of this jdbc_datasource_configuration.
 ### driver_class_name: `String`
 The driver_class_name of this jdbc_datasource_configuration.
 
-### minimum_idle_connections: `Int`
-The minimum_idle_connections of this jdbc_datasource_configuration.
+### slow_query_threshold_mills: `Int`
+The slow_query_threshold_mills of this jdbc_datasource_configuration.
 
-### maximum_connections: `Int`
-The maximum_connections of this jdbc_datasource_configuration.
+### minimum_idle: `Int`
+The minimum_idle of this jdbc_datasource_configuration.
 
-### idle_connection_timeout: `Int`
-The idle_connection_timeout of this jdbc_datasource_configuration.
+### maximum_pool_size: `Int`
+The maximum_pool_size of this jdbc_datasource_configuration.
 
-### maximum_connection_lifetime: `Int`
-The maximum_connection_lifetime of this jdbc_datasource_configuration.
+### idle_timeout: `Int`
+The idle_timeout of this jdbc_datasource_configuration.
+
+### max-lifetime: `Int`
+The max-lifetime of this jdbc_datasource_configuration.
 
 ### connection_timeout: `Int`
 The connection_timeout of this jdbc_datasource_configuration.

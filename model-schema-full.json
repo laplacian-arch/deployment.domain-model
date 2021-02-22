@@ -2679,8 +2679,10 @@
         "description": "A *DataSource* represents an interface through which a client application access to a data store.\nThis includes the following models.\n- The entity that the datastore exposes to the client\n- Statement issued by the client to the datastore",
         "type": "object",
         "required": [
-          "type"
+          "db_type",
+          "non_blocking"
         ],
+        "additionalProperties": false,
         "properties": {
           "_class_": { "const": "datasource" },
           "name": {
@@ -2695,19 +2697,20 @@
             "description": "The description of this datasource.",
             "type": "string"
           },
-          "type": {
-            "description": "The type of this datasource.",
+          "db_type": {
+            "description": "The db_type of this datasource.",
             "enum":[
-              "mysql_jdbc",
-              "postgres_jdbc"
+              "postgres",
+              "mysql",
+              "oracle"
             ],
             "type": "string"
+          },
+          "non_blocking": {
+            "description": "Defines this datasource is non_blocking or not.",
+            "type": "boolean"
           }
-        },
-        "allOf": [
-          { "$ref": "#/definitions/entities/laplacian.arch.api.service.datasource.MysqlJdbcDatasource" },
-          { "$ref": "#/definitions/entities/laplacian.arch.api.service.datasource.PostgresJdbcDatasource" }
-        ]
+        }
       },
       "laplacian.arch.api.service.datasource.DatasourceEntry": {
         "description": "An entity describing a datasource_entry.",
@@ -2722,74 +2725,6 @@
             "description": "The name of this datasource_entry.",
             "type": "string"
           }
-        }
-      },
-      "laplacian.arch.api.service.datasource.MysqlJdbcDatasource": {
-        "description": "An entity describing a mysql_jdbc_datasource.",
-        "if": { "properties": {
-          "type": { "const": "mysql_jdbc" }
-        }},
-        "then": {
-        "required": [
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "_class_": { "const": "mysql_jdbc_datasource" },
-          "name": {
-            "allOf": [{
-            "description": "The name of this datasource.",
-            "type": "string"
-            }, {
-            "$ref": "#/definitions/value_domain_types/identifier"
-            }]
-          },
-          "description": {
-            "description": "The description of this datasource.",
-            "type": "string"
-          },
-          "type": {
-            "description": "The type of this datasource.",
-            "enum":[
-              "mysql_jdbc",
-              "postgres_jdbc"
-            ],
-            "type": "string"
-          }
-        }
-        }
-      },
-      "laplacian.arch.api.service.datasource.PostgresJdbcDatasource": {
-        "description": "An entity describing a postgres_jdbc_datasource.",
-        "if": { "properties": {
-          "type": { "const": "postgres_jdbc" }
-        }},
-        "then": {
-        "required": [
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "_class_": { "const": "postgres_jdbc_datasource" },
-          "name": {
-            "allOf": [{
-            "description": "The name of this datasource.",
-            "type": "string"
-            }, {
-            "$ref": "#/definitions/value_domain_types/identifier"
-            }]
-          },
-          "description": {
-            "description": "The description of this datasource.",
-            "type": "string"
-          },
-          "type": {
-            "description": "The type of this datasource.",
-            "enum":[
-              "mysql_jdbc",
-              "postgres_jdbc"
-            ],
-            "type": "string"
-          }
-        }
         }
       },
       "laplacian.arch.api.service.Duration": {
@@ -6609,6 +6544,10 @@
             "description": "The springboot_mybatis_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
+          "datasource_proxy_version": {
+            "description": "The datasource_proxy_version of this springboot2_api_service_container_image.",
+            "type": "string"
+          },
           "repositories": {
             "type": "array",
             "items": {
@@ -7207,20 +7146,24 @@
             "description": "The driver_class_name of this jdbc_datasource_configuration.",
             "type": "string"
           },
-          "minimum_idle_connections": {
-            "description": "The minimum_idle_connections of this jdbc_datasource_configuration.",
+          "slow_query_threshold_mills": {
+            "description": "The slow_query_threshold_mills of this jdbc_datasource_configuration.",
             "type": "number"
           },
-          "maximum_connections": {
-            "description": "The maximum_connections of this jdbc_datasource_configuration.",
+          "minimum_idle": {
+            "description": "The minimum_idle of this jdbc_datasource_configuration.",
             "type": "number"
           },
-          "idle_connection_timeout": {
-            "description": "The idle_connection_timeout of this jdbc_datasource_configuration.",
+          "maximum_pool_size": {
+            "description": "The maximum_pool_size of this jdbc_datasource_configuration.",
             "type": "number"
           },
-          "maximum_connection_lifetime": {
-            "description": "The maximum_connection_lifetime of this jdbc_datasource_configuration.",
+          "idle_timeout": {
+            "description": "The idle_timeout of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "max_lifetime": {
+            "description": "The max-lifetime of this jdbc_datasource_configuration.",
             "type": "number"
           },
           "connection_timeout": {
@@ -7284,20 +7227,24 @@
             "description": "The driver_class_name of this jdbc_datasource_configuration.",
             "type": "string"
           },
-          "minimum_idle_connections": {
-            "description": "The minimum_idle_connections of this jdbc_datasource_configuration.",
+          "slow_query_threshold_mills": {
+            "description": "The slow_query_threshold_mills of this jdbc_datasource_configuration.",
             "type": "number"
           },
-          "maximum_connections": {
-            "description": "The maximum_connections of this jdbc_datasource_configuration.",
+          "minimum_idle": {
+            "description": "The minimum_idle of this jdbc_datasource_configuration.",
             "type": "number"
           },
-          "idle_connection_timeout": {
-            "description": "The idle_connection_timeout of this jdbc_datasource_configuration.",
+          "maximum_pool_size": {
+            "description": "The maximum_pool_size of this jdbc_datasource_configuration.",
             "type": "number"
           },
-          "maximum_connection_lifetime": {
-            "description": "The maximum_connection_lifetime of this jdbc_datasource_configuration.",
+          "idle_timeout": {
+            "description": "The idle_timeout of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "max_lifetime": {
+            "description": "The max-lifetime of this jdbc_datasource_configuration.",
             "type": "number"
           },
           "connection_timeout": {
@@ -7360,20 +7307,24 @@
             "description": "The driver_class_name of this jdbc_datasource_configuration.",
             "type": "string"
           },
-          "minimum_idle_connections": {
-            "description": "The minimum_idle_connections of this jdbc_datasource_configuration.",
+          "slow_query_threshold_mills": {
+            "description": "The slow_query_threshold_mills of this jdbc_datasource_configuration.",
             "type": "number"
           },
-          "maximum_connections": {
-            "description": "The maximum_connections of this jdbc_datasource_configuration.",
+          "minimum_idle": {
+            "description": "The minimum_idle of this jdbc_datasource_configuration.",
             "type": "number"
           },
-          "idle_connection_timeout": {
-            "description": "The idle_connection_timeout of this jdbc_datasource_configuration.",
+          "maximum_pool_size": {
+            "description": "The maximum_pool_size of this jdbc_datasource_configuration.",
             "type": "number"
           },
-          "maximum_connection_lifetime": {
-            "description": "The maximum_connection_lifetime of this jdbc_datasource_configuration.",
+          "idle_timeout": {
+            "description": "The idle_timeout of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "max_lifetime": {
+            "description": "The max-lifetime of this jdbc_datasource_configuration.",
             "type": "number"
           },
           "connection_timeout": {
@@ -7436,20 +7387,24 @@
             "description": "The driver_class_name of this jdbc_datasource_configuration.",
             "type": "string"
           },
-          "minimum_idle_connections": {
-            "description": "The minimum_idle_connections of this jdbc_datasource_configuration.",
+          "slow_query_threshold_mills": {
+            "description": "The slow_query_threshold_mills of this jdbc_datasource_configuration.",
             "type": "number"
           },
-          "maximum_connections": {
-            "description": "The maximum_connections of this jdbc_datasource_configuration.",
+          "minimum_idle": {
+            "description": "The minimum_idle of this jdbc_datasource_configuration.",
             "type": "number"
           },
-          "idle_connection_timeout": {
-            "description": "The idle_connection_timeout of this jdbc_datasource_configuration.",
+          "maximum_pool_size": {
+            "description": "The maximum_pool_size of this jdbc_datasource_configuration.",
             "type": "number"
           },
-          "maximum_connection_lifetime": {
-            "description": "The maximum_connection_lifetime of this jdbc_datasource_configuration.",
+          "idle_timeout": {
+            "description": "The idle_timeout of this jdbc_datasource_configuration.",
+            "type": "number"
+          },
+          "max_lifetime": {
+            "description": "The max-lifetime of this jdbc_datasource_configuration.",
             "type": "number"
           },
           "connection_timeout": {

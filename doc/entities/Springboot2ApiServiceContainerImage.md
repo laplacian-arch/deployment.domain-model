@@ -124,12 +124,19 @@ The springboot_mybatis_version of this springboot2_api_service_container_image.
   "2.1.4"
   ```
 
+### datasource_proxy_version: `String`
+The datasource_proxy_version of this springboot2_api_service_container_image.
+- **Default Value:**
+  ```kotlin
+  "1.7"
+  ```
+
 ### repositories: `List<String>`
 The repositories of this springboot2_api_service_container_image.
 - **Default Value:**
   ```kotlin
   listOf(
-    "jcenter()"
+      "mavenCentral()"
   )
   ```
 

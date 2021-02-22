@@ -108,13 +108,19 @@ entities:
     default_value: |
       "2.1.4"
 
+  - name: datasource_proxy_version
+    type: string
+    optional: true
+    default_value: |
+      "1.7"
+
   - name: repositories
     type: string
     multiple: true
     optional: true
     default_value: |
       listOf(
-        "jcenter()"
+          "mavenCentral()"
       )
 
   relationships:
