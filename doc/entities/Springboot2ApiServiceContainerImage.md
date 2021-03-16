@@ -1,3 +1,5 @@
+
+
 # **Springboot2ApiServiceContainerImage**
 **namespace:** laplacian.arch.deployment.component.springboot2_api_service
 
@@ -89,6 +91,20 @@ The mysql_jdbc_driver_version of this springboot2_api_service_container_image.
   "8.0.23"
   ```
 
+### spring_version: `String`
+The spring_version of this springboot2_api_service_container_image.
+- **Default Value:**
+  ```kotlin
+  "5.2.7.RELEASE"
+  ```
+
+### reactor_version: `String`
+The reactor_version of this springboot2_api_service_container_image.
+- **Default Value:**
+  ```kotlin
+  "3.2.5.RELEASE"
+  ```
+
 ### springboot_version: `String`
 The springboot_version of this springboot2_api_service_container_image.
 - **Default Value:**
@@ -108,6 +124,13 @@ The spring_dependency_manager_version of this springboot2_api_service_container_
 - **Default Value:**
   ```kotlin
   "1.0.9.RELEASE"
+  ```
+
+### graphql_java_version: `String`
+The graphql_java_version of this springboot2_api_service_container_image.
+- **Default Value:**
+  ```kotlin
+  "15.0"
   ```
 
 ### graphql_extended_scalar_version: `String`

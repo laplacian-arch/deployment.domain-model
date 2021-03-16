@@ -78,6 +78,18 @@ entities:
     default_value: |
       "8.0.23"
 
+  - name: spring_version
+    type: string
+    optional: true
+    default_value: |
+      "5.2.7.RELEASE"
+
+  - name: reactor_version
+    type: string
+    optional: true
+    default_value: |
+      "3.2.5.RELEASE"
+
   - name: springboot_version
     type: string
     optional: true
@@ -95,6 +107,12 @@ entities:
     optional: true
     default_value: |
       "1.0.9.RELEASE"
+
+  - name: graphql_java_version
+    type: string
+    optional: true
+    default_value: |
+      "15.0"
 
   - name: graphql_extended_scalar_version
     type: string

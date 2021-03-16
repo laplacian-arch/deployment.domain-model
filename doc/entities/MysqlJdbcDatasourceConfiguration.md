@@ -1,3 +1,5 @@
+
+
 # **MysqlJdbcDatasourceConfiguration**
 **namespace:** laplacian.arch.deployment.datasource
 

@@ -1,3 +1,6 @@
+
+
+
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Domain model definition for the deployment.domain-model project.",
@@ -2606,6 +2609,7 @@
             "description": "The type of this graphql_field_fetcher.",
             "enum":[
               "data_file",
+              "custom",
               "graphql_field_link",
               "mybatis",
               "rest_api"
@@ -2616,8 +2620,12 @@
             "description": "The description of this graphql_field_fetcher.",
             "type": "string"
           },
-          "result_filter": {
-            "description": "The result_filter of this graphql_field_fetcher.",
+          "is_batch": {
+            "description": "Defines this graphql_field_fetcher is is_batch or not.",
+            "type": "boolean"
+          },
+          "result_selector": {
+            "description": "The result_selector of this graphql_field_fetcher.",
             "type": "string"
           },
           "result_mapper": {
@@ -4643,6 +4651,55 @@
         }
         }
       },
+      "laplacian.arch.api.service.graphql.CustomFetcher": {
+        "description": "An entity describing a custom_fetcher.",
+        "if": { "properties": {
+          "type": { "const": "custom" }
+        }},
+        "then": {
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_class_": { "const": "custom_fetcher" },
+          "type": {
+            "description": "The type of this graphql_field_fetcher.",
+            "enum":[
+              "data_file",
+              "custom",
+              "graphql_field_link",
+              "mybatis",
+              "rest_api"
+            ],
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "is_batch": {
+            "description": "Defines this graphql_field_fetcher is is_batch or not.",
+            "type": "boolean"
+          },
+          "result_selector": {
+            "description": "The result_selector of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "result_mapper": {
+            "description": "The result_mapper of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "cache_policy_name": {
+            "description": "The cache_policy_name of this graphql_field_fetcher.",
+            "type": "string"
+          },
+          "async": {
+            "description": "Defines this custom_fetcher is async or not.",
+            "type": "boolean"
+          }
+        }
+        }
+      },
       "laplacian.arch.api.service.graphql.GraphqlFieldFetcher": {
         "description": "An entity describing a graphql_field_fetcher.",
         "type": "object",
@@ -4655,6 +4712,7 @@
             "description": "The type of this graphql_field_fetcher.",
             "enum":[
               "data_file",
+              "custom",
               "graphql_field_link",
               "mybatis",
               "rest_api"
@@ -4665,8 +4723,12 @@
             "description": "The description of this graphql_field_fetcher.",
             "type": "string"
           },
-          "result_filter": {
-            "description": "The result_filter of this graphql_field_fetcher.",
+          "is_batch": {
+            "description": "Defines this graphql_field_fetcher is is_batch or not.",
+            "type": "boolean"
+          },
+          "result_selector": {
+            "description": "The result_selector of this graphql_field_fetcher.",
             "type": "string"
           },
           "result_mapper": {
@@ -4680,6 +4742,7 @@
         },
         "allOf": [
           { "$ref": "#/definitions/entities/laplacian.arch.api.service.data_file.DataFileFetcher" },
+          { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.CustomFetcher" },
           { "$ref": "#/definitions/entities/laplacian.arch.api.service.graphql.GraphqlFieldLink" },
           { "$ref": "#/definitions/entities/laplacian.arch.api.service.mybatis.MybatisFetcher" },
           { "$ref": "#/definitions/entities/laplacian.arch.api.service.rest.RestApiFetcher" }
@@ -4702,6 +4765,7 @@
             "description": "The type of this graphql_field_fetcher.",
             "enum":[
               "data_file",
+              "custom",
               "graphql_field_link",
               "mybatis",
               "rest_api"
@@ -4712,8 +4776,12 @@
             "description": "The description of this graphql_field_fetcher.",
             "type": "string"
           },
-          "result_filter": {
-            "description": "The result_filter of this graphql_field_fetcher.",
+          "is_batch": {
+            "description": "Defines this graphql_field_fetcher is is_batch or not.",
+            "type": "boolean"
+          },
+          "result_selector": {
+            "description": "The result_selector of this graphql_field_fetcher.",
             "type": "string"
           },
           "result_mapper": {
@@ -5109,6 +5177,7 @@
             "description": "The type of this graphql_field_fetcher.",
             "enum":[
               "data_file",
+              "custom",
               "graphql_field_link",
               "mybatis",
               "rest_api"
@@ -5119,8 +5188,12 @@
             "description": "The description of this graphql_field_fetcher.",
             "type": "string"
           },
-          "result_filter": {
-            "description": "The result_filter of this graphql_field_fetcher.",
+          "is_batch": {
+            "description": "Defines this graphql_field_fetcher is is_batch or not.",
+            "type": "boolean"
+          },
+          "result_selector": {
+            "description": "The result_selector of this graphql_field_fetcher.",
             "type": "string"
           },
           "result_mapper": {
@@ -5174,6 +5247,7 @@
             "description": "The type of this graphql_field_fetcher.",
             "enum":[
               "data_file",
+              "custom",
               "graphql_field_link",
               "mybatis",
               "rest_api"
@@ -5184,8 +5258,12 @@
             "description": "The description of this graphql_field_fetcher.",
             "type": "string"
           },
-          "result_filter": {
-            "description": "The result_filter of this graphql_field_fetcher.",
+          "is_batch": {
+            "description": "Defines this graphql_field_fetcher is is_batch or not.",
+            "type": "boolean"
+          },
+          "result_selector": {
+            "description": "The result_selector of this graphql_field_fetcher.",
             "type": "string"
           },
           "result_mapper": {
@@ -6524,6 +6602,14 @@
             "description": "The mysql_jdbc_driver_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
+          "spring_version": {
+            "description": "The spring_version of this springboot2_api_service_container_image.",
+            "type": "string"
+          },
+          "reactor_version": {
+            "description": "The reactor_version of this springboot2_api_service_container_image.",
+            "type": "string"
+          },
           "springboot_version": {
             "description": "The springboot_version of this springboot2_api_service_container_image.",
             "type": "string"
@@ -6534,6 +6620,10 @@
           },
           "spring_dependency_manager_version": {
             "description": "The spring_dependency_manager_version of this springboot2_api_service_container_image.",
+            "type": "string"
+          },
+          "graphql_java_version": {
+            "description": "The graphql_java_version of this springboot2_api_service_container_image.",
             "type": "string"
           },
           "graphql_extended_scalar_version": {
